@@ -1,4 +1,4 @@
-# Association Next
+# Association next
 
 Partie front du projet [Association](https://github.com/Magle-corp/Association) construite avec Next.js.
 
