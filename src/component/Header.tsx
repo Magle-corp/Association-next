@@ -3,15 +3,8 @@ import { Wrapper, Text, List } from '@magle-corp/design-system';
 
 const StyledWrapper = styled(Wrapper)`
   max-width: ${({ theme }) => theme.breakpoints.maximumWidth};
-  margin: 10px auto auto;
-`;
-
-const StyledBrandWrapper = styled(Wrapper)`
-  margin-left: 20px;
-`;
-
-const StyledNav = styled.nav`
-  margin-right: 20px;
+  padding: 10px 20px 0 20px;
+  margin: 0 auto;
 `;
 
 const Header = () => {
@@ -21,12 +14,12 @@ const Header = () => {
       alignItem="flex-end"
       justifyContent="space-between"
     >
-      <StyledBrandWrapper>
+      <Wrapper>
         <Text as="h1" variant="h1">
           Magle
         </Text>
-      </StyledBrandWrapper>
-      <StyledNav>
+      </Wrapper>
+      <nav>
         <List variant="horizontal" spacing={25}>
           <li>
             <Text variant="h4">Articles</Text>
@@ -38,7 +31,7 @@ const Header = () => {
             <Text variant="h4">Contact</Text>
           </li>
         </List>
-      </StyledNav>
+      </nav>
     </StyledWrapper>
   );
 };
