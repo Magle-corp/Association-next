@@ -1,13 +1,10 @@
 import styled from 'styled-components';
 import { Wrapper, Text, List } from '@magle-corp/design-system';
+import { Article } from '../type/Article';
+import Link from '../component/Link';
 
 interface Props {
   articles: Article[];
-}
-
-interface Article {
-  id: string;
-  title: string;
 }
 
 const StyledList = styled(List)`
@@ -24,7 +21,9 @@ const LatestArticles = ({ articles }: Props) => {
         <StyledList>
           {articles.map((article) => (
             <li key={article.id}>
-              <Text>{article.title}</Text>
+              <Link href="#">
+                <Text as="span">{article.title}</Text>
+              </Link>
             </li>
           ))}
         </StyledList>

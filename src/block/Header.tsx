@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Wrapper, Text, List } from '@magle-corp/design-system';
+import Link from '../component/Link';
 
 const StyledWrapper = styled(Wrapper)`
   max-width: ${({ theme }) => theme.breakpoints.maximumWidth};
@@ -22,13 +23,25 @@ const Header = () => {
       <nav>
         <List variant="horizontal" spacing={25}>
           <li>
-            <Text variant="h4">Articles</Text>
+            <Link href="#">
+              <Text as="span" variant="h4">
+                Articles
+              </Text>
+            </Link>
           </li>
           <li>
-            <Text variant="h4">A propos</Text>
+            <Link href="#">
+              <Text as="span" variant="h4">
+                A propos
+              </Text>
+            </Link>
           </li>
           <li>
-            <Text variant="h4">Contact</Text>
+            <Link href="#">
+              <Text as="span" variant="h4">
+                Contact
+              </Text>
+            </Link>
           </li>
         </List>
       </nav>

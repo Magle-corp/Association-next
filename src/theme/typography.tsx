@@ -32,7 +32,7 @@ const variant: object = {
 `,
   p: `
     ${fontFamily}
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     line-height: 2.4rem;
     font-weight: 400;
     text-decoration: none;
