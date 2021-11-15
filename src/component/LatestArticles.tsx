@@ -1,33 +1,32 @@
 import styled from 'styled-components';
 import { Wrapper, Text, List } from '@magle-corp/design-system';
 
+interface Props {
+  articles: Article[];
+}
+
+interface Article {
+  id: string;
+  title: string;
+}
+
 const StyledList = styled(List)`
   margin-top: 10px;
 `;
 
-const LatestArticles = () => {
+const LatestArticles = ({ articles }: Props) => {
   return (
-    <Wrapper alignItem="flex-end">
+    <Wrapper>
       <Text as="h2" variant="h2">
         Derniers articles
       </Text>
       <nav>
         <StyledList>
-          <li>
-            <Text>Article 1</Text>
-          </li>
-          <li>
-            <Text>Article 2</Text>
-          </li>
-          <li>
-            <Text>Article 3</Text>
-          </li>
-          <li>
-            <Text>Article 4</Text>
-          </li>
-          <li>
-            <Text>Article 5</Text>
-          </li>
+          {articles.map((article) => (
+            <li key={article.id}>
+              <Text>{article.title}</Text>
+            </li>
+          ))}
         </StyledList>
       </nav>
     </Wrapper>

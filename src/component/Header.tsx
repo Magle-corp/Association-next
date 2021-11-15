@@ -3,8 +3,8 @@ import { Wrapper, Text, List } from '@magle-corp/design-system';
 
 const StyledWrapper = styled(Wrapper)`
   max-width: ${({ theme }) => theme.breakpoints.maximumWidth};
-  padding: 10px 20px 0 20px;
-  margin: 0 auto;
+  padding: 0 20px;
+  margin: 10px auto auto;
 `;
 
 const Header = () => {
