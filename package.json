@@ -10,8 +10,10 @@
   },
   "dependencies": {
     "@magle-corp/design-system": "^1.0.0",
+    "@types/qs": "^6.9.7",
     "next": "11.1.2",
     "next-fonts": "^1.5.1",
+    "qs": "^6.10.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "styled-components": "^5.3.3"
