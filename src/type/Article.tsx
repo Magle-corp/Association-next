@@ -1,7 +1,7 @@
 import { Taxonomy } from './Taxonomy';
 
 // Type for article content type.
-export interface Article {
+interface Article {
   id: number;
   title: string;
   description: string;
@@ -30,3 +30,5 @@ interface Format {
   name: string;
   url: string;
 }
+
+export type { Article };

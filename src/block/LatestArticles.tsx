@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { Wrapper, Text, List } from '@magle-corp/design-system';
-import { Article } from '../type/Article';
-import Link from '../component/Link';
+// Custom.
+import { Article } from '../type';
+import { Link } from '../component';
 
 interface Props {
   articles: Article[];

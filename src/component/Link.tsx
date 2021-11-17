@@ -21,4 +21,4 @@ const Link = ({ href, className, children }: Props) => (
   </NextLink>
 );
 
-export default Link;
+export { Link };

@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import qs from 'qs';
 import styled from 'styled-components';
 import { Main, Article, Aside } from '@magle-corp/design-system';
+// Custom.
 import { Header, ArticleHighlight, LatestArticles } from '../src/block';
 
 const StyledMain = styled(Main)`
