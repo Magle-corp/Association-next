@@ -328,10 +328,10 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.0.tgz#87de7af9c231826fdd68ac7258f77c429e0e5fcf"
   integrity sha512-wdppn25U8z/2yiaT6YGquE6X8sSv7hNMWSXYSSU1jGv/yd6XqjXgTDJ8KP4NgjTXfJ3GbRjeeb8RTV7a/VpM+w==
 
-"@magle-corp/design-system@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@magle-corp/design-system/-/design-system-1.0.0.tgz#811ba9cbd7767826a38bbdb71fe786a1839c7eb4"
-  integrity sha512-BZ3yQ9oKZvOY+1C727G6nUTsa3ETw4gRb+xKdc138WkityoGzqJd3B0qAvLcuCAia1Iw5P9FiM9yhYw53QENlg==
+"@magle-corp/design-system@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@magle-corp/design-system/-/design-system-1.0.1.tgz#79147073383d58a249585211b22df15efe1ba3cd"
+  integrity sha512-IhGCWTudxwxY0iGL4YovJxKMj34Ts2kNlGMfYK2C4FKCOQ6q8FyCLmr2VuWHY+2FFBfiPdnROpCjAWrj5CJScA==
 
 "@napi-rs/triples@^1.0.3":
   version "1.0.3"
