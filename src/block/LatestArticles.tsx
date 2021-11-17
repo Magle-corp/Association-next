@@ -33,5 +33,3 @@ const LatestArticles = ({ articles }: Props) => {
 };
 
 export { LatestArticles };
-
-export async function getStaticProps() {}

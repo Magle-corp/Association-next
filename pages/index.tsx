@@ -1,11 +1,9 @@
 import type { NextPage } from 'next';
 import { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import qs from 'qs';
+import styled from 'styled-components';
 import { Main, Article, Aside } from '@magle-corp/design-system';
-import { Header } from '../src/block/Header';
-import { LatestArticles } from '../src/block/LatestArticles';
-import { ArticleHighlight } from '../src/block/Article/ArticleHighlight';
+import { Header, ArticleHighlight, LatestArticles } from '../src/block';
 
 const StyledMain = styled(Main)`
   max-width: ${({ theme }) => theme.breakpoints.maximumWidth};
