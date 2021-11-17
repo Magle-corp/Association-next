@@ -2,9 +2,9 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import { Wrapper, Text, List } from '@magle-corp/design-system';
 // Custom.
-import { Link } from '../../component';
-import { dateFormatter } from '../../util';
 import { Article } from '../../type';
+import { dateFormatter } from '../../util';
+import { Link } from '../../component';
 
 interface Props {
   article: Article;
