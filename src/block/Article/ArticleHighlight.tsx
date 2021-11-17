@@ -1,43 +1,85 @@
+import Image from 'next/image';
 import styled from 'styled-components';
-import { Article } from '../../type/Article';
-import DateFormatter from '../../util/DateFormatter';
 import { Wrapper, Text, List } from '@magle-corp/design-system';
+import Link from '../../component/Link';
+import DateFormatter from '../../util/DateFormatter';
+import { Article } from '../../type/Article';
 
 interface Props {
   article: Article;
 }
 
-const StyledTaxonomiesList = styled(List)`
+const ArticleWrapper = styled(Wrapper)`
+  margin-top: 25px;
+
+  & > *:not(:first-child) {
+    margin-top: 10px;
+  }
+`;
+
+const ImageWrapper = styled(Wrapper)`
+  position: relative;
+  width: 100%;
+  height: 250px;
+`;
+
+const FakeImage = styled.div`
+  width: 100%;
+  height: 250px;
+  background-color: lightblue;
+`;
+
+const TaxonomiesList = styled(List)`
   margin-left: 10px;
 `;
 
-const StyledTaxonomy = styled(Text)`
+const Taxonomy = styled(Text)`
   padding: 5px 7px;
   max-width: max-content;
   border-radius: 3px;
   background-color: ${({ theme }) => theme.colors.grey};
 `;
 
+const ArticleLink = styled(Link)`
+  margin: 25px 0 0 auto;
+`;
+
 const ArticleHighlight = ({ article }: Props) => {
   return (
     <Wrapper>
       <Text as="h2" variant="h2">
-        Derniers articles
+        A la une
       </Text>
-      <Text as="h3" variant="h3">
-        {article.title}
-      </Text>
-      <Wrapper direction="row" alignItem="center">
-        <Text>{DateFormatter(article.created_at)}</Text>
-        <StyledTaxonomiesList variant="horizontal">
-          {article.taxonomies.map((taxonomy) => (
-            <li key={taxonomy.id}>
-              <StyledTaxonomy>{taxonomy.title}</StyledTaxonomy>
-            </li>
-          ))}
-        </StyledTaxonomiesList>
-      </Wrapper>
-      <Text>{article.description}</Text>
+      <ArticleWrapper>
+        <ImageWrapper>
+          <FakeImage />
+          {/*<Image*/}
+          {/*  src={`${process.env.BASE_URL}${article.background.formats.small.url}`}*/}
+          {/*  layout="fill"*/}
+          {/*  objectFit="cover"*/}
+          {/*  alt={article.background.alternativeText}*/}
+          {/*/>*/}
+        </ImageWrapper>
+        <Text as="h3" variant="h3">
+          {article.title}
+        </Text>
+        <Wrapper direction="row" alignItem="center">
+          <Text>{DateFormatter(article.created_at)}</Text>
+          <TaxonomiesList variant="horizontal">
+            {article.taxonomies.map((taxonomy) => (
+              <li key={taxonomy.id}>
+                <Taxonomy>{taxonomy.title}</Taxonomy>
+              </li>
+            ))}
+          </TaxonomiesList>
+        </Wrapper>
+        <Text>{article.description}</Text>
+      </ArticleWrapper>
+      <ArticleLink href="#">
+        <Text as="span" variant="decorate_link">
+          Consulter l'article
+        </Text>
+      </ArticleLink>
     </Wrapper>
   );
 };

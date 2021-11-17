@@ -8,7 +8,7 @@ interface Props {
 }
 
 const StyledList = styled(List)`
-  margin-top: 10px;
+  margin-top: 20px;
 `;
 
 const LatestArticles = ({ articles }: Props) => {
@@ -18,7 +18,7 @@ const LatestArticles = ({ articles }: Props) => {
         Derniers articles
       </Text>
       <nav>
-        <StyledList>
+        <StyledList spacing={15}>
           {articles.map((article) => (
             <li key={article.id}>
               <Link href="#">

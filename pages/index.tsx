@@ -13,6 +13,10 @@ const StyledMain = styled(Main)`
   margin: 50px auto auto;
 `;
 
+const StyledArticle = styled(Article)`
+  padding-right: 35px;
+`;
+
 const Home: NextPage = () => {
   const [articles, setArticles] = useState([]);
 
@@ -35,9 +39,9 @@ const Home: NextPage = () => {
     <>
       <Header />
       <StyledMain gridColumnsTemplate="1fr 250px">
-        <Article>
+        <StyledArticle>
           {articles.length > 0 && <ArticleHighlight article={articles[0]} />}
-        </Article>
+        </StyledArticle>
         <Aside>
           <LatestArticles articles={articles} />
         </Aside>
