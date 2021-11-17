@@ -9,12 +9,12 @@ import { ArticleHighlight } from '../src/block/Article/ArticleHighlight';
 
 const StyledMain = styled(Main)`
   max-width: ${({ theme }) => theme.breakpoints.maximumWidth};
-  padding: 0 20px;
-  margin: 50px auto auto;
+  padding: 50px 20px 0 20px;
+  margin: 0 auto;
 `;
 
 const StyledArticle = styled(Article)`
-  padding-right: 35px;
+  margin-right: 35px;
 `;
 
 const Home: NextPage = () => {

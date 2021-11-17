@@ -29,7 +29,7 @@ const FakeImage = styled.div`
   background-color: lightblue;
 `;
 
-const TaxonomiesList = styled(List)`
+const Date = styled(Text)`
   margin-left: 10px;
 `;
 
@@ -60,19 +60,23 @@ const ArticleHighlight = ({ article }: Props) => {
           {/*  alt={article.background.alternativeText}*/}
           {/*/>*/}
         </ImageWrapper>
-        <Text as="h3" variant="h3">
-          {article.title}
-        </Text>
-        <Wrapper direction="row" alignItem="center">
-          <Text>{DateFormatter(article.created_at)}</Text>
-          <TaxonomiesList variant="horizontal">
-            {article.taxonomies.map((taxonomy) => (
-              <li key={taxonomy.id}>
-                <Taxonomy>{taxonomy.title}</Taxonomy>
-              </li>
-            ))}
-          </TaxonomiesList>
+        <Wrapper direction="row" alignItem="flex-end">
+          <Text as="h3" variant="h3">
+            {article.title}
+          </Text>
+          <Date>{DateFormatter(article.created_at)}</Date>
         </Wrapper>
+        <List variant="horizontal">
+          {article.taxonomies.map((taxonomy) => (
+            <li key={taxonomy.id}>
+              <Link href="#">
+                <Text as="span" variant="tag">
+                  {taxonomy.title}
+                </Text>
+              </Link>
+            </li>
+          ))}
+        </List>
         <Text>{article.description}</Text>
       </ArticleWrapper>
       <ArticleLink href="#">

@@ -2,19 +2,19 @@ import styled from 'styled-components';
 import { Wrapper, Text, List } from '@magle-corp/design-system';
 import Link from '../component/Link';
 
-const StyledWrapper = styled(Wrapper)`
+const StyledHeader = styled.header`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
   max-width: ${({ theme }) => theme.breakpoints.maximumWidth};
-  padding: 0 20px;
-  margin: 10px auto auto;
+  padding: 10px 20px 0 20px;
+  margin: 0 auto;
 `;
 
 const Header = () => {
   return (
-    <StyledWrapper
-      direction="row"
-      alignItem="flex-end"
-      justifyContent="space-between"
-    >
+    <StyledHeader>
       <Wrapper>
         <Text as="h1" variant="h1">
           Magle
@@ -45,7 +45,7 @@ const Header = () => {
           </li>
         </List>
       </nav>
-    </StyledWrapper>
+    </StyledHeader>
   );
 };
 

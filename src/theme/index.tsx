@@ -1,3 +1,4 @@
+import { Theme } from '../type/Theme';
 import { createGlobalStyle } from 'styled-components';
 import colors from './colors';
 import breakpoints from './breakpoints';
@@ -8,7 +9,7 @@ import FjallaOneWoff2 from './font/FjallaOneWoff2.woff2';
 import RobotoWoff from './font/RobotoWoff.woff';
 import RobotoWoff2 from './font/RobotoWoff2.woff2';
 
-const theme: object = {
+const theme: Theme = {
   colors,
   breakpoints,
   typography,
