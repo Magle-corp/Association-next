@@ -1,3 +1,4 @@
+// Imports.
 import type { NextPage } from 'next';
 import { useState, useEffect } from 'react';
 import qs from 'qs';
