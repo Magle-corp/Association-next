@@ -1,15 +1,19 @@
 import type { NextPage } from 'next';
 import { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import qs from 'qs';
+import styled from 'styled-components';
 import { Main, Article, Aside } from '@magle-corp/design-system';
-import { Header } from '../src/component/Header';
-import { LatestArticles } from '../src/component/LatestArticles';
+// Custom.
+import { Header, ArticleHighlight, LatestArticles } from '../src/block';
 
 const StyledMain = styled(Main)`
   max-width: ${({ theme }) => theme.breakpoints.maximumWidth};
-  padding: 0 20px;
-  margin: 50px auto auto;
+  padding: 50px 20px 0 20px;
+  margin: 0 auto;
+`;
+
+const StyledArticle = styled(Article)`
+  margin-right: 35px;
 `;
 
 const Home: NextPage = () => {
@@ -34,7 +38,9 @@ const Home: NextPage = () => {
     <>
       <Header />
       <StyledMain gridColumnsTemplate="1fr 250px">
-        <Article />
+        <StyledArticle>
+          {articles.length > 0 && <ArticleHighlight article={articles[0]} />}
+        </StyledArticle>
         <Aside>
           <LatestArticles articles={articles} />
         </Aside>

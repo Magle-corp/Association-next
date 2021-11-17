@@ -1,17 +1,15 @@
 import styled from 'styled-components';
 import { Wrapper, Text, List } from '@magle-corp/design-system';
+// Custom.
+import { Article } from '../type';
+import { Link } from '../component';
 
 interface Props {
   articles: Article[];
 }
 
-interface Article {
-  id: string;
-  title: string;
-}
-
 const StyledList = styled(List)`
-  margin-top: 10px;
+  margin-top: 20px;
 `;
 
 const LatestArticles = ({ articles }: Props) => {
@@ -21,10 +19,12 @@ const LatestArticles = ({ articles }: Props) => {
         Derniers articles
       </Text>
       <nav>
-        <StyledList>
+        <StyledList spacing={15}>
           {articles.map((article) => (
             <li key={article.id}>
-              <Text>{article.title}</Text>
+              <Link href="#">
+                <Text as="span">{article.title}</Text>
+              </Link>
             </li>
           ))}
         </StyledList>
@@ -34,5 +34,3 @@ const LatestArticles = ({ articles }: Props) => {
 };
 
 export { LatestArticles };
-
-export async function getStaticProps() {}
