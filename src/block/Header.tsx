@@ -24,7 +24,7 @@ const Header = () => {
       <nav>
         <List variant="horizontal" spacing={25}>
           <li>
-            <Link href="#">
+            <Link href="/articles">
               <Text as="span" variant="h4">
                 Articles
               </Text>
