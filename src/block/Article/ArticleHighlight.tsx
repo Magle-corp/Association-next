@@ -1,3 +1,4 @@
+// Use.
 import Image from 'next/image';
 import styled from 'styled-components';
 import { Wrapper, Text, List } from '@magle-corp/design-system';
@@ -21,12 +22,6 @@ const ImageWrapper = styled(Wrapper)`
   height: 250px;
 `;
 
-const FakeImage = styled.div`
-  width: 100%;
-  height: 250px;
-  background-color: lightblue;
-`;
-
 const Date = styled(Text)`
   margin-left: 10px;
 `;
@@ -39,13 +34,12 @@ const ArticleHighlight = ({ article }: Props) => {
   return (
     <ArticleWrapper>
       <ImageWrapper>
-        <FakeImage />
-        {/*<Image*/}
-        {/*  src={`${process.env.BASE_URL}${article.background.formats.small.url}`}*/}
-        {/*  layout="fill"*/}
-        {/*  objectFit="cover"*/}
-        {/*  alt={article.background.alternativeText}*/}
-        {/*/>*/}
+        <Image
+          src={`${process.env.BASE_URL}${article.background.formats.small.url}`}
+          layout="fill"
+          objectFit="cover"
+          alt={article.background.alternativeText}
+        />
       </ImageWrapper>
       <Wrapper direction="row" alignItem="flex-end">
         <Text as="h3" variant="h3">

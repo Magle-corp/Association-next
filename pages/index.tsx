@@ -1,10 +1,14 @@
-import type { NextPage } from 'next';
-import { useState, useEffect } from 'react';
+// Use.
 import qs from 'qs';
 import styled from 'styled-components';
 import { Main, Aside } from '@magle-corp/design-system';
+import { Article } from '../src/type';
 import { Header, ArticleHighlight, ArticlesList } from '../src/block';
 import { Layout } from '../src/component';
+
+interface Props {
+  articles: Article[];
+}
 
 const StyledMain = styled(Main)`
   margin-right: 35px;
@@ -20,24 +24,7 @@ const LatestArticleTitle = styled.h2`
   margin-bottom: 25px;
 `;
 
-const Home: NextPage = () => {
-  const [articles, setArticles] = useState([]);
-
-  const query = `/articles?${qs.stringify({
-    _sort: 'published_at:DESC',
-    _start: 0,
-    _limit: 5,
-  })}`;
-
-  useEffect(() => {
-    const Fetch = async () => {
-      const result = await fetch(`${process.env.BASE_URL}${query}`);
-      const data = await result.json();
-      setArticles(data);
-    };
-    Fetch();
-  }, []);
-
+const Home = ({ articles }: Props) => {
   return (
     <>
       <Header />
@@ -59,13 +46,18 @@ const Home: NextPage = () => {
 
 export default Home;
 
-// export async function getStaticProps() {
-//   const query = `/articles?${qs.stringify({
-//     _sort: 'published_at:DESC',
-//     _start: 0,
-//     _limit: 5,
-//   })}`;
-//
-//   const result = await fetch(`${process.env.BASE_URL}${query}`);
-//   const data = await result.json();
-// }
+export async function getStaticProps() {
+  const query = `/articles?${qs.stringify({
+    _sort: 'published_at:DESC',
+    _start: 0,
+    _limit: 5,
+  })}`;
+
+  const result = await fetch(`${process.env.BASE_URL}${query}`);
+  const articles = await result.json();
+
+  return {
+    props: { articles },
+    revalidate: 60 * 60,
+  };
+}
