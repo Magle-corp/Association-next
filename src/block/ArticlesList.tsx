@@ -1,3 +1,4 @@
+// Use.
 import { Text, List } from '@magle-corp/design-system';
 import { Article } from '../type';
 import { ArticleTeaser } from './Article/ArticleTeaser';
