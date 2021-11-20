@@ -1,10 +1,14 @@
-import type { NextPage } from 'next';
-import { useState, useEffect } from 'react';
+// Use.
 import qs from 'qs';
 import styled from 'styled-components';
 import { Main, Aside } from '@magle-corp/design-system';
+import { Article } from '../../src/type';
 import { Header, ArticlesList } from '../../src/block';
 import { Layout } from '../../src/component';
+
+interface Props {
+  articles: Article[];
+}
 
 const StyledLayout = styled(Layout)`
   grid-template-columns: 250px 1fr;
@@ -24,24 +28,7 @@ const FiltersTitle = styled.h2`
   margin-bottom: 25px;
 `;
 
-const Articles: NextPage = () => {
-  const [articles, setArticles] = useState([]);
-
-  const query = `/articles?${qs.stringify({
-    _sort: 'published_at:DESC',
-    _start: 0,
-    _limit: 5,
-  })}`;
-
-  useEffect(() => {
-    const Fetch = async () => {
-      const result = await fetch(`${process.env.BASE_URL}${query}`);
-      const data = await result.json();
-      setArticles(data);
-    };
-    Fetch();
-  }, []);
-
+const Articles = ({ articles }: Props) => {
   return (
     <>
       <Header />
@@ -59,3 +46,19 @@ const Articles: NextPage = () => {
 };
 
 export default Articles;
+
+export async function getStaticProps() {
+  const query = `/articles?${qs.stringify({
+    _sort: 'published_at:DESC',
+    _start: 0,
+    _limit: 5,
+  })}`;
+
+  const result = await fetch(`${process.env.BASE_URL}${query}`);
+  const articles = await result.json();
+
+  return {
+    props: { articles },
+    revalidate: 60 * 60,
+  };
+}
