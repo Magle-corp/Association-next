@@ -14,11 +14,12 @@ const StyledMain = styled(Main)`
   margin-left: 35px;
 `;
 
-const StyledAside = styled(Aside)`
-  background-color: lightblue;
+const ListTitle = styled.h2`
+  ${({ theme }) => theme.typography.h2}
+  margin-bottom: 25px;
 `;
 
-const ListTitle = styled.h2`
+const FiltersTitle = styled.h2`
   ${({ theme }) => theme.typography.h2}
   margin-bottom: 25px;
 `;
@@ -47,11 +48,11 @@ const Articles: NextPage = () => {
       <StyledLayout>
         <StyledMain gridColumn="2/3">
           <ListTitle>Articles</ListTitle>
-          <ArticlesList articles={articles} variant="teaser" />
+          <ArticlesList articles={articles} variant="teaser" spacing={30} />
         </StyledMain>
-        <StyledAside gridColumn="1/2">
-          <p>prout</p>
-        </StyledAside>
+        <Aside gridColumn="1/2">
+          <FiltersTitle>Filtres</FiltersTitle>
+        </Aside>
       </StyledLayout>
     </>
   );

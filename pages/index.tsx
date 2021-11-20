@@ -50,7 +50,7 @@ const Home: NextPage = () => {
         </StyledMain>
         <Aside>
           <LatestArticleTitle>Derniers articles</LatestArticleTitle>
-          <ArticlesList articles={articles} />
+          <ArticlesList articles={articles} spacing={15} />
         </Aside>
       </Layout>
     </>

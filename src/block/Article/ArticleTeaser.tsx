@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { Article } from '../../type';
 import { Wrapper, Text, List } from '@magle-corp/design-system';
 import { dateFormatter } from '../../util';
-import { Link } from '../../component';
 
 interface Props {
   article: Article;

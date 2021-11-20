@@ -6,12 +6,13 @@ import { Link } from '../component';
 interface Props {
   articles: Article[];
   variant?: 'default' | 'teaser';
+  spacing?: number;
 }
 
-const ArticlesList = ({ articles, variant = 'default' }: Props) => {
+const ArticlesList = ({ articles, variant = 'default', spacing }: Props) => {
   return (
     <nav>
-      <List spacing={25}>
+      <List spacing={spacing}>
         {articles.map((article) => (
           <li key={article.id}>
             <Link href={`/articles/${article.slug}`}>
