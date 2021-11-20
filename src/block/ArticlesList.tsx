@@ -18,7 +18,11 @@ const ArticlesList = ({ articles, variant = 'default', spacing }: Props) => {
           <li key={article.id}>
             <Link href={`/articles/${article.slug}`}>
               {variant == 'default' && <Text as="span">{article.title}</Text>}
-              {variant === 'teaser' && <ArticleTeaser article={article} />}
+              {variant === 'teaser' && (
+                <article>
+                  <ArticleTeaser article={article} />
+                </article>
+              )}
             </Link>
           </li>
         ))}
