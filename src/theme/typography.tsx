@@ -75,7 +75,6 @@ const variant: object = {
     text-decoration: none;
     border-radius: 3px;
     background-color: ${grey};
-    text-decoration: underline;
   `,
 };
 

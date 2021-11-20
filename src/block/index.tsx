@@ -1,3 +1,4 @@
 export { ArticleHighlight } from './Article/ArticleHighlight';
+export { ArticleTeaser } from './Article/ArticleTeaser';
 export { Header } from './Header';
-export { LatestArticles } from './LatestArticles';
+export { ArticlesList } from './ArticlesList';

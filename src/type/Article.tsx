@@ -6,6 +6,7 @@ interface Article {
   title: string;
   description: string;
   created_at: string;
+  slug: string;
   taxonomies: Taxonomy[];
   background: Background;
 }

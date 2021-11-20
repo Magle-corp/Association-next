@@ -13,8 +13,10 @@ const StyledLayout = styled(UiLayout)`
   margin: 0 auto;
 `;
 
-const Layout = ({ className, children }: Props) => (
-  <StyledLayout className={className}>{children}</StyledLayout>
+const Layout = ({ className, children, ...props }: Props) => (
+  <StyledLayout className={className} {...props}>
+    {children}
+  </StyledLayout>
 );
 
 export { Layout };
