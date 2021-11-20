@@ -12,7 +12,7 @@ interface Props {
 
 const ArticlesList = ({ articles, variant = 'default', spacing }: Props) => {
   return (
-    <div>
+    <>
       <List spacing={spacing}>
         {articles.map((article) => (
           <li key={article.id}>
@@ -23,7 +23,7 @@ const ArticlesList = ({ articles, variant = 'default', spacing }: Props) => {
           </li>
         ))}
       </List>
-    </div>
+    </>
   );
 };
 

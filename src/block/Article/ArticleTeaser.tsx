@@ -2,8 +2,9 @@
 import Image from 'next/image';
 import styled from 'styled-components';
 import { Article } from '../../type';
-import { Wrapper, Text, List } from '@magle-corp/design-system';
+import { Wrapper, Text } from '@magle-corp/design-system';
 import { dateFormatter } from '../../util';
+import { TaxonomiesList } from '../TaxonomiesList';
 
 interface Props {
   article: Article;
@@ -45,13 +46,7 @@ const ArticleTeaser = ({ article }: Props) => {
           {article.title}
         </Text>
         <Text>{dateFormatter(article.created_at)}</Text>
-        <List variant="horizontal">
-          {article.taxonomies.map((taxonomy) => (
-            <li key={taxonomy.id}>
-              <Text variant="tag">{taxonomy.title}</Text>
-            </li>
-          ))}
-        </List>
+        <TaxonomiesList taxonomies={article.taxonomies} />
         <Text>{article.description}</Text>
       </ContentWrapper>
     </ArticleWrapper>

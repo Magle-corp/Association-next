@@ -2,12 +2,13 @@
 import qs from 'qs';
 import styled from 'styled-components';
 import { Main, Aside } from '@magle-corp/design-system';
-import { Article } from '../../src/type';
-import { Header, ArticlesList } from '../../src/block';
+import { Article, Taxonomy } from '../../src/type';
+import { Header, ArticlesList, TaxonomiesList } from '../../src/block';
 import { Layout } from '../../src/component';
 
 interface Props {
   articles: Article[];
+  taxonomies: Taxonomy[];
 }
 
 const StyledLayout = styled(Layout)`
@@ -28,7 +29,7 @@ const FiltersTitle = styled.h2`
   margin-bottom: 25px;
 `;
 
-const Articles = ({ articles }: Props) => {
+const Articles = ({ articles, taxonomies }: Props) => {
   return (
     <>
       <Header />
@@ -39,6 +40,7 @@ const Articles = ({ articles }: Props) => {
         </StyledMain>
         <Aside gridColumn="1/2">
           <FiltersTitle>Filtres</FiltersTitle>
+          <TaxonomiesList taxonomies={taxonomies} />
         </Aside>
       </StyledLayout>
     </>
@@ -48,17 +50,22 @@ const Articles = ({ articles }: Props) => {
 export default Articles;
 
 export async function getStaticProps() {
-  const query = `/articles?${qs.stringify({
+  const articlesQuery = `/articles?${qs.stringify({
     _sort: 'published_at:DESC',
     _start: 0,
     _limit: 5,
   })}`;
+  const articlesResult = await fetch(`${process.env.BASE_URL}${articlesQuery}`);
+  const articles = await articlesResult.json();
 
-  const result = await fetch(`${process.env.BASE_URL}${query}`);
-  const articles = await result.json();
+  const taxonomiesQuery = `/taxonomies`;
+  const taxonomiesResult = await fetch(
+    `${process.env.BASE_URL}${taxonomiesQuery}`
+  );
+  const taxonomies = await taxonomiesResult.json();
 
   return {
-    props: { articles },
+    props: { articles, taxonomies },
     revalidate: 60 * 60,
   };
 }
