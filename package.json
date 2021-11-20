@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@magle-corp/design-system": "^1.0.1",
+    "@magle-corp/design-system": "^1.0.2",
     "@types/qs": "^6.9.7",
     "next": "11.1.2",
     "next-fonts": "^1.5.1",

@@ -3,12 +3,12 @@ import type { NextPage } from 'next';
 import { useState, useEffect } from 'react';
 import qs from 'qs';
 import styled from 'styled-components';
-import { Article, Aside } from '@magle-corp/design-system';
+import { Main, Aside } from '@magle-corp/design-system';
 // Custom.
 import { Header, ArticleHighlight, LatestArticles } from '../src/block';
-import { Main } from '../src/component';
+import { Layout } from '../src/component';
 
-const StyledArticle = styled(Article)`
+const StyledMain = styled(Main)`
   margin-right: 35px;
 `;
 
@@ -33,14 +33,16 @@ const Home: NextPage = () => {
   return (
     <>
       <Header />
-      <Main>
-        <StyledArticle>
-          {articles.length > 0 && <ArticleHighlight article={articles[0]} />}
-        </StyledArticle>
+      <Layout>
+        <StyledMain>
+          <article>
+            {articles.length > 0 && <ArticleHighlight article={articles[0]} />}
+          </article>
+        </StyledMain>
         <Aside>
           <LatestArticles articles={articles} />
         </Aside>
-      </Main>
+      </Layout>
     </>
   );
 };
