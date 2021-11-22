@@ -60,7 +60,7 @@ const ArticleDetail = ({ article }: Props) => {
       </ImageWrapper>
       <ContentWrapper>
         <Date variant="h4">{dateFormatter(article.created_at)}</Date>
-        <StyledTaxonomies taxonomies={article.taxonomies} />
+        <StyledTaxonomies taxonomies={article.taxonomies} variant="link" />
       </ContentWrapper>
     </Wrapper>
   );

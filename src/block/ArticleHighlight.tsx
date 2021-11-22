@@ -50,7 +50,7 @@ const ArticleHighlight = ({ article }: Props) => {
       </Wrapper>
       <TaxonomiesList taxonomies={article.taxonomies} variant="link" />
       <Text>{article.description}</Text>
-      <ArticleLink href="#">
+      <ArticleLink href={`/articles/${article.slug}`}>
         <Text as="span" variant="decorate_link">
           Consulter l'article
         </Text>
