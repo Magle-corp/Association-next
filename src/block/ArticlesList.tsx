@@ -1,7 +1,7 @@
 // Use.
 import { Text, List } from '@magle-corp/design-system';
 import { Article } from '../type';
-import { ArticleTeaser } from './Article/ArticleTeaser';
+import { ArticleTeaser } from './ArticleTeaser';
 import { Link } from '../component';
 
 interface Props {
