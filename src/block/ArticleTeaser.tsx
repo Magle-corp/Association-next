@@ -1,10 +1,10 @@
 // Use.
 import Image from 'next/image';
 import styled from 'styled-components';
-import { Article } from '../../type';
+import { Article } from '../type';
 import { Wrapper, Text } from '@magle-corp/design-system';
-import { dateFormatter } from '../../util';
-import { TaxonomiesList } from '../TaxonomiesList';
+import { dateFormatter } from '../util';
+import { TaxonomiesList } from './TaxonomiesList';
 
 interface Props {
   article: Article;

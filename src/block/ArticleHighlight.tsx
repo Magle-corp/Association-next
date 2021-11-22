@@ -2,10 +2,10 @@
 import Image from 'next/image';
 import styled from 'styled-components';
 import { Wrapper, Text } from '@magle-corp/design-system';
-import { Article } from '../../type';
-import { dateFormatter } from '../../util';
-import { TaxonomiesList } from '../TaxonomiesList';
-import { Link } from '../../component';
+import { Article } from '../type';
+import { dateFormatter } from '../util';
+import { TaxonomiesList } from './TaxonomiesList';
+import { Link } from '../component';
 
 interface Props {
   article: Article;
