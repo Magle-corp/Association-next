@@ -3,10 +3,12 @@ import { Article } from '../type';
 import { ItemStacker } from './ItemStacker';
 
 /**
- * Return Article
+ * Returns an array of articles containing at least one reference from the filters array.
  *
  * @param articles
+ *    Array of the article content type.
  * @param filters
+ *    Array of taxonomy therms.
  * @constructor
  */
 const ArticlesFilter = (articles: Article[], filters: Array<string>) => {

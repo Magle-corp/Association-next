@@ -1,3 +1,8 @@
+/**
+ * Returns a humanly understandable date.
+ *
+ * @param rawDate
+ */
 function dateFormatter(rawDate: string) {
   const year = rawDate.slice(0, 4);
   const month = rawDate.slice(5, 7);

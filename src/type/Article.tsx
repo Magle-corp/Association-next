@@ -1,3 +1,4 @@
+// Use.
 import { Taxonomy } from './Taxonomy';
 
 // Type for article content type.
