@@ -4,14 +4,19 @@ import { Taxonomy } from '../type';
 import { Link } from '../component';
 
 interface Props {
+  className?: string;
   taxonomies: Taxonomy[];
   variant?: 'default' | 'link';
 }
 
-const TaxonomiesList = ({ taxonomies, variant = 'default' }: Props) => {
+const TaxonomiesList = ({
+  className,
+  taxonomies,
+  variant = 'default',
+}: Props) => {
   return (
     <>
-      <List variant="horizontal">
+      <List className={className} variant="horizontal">
         {variant == 'default' &&
           taxonomies.map((taxonomy) => (
             <li key={taxonomy.id}>

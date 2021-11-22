@@ -5,3 +5,4 @@ export { ArticlesList } from './ArticlesList';
 export { TaxonomiesList } from './TaxonomiesList';
 export { Pagination } from './Pagination';
 export { ArticlesFilters } from './ArticlesFilters';
+export { ArticleDetail } from './ArticleDetail';
