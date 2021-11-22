@@ -37,7 +37,7 @@ const FiltersTitle = styled.h2`
 `;
 
 const Articles = ({ articles, taxonomies }: Props) => {
-  const [stackedArticles, setStackedArticles] = useState([]);
+  const [stackedArticles, setStackedArticles] = useState<Array<Article[]>>([]);
   const [page, setPage] = useState(0);
   const [lastPage, setLastPage] = useState(0);
 
@@ -56,11 +56,13 @@ const Articles = ({ articles, taxonomies }: Props) => {
       <StyledLayout>
         <StyledMain gridColumn="2/3">
           <ListTitle>Articles</ListTitle>
-          <ArticlesList
-            articles={stackedArticles[page]}
-            variant="teaser"
-            spacing={30}
-          />
+          {stackedArticles.length > 0 && (
+            <ArticlesList
+              articles={stackedArticles[page]}
+              variant="teaser"
+              spacing={30}
+            />
+          )}
           <Pagination page={page} lastPage={lastPage} setPage={setPage} />
         </StyledMain>
         <Aside gridColumn="1/2">

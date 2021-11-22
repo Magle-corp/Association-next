@@ -15,25 +15,33 @@ const PaginationWrapper = styled(Wrapper)`
   }
 `;
 
+const StyledButton = styled(Button)`
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'cursor')};
+`;
+
 const Pagination = ({ page, lastPage, setPage }: Props) => {
   return (
     <PaginationWrapper direction="row" justifyContent="center">
-      <Button
-        onClick={() => {
-          page <= 0 ? setPage() : setPage(page - 1);
-        }}
-        disabled={page <= 0}
-      >
-        Précédent
-      </Button>
-      <Button
-        onClick={() => {
-          page >= lastPage ? setPage() : setPage(page + 1);
-        }}
-        disabled={page >= lastPage}
-      >
-        Suivant
-      </Button>
+      {page !== null && lastPage !== null && (
+        <>
+          <StyledButton
+            onClick={() => {
+              page <= 0 ? setPage() : setPage(page - 1);
+            }}
+            disabled={page <= 0}
+          >
+            Précédent
+          </StyledButton>
+          <StyledButton
+            onClick={() => {
+              page >= lastPage ? setPage() : setPage(page + 1);
+            }}
+            disabled={page >= lastPage}
+          >
+            Suivant
+          </StyledButton>
+        </>
+      )}
     </PaginationWrapper>
   );
 };
