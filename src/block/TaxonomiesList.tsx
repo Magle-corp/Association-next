@@ -15,9 +15,7 @@ const TaxonomiesList = ({ taxonomies, variant = 'default' }: Props) => {
         {variant == 'default' &&
           taxonomies.map((taxonomy) => (
             <li key={taxonomy.id}>
-              <Text as="span" variant="tag">
-                {taxonomy.title}
-              </Text>
+              <Text variant="tag">{taxonomy.title}</Text>
             </li>
           ))}
         {variant == 'link' &&
