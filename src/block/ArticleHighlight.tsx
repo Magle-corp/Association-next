@@ -3,7 +3,7 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import { Wrapper, Text } from '@magle-corp/design-system';
 import { Article } from '../type';
-import { dateFormatter } from '../util';
+import { DateFormatter } from '../util';
 import { TaxonomiesList } from './TaxonomiesList';
 import { Link } from '../component';
 
@@ -46,7 +46,7 @@ const ArticleHighlight = ({ article }: Props) => {
         <Text as="h3" variant="h3">
           {article.title}
         </Text>
-        <Date>{dateFormatter(article.created_at)}</Date>
+        <Date>{DateFormatter(article.created_at)}</Date>
       </Wrapper>
       <TaxonomiesList taxonomies={article.taxonomies} variant="link" />
       <Text>{article.description}</Text>
