@@ -3,7 +3,7 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import { Wrapper, Text } from '@magle-corp/design-system';
 import { Article } from '../type';
-import { dateFormatter } from '../util';
+import { DateFormatter, BlockBuilder } from '../util';
 import { TaxonomiesList } from './TaxonomiesList';
 
 interface Props {
@@ -59,8 +59,9 @@ const ArticleDetail = ({ article }: Props) => {
         <Title>{article.title}</Title>
       </ImageWrapper>
       <ContentWrapper>
-        <Date variant="h4">{dateFormatter(article.created_at)}</Date>
+        <Date variant="h4">{DateFormatter(article.created_at)}</Date>
         <StyledTaxonomies taxonomies={article.taxonomies} variant="link" />
+        <BlockBuilder blocks={article.dynamic_zone} />
       </ContentWrapper>
     </Wrapper>
   );
