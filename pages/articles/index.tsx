@@ -4,12 +4,12 @@ import qs from 'qs';
 import styled from 'styled-components';
 import { Main, Aside } from '@magle-corp/design-system';
 import { Article, Taxonomy } from '../../src/type';
-import { ItemStacker } from '../../src/util';
+import { ItemStacker, ArticlesFilter } from '../../src/util';
 import {
   Header,
   ArticlesList,
-  TaxonomiesList,
   Pagination,
+  ArticlesFilters,
 } from '../../src/block';
 import { Layout } from '../../src/component';
 
@@ -40,11 +40,20 @@ const Articles = ({ articles, taxonomies }: Props) => {
   const [stackedArticles, setStackedArticles] = useState<Array<Article[]>>([]);
   const [page, setPage] = useState(0);
   const [lastPage, setLastPage] = useState(0);
+  const [filters, setFilters] = useState([]);
 
   useEffect(() => {
-    const stackOfArticles = ItemStacker(articles);
-    setStackedArticles(stackOfArticles);
+    setStackedArticles(ItemStacker(articles));
   }, [articles]);
+
+  useEffect(() => {
+    if (filters.length > 0) {
+      setPage(0);
+      setStackedArticles(ArticlesFilter(articles, filters));
+    } else {
+      setStackedArticles(ItemStacker(articles));
+    }
+  }, [filters, articles]);
 
   useEffect(() => {
     setLastPage(stackedArticles.length - 1);
@@ -67,7 +76,11 @@ const Articles = ({ articles, taxonomies }: Props) => {
         </StyledMain>
         <Aside gridColumn="1/2">
           <FiltersTitle>Filtres</FiltersTitle>
-          <TaxonomiesList taxonomies={taxonomies} />
+          <ArticlesFilters
+            taxonomies={taxonomies}
+            filters={filters}
+            setFilters={setFilters}
+          />
         </Aside>
       </StyledLayout>
     </>
