@@ -20,35 +20,37 @@ const StyledMain = styled(Main)`
   margin-right: 35px;
 `;
 
-const HighlightTitle = styled.h2`
-  ${({ theme }) => theme.typography.h2}
-  margin-bottom: 25px;
+const StyledAside = styled(Aside)`
+  > *:not(:first-child) {
+    margin-top: 40px;
+  }
 `;
 
-const LatestArticleTitle = styled.h2`
+const Title = styled.h2`
   ${({ theme }) => theme.typography.h2}
   margin-bottom: 25px;
 `;
 
 const Home = ({ articles, events }: Props) => {
-  console.log(events);
   return (
     <>
       <Header />
       <Layout>
         <StyledMain>
           <article>
-            <HighlightTitle>A la une</HighlightTitle>
+            <Title>A la une</Title>
             {articles.length > 0 && <ArticleHighlight article={articles[0]} />}
           </article>
         </StyledMain>
-        <Aside>
-          <LatestArticleTitle>Derniers articles</LatestArticleTitle>
-          <ArticlesList articles={articles} spacing={15} />
+        <StyledAside>
           <Wrapper>
-            <EventHighlight />
+            <Title>Derniers articles</Title>
+            <ArticlesList articles={articles} spacing={15} />
           </Wrapper>
-        </Aside>
+          <Wrapper>
+            <EventHighlight event={events[0]} />
+          </Wrapper>
+        </StyledAside>
       </Layout>
     </>
   );
@@ -68,7 +70,7 @@ export async function getStaticProps() {
   const eventsQuery = `/evenements?${qs.stringify({
     _sort: 'published_at:DESC',
     _start: 0,
-    _limit: 1,
+    _limit: 5,
   })}`;
   const eventResult = await fetch(`${process.env.BASE_URL}${eventsQuery}`);
   const events = await eventResult.json();

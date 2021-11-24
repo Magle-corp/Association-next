@@ -4,6 +4,7 @@ interface Event {
   title: string;
   created_at: string;
   content: string;
+  date: string;
 }
 
 export type { Event };
