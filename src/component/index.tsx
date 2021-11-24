@@ -6,3 +6,4 @@ export { TaxonomiesList } from './TaxonomiesList';
 export { Pagination } from './Pagination';
 export { ArticlesFilters } from './ArticlesFilters';
 export { ArticleDetail } from './ArticleDetail';
+export { EventHighlight } from './EventHighlight';
