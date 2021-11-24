@@ -5,7 +5,7 @@ import { Wrapper, Button as UiButton } from '@magle-corp/design-system';
 
 interface Props {
   taxonomies: Taxonomy[];
-  filters: Array<string>;
+  filters: Array<string | Array<string>>;
   setFilters: Function;
 }
 

@@ -3,8 +3,8 @@ import qs from 'qs';
 import styled from 'styled-components';
 import { Main, Aside } from '@magle-corp/design-system';
 import { Article } from '../src/type';
-import { Header, ArticleHighlight, ArticlesList } from '../src/block';
-import { Layout } from '../src/component';
+import { Header, ArticleHighlight, ArticlesList } from '../src/component';
+import { Layout } from '../src/ui';
 
 interface Props {
   articles: Article[];

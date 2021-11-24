@@ -1,4 +1,5 @@
 // Use.
+import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import qs from 'qs';
 import styled from 'styled-components';
@@ -10,8 +11,8 @@ import {
   ArticlesList,
   Pagination,
   ArticlesFilters,
-} from '../../src/block';
-import { Layout } from '../../src/component';
+} from '../../src/component';
+import { Layout } from '../../src/ui';
 
 interface Props {
   articles: Article[];
@@ -38,13 +39,21 @@ const FiltersTitle = styled.h2`
 
 const Articles = ({ articles, taxonomies }: Props) => {
   const [stackedArticles, setStackedArticles] = useState<Array<Article[]>>([]);
-  const [page, setPage] = useState(0);
-  const [lastPage, setLastPage] = useState(0);
-  const [filters, setFilters] = useState([]);
+  const [page, setPage] = useState<number>(0);
+  const [lastPage, setLastPage] = useState<number>(0);
+  const [filters, setFilters] = useState<Array<string | Array<string>>>([]);
+
+  const router = useRouter();
+  const routerQuery = router.query.taxonomy;
 
   useEffect(() => {
-    setStackedArticles(ItemStacker(articles));
-  }, [articles]);
+    if (routerQuery) {
+      setFilters([...filters, routerQuery]);
+      setStackedArticles(ArticlesFilter(articles, filters));
+    } else {
+      setStackedArticles(ItemStacker(articles));
+    }
+  }, [articles, routerQuery]);
 
   useEffect(() => {
     if (filters.length > 0) {

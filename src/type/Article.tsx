@@ -1,5 +1,7 @@
 // Use.
 import { Taxonomy } from './Taxonomy';
+import { Image } from './Image';
+import { Cartes, TexteImage, Wysiwyg } from '../type';
 
 // Type for article content type.
 interface Article {
@@ -9,28 +11,8 @@ interface Article {
   created_at: string;
   slug: string;
   taxonomies: Taxonomy[];
-  background: Background;
-}
-
-interface Background {
-  id: number;
-  name: string;
-  url: string;
-  alternativeText: string;
-  caption: string;
-  formats: BackgroundFormat;
-}
-
-interface BackgroundFormat {
-  thumbnail: Format;
-  small: Format;
-  medium: Format;
-  large: Format;
-}
-
-interface Format {
-  name: string;
-  url: string;
+  background: Image;
+  dynamic_zone: [Cartes | TexteImage | Wysiwyg];
 }
 
 export type { Article };
