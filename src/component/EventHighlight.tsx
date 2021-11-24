@@ -9,27 +9,56 @@ interface Props {
 }
 
 const Container = styled(Wrapper)`
-  > *:not(:first-child) {
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  grid-template-rows: 1fr;
+`;
+
+const FakeIconOne = styled.div`
+  width: 50px;
+  height: 50px;
+  background-color: lightblue;
+`;
+
+const FakeIconTwo = styled.div`
+  width: 30px;
+  height: 30px;
+  margin-left: auto;
+  background-color: lightblue;
+`;
+
+const ContentWrapper = styled(Wrapper)`
+  margin-left: 10px;
+  > p:last-of-type {
     margin-top: 10px;
   }
 `;
 
+const StyledDate = styled(Text)`
+  ${({ theme }) => theme.typography.h3}
+  line-height: 3.7rem;
+`;
+
 const EventHighlight = ({ event }: Props) => {
   return (
-    <Container alignItem="flex-end">
-      <Text variant="h3" suppressHydrationWarning>
-        {format(new Date(event.date), 'EEEE')}{' '}
-        {format(new Date(event.date), 'd')}
-      </Text>
-      <Text variant="h4" suppressHydrationWarning>
-        {format(new Date(event.date), 'LLLL')}{' '}
-        {format(new Date(event.date), 'y')}
-      </Text>
-      <Text variant="h4" suppressHydrationWarning>
-        {format(new Date(event.date), 'kk')}:
-        {format(new Date(event.date), 'mm')}
-      </Text>
-      <Text>{event.title}</Text>
+    <Container>
+      <FakeIconOne />
+      <ContentWrapper>
+        <Wrapper direction="row">
+          <StyledDate as="h2" suppressHydrationWarning>
+            {format(new Date(event.date), 'EEEE')}{' '}
+            {format(new Date(event.date), 'd')}
+            <br />
+            {format(new Date(event.date), 'LLLL')}{' '}
+            {format(new Date(event.date), 'y')}
+            <br />
+            {format(new Date(event.date), 'kk')}:
+            {format(new Date(event.date), 'mm')}
+          </StyledDate>
+          <FakeIconTwo />
+        </Wrapper>
+        <Text>{event.title}</Text>
+      </ContentWrapper>
     </Container>
   );
 };
