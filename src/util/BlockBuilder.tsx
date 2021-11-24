@@ -22,7 +22,7 @@ const BlockBuilder = ({ blocks }: Props) => {
     <Container>
       {blocks.map((block) => {
         switch (block.__component) {
-          case 'global.carte':
+          case 'global.cartes':
             return (
               <ArticleCartes
                 block={block}
