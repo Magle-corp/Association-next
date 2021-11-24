@@ -5,18 +5,21 @@ import { Image } from './Image';
 
 interface Cartes {
   __component: string;
+  id: number;
   title?: string;
   cartes: Carte[];
 }
 
 interface Carte {
   __component: string;
+  id: number;
   title?: string;
   content: string;
 }
 
 interface TexteImage {
   __component: string;
+  id: number;
   title?: string;
   content: string;
   image_side: string;
@@ -25,6 +28,7 @@ interface TexteImage {
 
 interface Wysiwyg {
   __component: string;
+  id: number;
   title?: string;
   content: string;
 }
