@@ -1,9 +1,9 @@
 // Use.
 import Image from 'next/image';
 import styled from 'styled-components';
-import { Article } from '../type';
+import { format } from 'date-fns';
 import { Wrapper, Text } from '@magle-corp/design-system';
-import { DateFormatter } from '../util';
+import { Article } from '../type';
 import { TaxonomiesList } from './TaxonomiesList';
 
 interface Props {
@@ -45,7 +45,7 @@ const ArticleTeaser = ({ article }: Props) => {
         <Text as="h3" variant="h3">
           {article.title}
         </Text>
-        <Text>{DateFormatter(article.created_at)}</Text>
+        <Text>{format(new Date(article.created_at), 'd MMM y')}</Text>
         <TaxonomiesList taxonomies={article.taxonomies} />
         <Text>{article.description}</Text>
       </ContentWrapper>
