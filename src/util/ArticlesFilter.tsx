@@ -11,7 +11,10 @@ import { ItemStacker } from './ItemStacker';
  *    Array of taxonomy therms.
  * @constructor
  */
-const ArticlesFilter = (articles: Article[], filters: Array<string>) => {
+const ArticlesFilter = (
+  articles: Article[],
+  filters: Array<string | Array<string>>
+) => {
   const filteredArticles: Article[] = [];
   articles.forEach((article) => {
     if (
