@@ -3,8 +3,8 @@ import qs from 'qs';
 import styled from 'styled-components';
 import { Main } from '@magle-corp/design-system';
 import { Article } from '../../src/type';
-import { Header, ArticleDetail } from '../../src/block';
-import { Layout } from '../../src/component';
+import { Header, ArticleDetail } from '../../src/component';
+import { Layout } from '../../src/ui';
 
 interface StaticParams {
   params: {

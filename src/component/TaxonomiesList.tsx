@@ -1,7 +1,7 @@
 // Use.
 import { Text, List } from '@magle-corp/design-system';
 import { Taxonomy } from '../type';
-import { Link } from '../component';
+import { Link } from '../ui';
 
 interface Props {
   className?: string;

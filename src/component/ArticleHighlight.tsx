@@ -5,7 +5,7 @@ import { Wrapper, Text } from '@magle-corp/design-system';
 import { Article } from '../type';
 import { DateFormatter } from '../util';
 import { TaxonomiesList } from './TaxonomiesList';
-import { Link } from '../component';
+import { Link } from '../ui';
 
 interface Props {
   article: Article;

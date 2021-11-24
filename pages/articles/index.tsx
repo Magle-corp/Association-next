@@ -10,8 +10,8 @@ import {
   ArticlesList,
   Pagination,
   ArticlesFilters,
-} from '../../src/block';
-import { Layout } from '../../src/component';
+} from '../../src/component';
+import { Layout } from '../../src/ui';
 
 interface Props {
   articles: Article[];
