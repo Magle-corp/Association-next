@@ -1,7 +1,7 @@
 // Use.
 import qs from 'qs';
 import styled from 'styled-components';
-import { Main, Aside, Wrapper } from '@magle-corp/design-system';
+import { Main, Aside, Wrapper, Text } from '@magle-corp/design-system';
 import { Article, Event } from '../src/type';
 import {
   Header,
@@ -9,7 +9,7 @@ import {
   ArticlesList,
   EventHighlight,
 } from '../src/component';
-import { Layout } from '../src/ui';
+import { Layout, Link } from '../src/ui';
 
 interface Props {
   articles: Article[];
@@ -31,6 +31,18 @@ const Title = styled.h2`
   margin-bottom: 25px;
 `;
 
+const EventWrapper = styled(Wrapper)`
+  > *:first-child {
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid ${({ theme }) => theme.colors.grey};
+  }
+
+  > *:not(:first-child) {
+    text-align: center;
+  }
+`;
+
 const Home = ({ articles, events }: Props) => {
   return (
     <>
@@ -47,9 +59,12 @@ const Home = ({ articles, events }: Props) => {
             <Title>Derniers articles</Title>
             <ArticlesList articles={articles} spacing={15} />
           </Wrapper>
-          <Wrapper>
+          <EventWrapper>
             <EventHighlight event={events[0]} />
-          </Wrapper>
+            <Link href="#" variant="internal">
+              <Text>Voir tous les évènements</Text>
+            </Link>
+          </EventWrapper>
         </StyledAside>
       </Layout>
     </>
