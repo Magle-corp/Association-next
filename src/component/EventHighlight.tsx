@@ -3,6 +3,7 @@ import { format } from 'date-fns';
 import styled from 'styled-components';
 import { Wrapper, Text } from '@magle-corp/design-system';
 import { Event } from '../type';
+import { Calendar, ExternalLink } from '../theme/icon';
 
 interface Props {
   event: Event;
@@ -28,7 +29,7 @@ const FakeIconTwo = styled.div`
 `;
 
 const ContentWrapper = styled(Wrapper)`
-  margin-left: 10px;
+  margin-left: 5px;
   > p:last-of-type {
     margin-top: 10px;
   }
@@ -42,7 +43,7 @@ const StyledDate = styled(Text)`
 const EventHighlight = ({ event }: Props) => {
   return (
     <Container>
-      <FakeIconOne />
+      <Calendar />
       <ContentWrapper>
         <Wrapper direction="row">
           <StyledDate as="h2" suppressHydrationWarning>
@@ -55,7 +56,7 @@ const EventHighlight = ({ event }: Props) => {
             {format(new Date(event.date), 'kk')}:
             {format(new Date(event.date), 'mm')}
           </StyledDate>
-          <FakeIconTwo />
+          <ExternalLink width={25} height={25} />
         </Wrapper>
         <Text>{event.title}</Text>
       </ContentWrapper>
