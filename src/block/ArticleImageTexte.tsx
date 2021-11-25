@@ -8,14 +8,14 @@ interface Props {
   block: TexteImage;
 }
 
-const Container = styled(Wrapper)`
+const Container = styled(Wrapper)<{ reverse: boolean }>`
   display: grid;
   grid-template-columns: ${({ reverse }) =>
     reverse ? '1fr 300px' : '300px 1fr'};
   grid-template-rows: 1fr;
 `;
 
-const ImageWrapper = styled.div`
+const ImageWrapper = styled(Wrapper)<{ reverse: boolean }>`
   grid-column: ${({ reverse }) => (reverse ? '2/3' : '1/2')};
   grid-row: 1/2;
   position: relative;
@@ -25,7 +25,7 @@ const ImageWrapper = styled.div`
   min-height: 230px;
 `;
 
-const ContentWrapper = styled(Wrapper)`
+const ContentWrapper = styled(Wrapper)<{ reverse: boolean }>`
   grid-column: ${({ reverse }) => (reverse ? '1/2' : '2/3')};
   grid-row: 1/2;
   margin: ${({ reverse }) => (reverse ? '0 20px 0 0' : '0 0 0 20px')};

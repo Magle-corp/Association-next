@@ -25,14 +25,14 @@ const BlockBuilder = ({ blocks }: Props) => {
           case 'global.cartes':
             return (
               <ArticleCartes
-                block={block}
+                block={block as Cartes}
                 key={`${block.__component}_${block.id}`}
               />
             );
           case 'global.texte-image':
             return (
               <ArticleImageTexte
-                block={block}
+                block={block as TexteImage}
                 key={`${block.__component}_${block.id}`}
               />
             );
