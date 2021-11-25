@@ -61,7 +61,7 @@ const Home = ({ articles, events }: Props) => {
           </Wrapper>
           <EventWrapper>
             <EventHighlight event={events[0]} />
-            <Link href="#" variant="internal">
+            <Link href="/evenements" variant="internal">
               <Text>Voir tous les évènements</Text>
             </Link>
           </EventWrapper>
