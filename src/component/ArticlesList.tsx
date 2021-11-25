@@ -16,7 +16,7 @@ const ArticlesList = ({ articles, variant = 'default', spacing }: Props) => {
       <List spacing={spacing}>
         {articles.map((article) => (
           <li key={article.id}>
-            <Link href={`/articles/${article.slug}`}>
+            <Link href={`/articles/${article.slug}`} variant="inline">
               {variant == 'default' && <Text as="span">{article.title}</Text>}
               {variant === 'teaser' && (
                 <article>
