@@ -1,9 +1,10 @@
 // Use.
 import Image from 'next/image';
 import styled from 'styled-components';
+import { format } from 'date-fns';
 import { Wrapper, Text } from '@magle-corp/design-system';
 import { Article } from '../type';
-import { DateFormatter, BlockBuilder } from '../util';
+import { BlockBuilder } from '../util';
 import { TaxonomiesList } from './TaxonomiesList';
 
 interface Props {
@@ -35,7 +36,7 @@ const ContentWrapper = styled(Wrapper)`
   margin: 0 auto;
 `;
 
-const Date = styled(Text)`
+const StyledDate = styled(Text)`
   ${({ theme }) => theme.typography.h4}
   margin: 0 auto;
   font-family: Roboto, Arial, sans-serif;
@@ -59,7 +60,9 @@ const ArticleDetail = ({ article }: Props) => {
         <Title>{article.title}</Title>
       </ImageWrapper>
       <ContentWrapper>
-        <Date variant="h4">{DateFormatter(article.created_at)}</Date>
+        <StyledDate variant="h4">
+          {format(new Date(article.created_at), 'd LLLL y')}
+        </StyledDate>
         <StyledTaxonomies taxonomies={article.taxonomies} variant="link" />
         <BlockBuilder blocks={article.dynamic_zone} />
       </ContentWrapper>

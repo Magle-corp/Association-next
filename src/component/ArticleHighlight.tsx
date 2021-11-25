@@ -1,9 +1,9 @@
 // Use.
 import Image from 'next/image';
 import styled from 'styled-components';
+import { format } from 'date-fns';
 import { Wrapper, Text } from '@magle-corp/design-system';
 import { Article } from '../type';
-import { DateFormatter } from '../util';
 import { TaxonomiesList } from './TaxonomiesList';
 import { Link } from '../ui';
 
@@ -23,7 +23,7 @@ const ImageWrapper = styled(Wrapper)`
   height: 250px;
 `;
 
-const Date = styled(Text)`
+const StyledDate = styled(Text)`
   margin-left: 10px;
 `;
 
@@ -46,14 +46,14 @@ const ArticleHighlight = ({ article }: Props) => {
         <Text as="h3" variant="h3">
           {article.title}
         </Text>
-        <Date>{DateFormatter(article.created_at)}</Date>
+        <StyledDate>
+          {format(new Date(article.created_at), 'd MMM y')}
+        </StyledDate>
       </Wrapper>
       <TaxonomiesList taxonomies={article.taxonomies} variant="link" />
       <Text>{article.description}</Text>
-      <ArticleLink href={`/articles/${article.slug}`}>
-        <Text as="span" variant="decorate_link">
-          Consulter l'article
-        </Text>
+      <ArticleLink href={`/articles/${article.slug}`} variant="internal">
+        <Text as="span">Consulter l'article</Text>
       </ArticleLink>
     </ArticleWrapper>
   );
