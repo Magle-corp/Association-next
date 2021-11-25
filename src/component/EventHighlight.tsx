@@ -43,7 +43,7 @@ const EventHighlight = ({ event }: Props) => {
           {format(new Date(event.date), 'kk')}:
           {format(new Date(event.date), 'mm')}
         </StyledDate>
-        <Link href="#" variant="inline">
+        <Link href="#" variant="internal">
           <Text>{event.title}</Text>
         </Link>
       </ContentWrapper>

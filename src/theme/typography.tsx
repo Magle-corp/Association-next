@@ -57,13 +57,6 @@ const variant: object = {
     line-height: 2.4rem;
     font-weight: 400;
 `,
-  decorate_link: `
-    ${fontFamily}
-    font-size: 1.6rem;
-    line-height: 2.4rem;
-    font-weight: 400;
-    text-decoration: underline;
-  `,
   tag: `
     ${fontFamily}
     display: block;
