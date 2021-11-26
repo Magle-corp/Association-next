@@ -1,6 +1,5 @@
 // Use.
 import { Taxonomy } from '../type';
-import { ItemsStacker } from './ItemsStacker';
 
 /**
  * Returns an array of items containing at least one reference from the filters array.
@@ -26,7 +25,8 @@ const ItemsTaxoFilter = (
       filteredItems.push(item);
     }
   });
-  return ItemsStacker(filteredItems);
+
+  return filteredItems;
 };
 
 export { ItemsTaxoFilter };

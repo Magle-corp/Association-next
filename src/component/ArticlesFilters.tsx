@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { Article, Taxonomy } from '../type';
 import { ItemsStacker, ItemsTaxoFilter } from '../util';
-import { FiltersTaxo } from './filter/FiltersTaxo';
+import { FiltersTaxo } from './filter';
 
 interface Props {
   taxonomies: Taxonomy[];
@@ -25,9 +25,8 @@ const ArticlesFilters = ({
   useEffect(() => {
     if (routerQuery) {
       setFilters([...filters, routerQuery]);
-      setStackedArticles(
-        ItemsTaxoFilter(articles, filters) as Array<Article[]>
-      );
+      const filteredItems = ItemsTaxoFilter(articles, filters);
+      setStackedArticles(ItemsStacker(filteredItems) as Array<Article[]>);
     } else {
       setStackedArticles(ItemsStacker(articles) as Array<Article[]>);
     }
@@ -36,9 +35,8 @@ const ArticlesFilters = ({
   useEffect(() => {
     if (filters.length > 0) {
       setPage(0);
-      setStackedArticles(
-        ItemsTaxoFilter(articles, filters) as Array<Article[]>
-      );
+      const filteredItems = ItemsTaxoFilter(articles, filters);
+      setStackedArticles(ItemsStacker(filteredItems) as Array<Article[]>);
     } else {
       setStackedArticles(ItemsStacker(articles) as Array<Article[]>);
     }

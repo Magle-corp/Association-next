@@ -1,9 +1,10 @@
 // Use.
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import { Event, Taxonomy } from '../type';
 import { ItemsStacker, ItemsTaxoFilter } from '../util';
-import { FiltersTaxo } from './filter/FiltersTaxo';
+import { FiltersTaxo, FiltersArchive } from './filter';
 
 interface Props {
   taxonomies: Taxonomy[];
@@ -11,6 +12,12 @@ interface Props {
   setStackedEvents: Function;
   setPage: Function;
 }
+
+const Container = styled.div`
+  > *:not(:first-child) {
+    margin-top: 25px;
+  }
+`;
 
 const EventsFilters = ({
   taxonomies,
@@ -25,7 +32,8 @@ const EventsFilters = ({
   useEffect(() => {
     if (routerQuery) {
       setFilters([...filters, routerQuery]);
-      setStackedEvents(ItemsTaxoFilter(events, filters) as Array<Event[]>);
+      const filteredItems = ItemsTaxoFilter(events, filters);
+      setStackedEvents(ItemsStacker(filteredItems) as Array<Event[]>);
     } else {
       setStackedEvents(ItemsStacker(events) as Array<Event[]>);
     }
@@ -34,18 +42,22 @@ const EventsFilters = ({
   useEffect(() => {
     if (filters.length > 0) {
       setPage(0);
-      setStackedEvents(ItemsTaxoFilter(events, filters) as Array<Event[]>);
+      const filteredItems = ItemsTaxoFilter(events, filters);
+      setStackedEvents(ItemsStacker(filteredItems) as Array<Event[]>);
     } else {
       setStackedEvents(ItemsStacker(events) as Array<Event[]>);
     }
   }, [filters, events]);
 
   return (
-    <FiltersTaxo
-      taxonomies={taxonomies}
-      filters={filters}
-      setFilters={setFilters}
-    />
+    <Container>
+      <FiltersTaxo
+        taxonomies={taxonomies}
+        filters={filters}
+        setFilters={setFilters}
+      />
+      <FiltersArchive events={events} />
+    </Container>
   );
 };
 

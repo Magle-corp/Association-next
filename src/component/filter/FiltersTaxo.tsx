@@ -1,7 +1,7 @@
 // Use.
 import styled from 'styled-components';
 import { Taxonomy } from '../../type';
-import { Wrapper, Button as UiButton } from '@magle-corp/design-system';
+import { Wrapper, Button } from '@magle-corp/design-system';
 
 interface Props {
   taxonomies: Taxonomy[];
@@ -9,13 +9,15 @@ interface Props {
   setFilters: Function;
 }
 
-const Button = styled(UiButton)`
+const StyledButton = styled(Button)`
   margin-right: 7px;
   margin-bottom: 7px;
   border: 2px solid ${({ theme }) => theme.colors.grey};
 `;
 
 const SelectedButton = styled(Button)`
+  margin-right: 7px;
+  margin-bottom: 7px;
   background-color: ${({ theme }) => theme.colors.grey};
 `;
 
@@ -33,13 +35,13 @@ const FiltersTaxo = ({ taxonomies, filters, setFilters }: Props) => {
               {taxonomy.title}
             </SelectedButton>
           ) : (
-            <Button
+            <StyledButton
               onClick={() => {
                 setFilters([...filters, taxonomy.title]);
               }}
             >
               {taxonomy.title}
-            </Button>
+            </StyledButton>
           )}
         </div>
       ))}

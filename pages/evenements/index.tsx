@@ -1,11 +1,9 @@
 // Use.
-import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import qs from 'qs';
 import styled from 'styled-components';
 import { Main, Aside } from '@magle-corp/design-system';
 import { Event, Taxonomy } from '../../src/type';
-import { ItemsStacker, ItemsTaxoFilter } from '../../src/util';
 import {
   Header,
   EventsList,
@@ -41,28 +39,6 @@ const Articles = ({ events, taxonomies }: Props) => {
   const [stackedEvents, setStackedEvents] = useState<Array<Event[]>>([]);
   const [page, setPage] = useState<number>(0);
   const [lastPage, setLastPage] = useState<number>(0);
-  const [filters, setFilters] = useState<Array<string | Array<string>>>([]);
-
-  const router = useRouter();
-  const routerQuery = router.query.taxonomy;
-
-  useEffect(() => {
-    if (routerQuery) {
-      setFilters([...filters, routerQuery]);
-      setStackedEvents(ItemsTaxoFilter(events, filters) as Array<Event[]>);
-    } else {
-      setStackedEvents(ItemsStacker(events) as Array<Event[]>);
-    }
-  }, [events, routerQuery]);
-
-  useEffect(() => {
-    if (filters.length > 0) {
-      setPage(0);
-      setStackedEvents(ItemsTaxoFilter(events, filters) as Array<Event[]>);
-    } else {
-      setStackedEvents(ItemsStacker(events) as Array<Event[]>);
-    }
-  }, [filters, events]);
 
   useEffect(() => {
     setLastPage(stackedEvents.length - 1);
