@@ -9,3 +9,4 @@ export { ArticleDetail } from './ArticleDetail';
 export { EventHighlight } from './EventHighlight';
 export { EventTeaser } from './EventTeaser';
 export { EventsList } from './EventsList';
+export { EventsFilters } from './EventsFilters';

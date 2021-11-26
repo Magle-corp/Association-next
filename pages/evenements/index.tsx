@@ -10,7 +10,7 @@ import {
   Header,
   EventsList,
   Pagination,
-  ArticlesFilters,
+  EventsFilters,
 } from '../../src/component';
 import { Layout } from '../../src/ui';
 
@@ -81,10 +81,11 @@ const Articles = ({ events, taxonomies }: Props) => {
         </StyledMain>
         <Aside gridColumn="1/2">
           <FiltersTitle>Filtres</FiltersTitle>
-          <ArticlesFilters
+          <EventsFilters
             taxonomies={taxonomies}
-            filters={filters}
-            setFilters={setFilters}
+            events={events}
+            setStackedEvents={setStackedEvents}
+            setPage={setPage}
           />
         </Aside>
       </StyledLayout>
