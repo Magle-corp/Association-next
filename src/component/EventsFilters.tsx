@@ -54,17 +54,14 @@ const EventsFilters = ({
       const filteredItems = ItemsDateFilter(events, dateFilters);
       setStackedEvents(ItemsStacker(filteredItems) as Array<Event[]>);
     } else if (taxoFilters.length > 0 && dateFilters.length > 0) {
-      console.log('both taxo and date');
       setPage(0);
       const filteredItemsByDate = ItemsDateFilter(events, dateFilters);
-      console.log(filteredItemsByDate);
       const filteredItemsByTaxo = ItemsTaxoFilter(
         filteredItemsByDate,
         taxoFilters
       );
       setStackedEvents(ItemsStacker(filteredItemsByTaxo) as Array<Event[]>);
     } else {
-      console.log('no filters');
       setStackedEvents(ItemsStacker(events) as Array<Event[]>);
     }
   }, [events, taxoFilters, dateFilters]);
