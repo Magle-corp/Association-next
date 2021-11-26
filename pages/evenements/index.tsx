@@ -5,7 +5,7 @@ import qs from 'qs';
 import styled from 'styled-components';
 import { Main, Aside } from '@magle-corp/design-system';
 import { Event, Taxonomy } from '../../src/type';
-import { ItemsStacker, ItemsFilter } from '../../src/util';
+import { ItemsStacker, ItemsTaxoFilter } from '../../src/util';
 import {
   Header,
   EventsList,
@@ -49,7 +49,7 @@ const Articles = ({ events, taxonomies }: Props) => {
   useEffect(() => {
     if (routerQuery) {
       setFilters([...filters, routerQuery]);
-      setStackedEvents(ItemsFilter(events, filters) as Array<Event[]>);
+      setStackedEvents(ItemsTaxoFilter(events, filters) as Array<Event[]>);
     } else {
       setStackedEvents(ItemsStacker(events) as Array<Event[]>);
     }
@@ -58,7 +58,7 @@ const Articles = ({ events, taxonomies }: Props) => {
   useEffect(() => {
     if (filters.length > 0) {
       setPage(0);
-      setStackedEvents(ItemsFilter(events, filters) as Array<Event[]>);
+      setStackedEvents(ItemsTaxoFilter(events, filters) as Array<Event[]>);
     } else {
       setStackedEvents(ItemsStacker(events) as Array<Event[]>);
     }
@@ -73,7 +73,7 @@ const Articles = ({ events, taxonomies }: Props) => {
       <Header />
       <StyledLayout>
         <StyledMain gridColumn="2/3">
-          <ListTitle>Articles</ListTitle>
+          <ListTitle>Evenements</ListTitle>
           {stackedEvents.length > 0 && (
             <EventsList events={stackedEvents[page]} spacing={60} />
           )}

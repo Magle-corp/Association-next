@@ -5,7 +5,7 @@ import qs from 'qs';
 import styled from 'styled-components';
 import { Main, Aside } from '@magle-corp/design-system';
 import { Article, Taxonomy } from '../../src/type';
-import { ItemsStacker, ItemsFilter } from '../../src/util';
+import { ItemsStacker, ItemsTaxoFilter } from '../../src/util';
 import {
   Header,
   ArticlesList,
@@ -49,7 +49,9 @@ const Articles = ({ articles, taxonomies }: Props) => {
   useEffect(() => {
     if (routerQuery) {
       setFilters([...filters, routerQuery]);
-      setStackedArticles(ItemsFilter(articles, filters) as Array<Article[]>);
+      setStackedArticles(
+        ItemsTaxoFilter(articles, filters) as Array<Article[]>
+      );
     } else {
       setStackedArticles(ItemsStacker(articles) as Array<Article[]>);
     }
@@ -58,7 +60,9 @@ const Articles = ({ articles, taxonomies }: Props) => {
   useEffect(() => {
     if (filters.length > 0) {
       setPage(0);
-      setStackedArticles(ItemsFilter(articles, filters) as Array<Article[]>);
+      setStackedArticles(
+        ItemsTaxoFilter(articles, filters) as Array<Article[]>
+      );
     } else {
       setStackedArticles(ItemsStacker(articles) as Array<Article[]>);
     }

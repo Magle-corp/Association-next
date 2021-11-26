@@ -11,7 +11,7 @@ import { ItemsStacker } from './ItemsStacker';
  *    Array of taxonomy therms.
  * @constructor
  */
-const ItemsFilter = (
+const ItemsTaxoFilter = (
   items: Array<any>,
   filters: Array<string | Array<string>>
 ) => {
@@ -29,4 +29,4 @@ const ItemsFilter = (
   return ItemsStacker(filteredItems);
 };
 
-export { ItemsFilter };
+export { ItemsTaxoFilter };
