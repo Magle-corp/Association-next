@@ -96,7 +96,7 @@ export default Articles;
 
 export async function getStaticProps() {
   const eventsQuery = `/evenements?${qs.stringify({
-    _sort: 'published_at:DESC',
+    _sort: 'date:DESC',
   })}`;
   const eventsResult = await fetch(`${process.env.BASE_URL}${eventsQuery}`);
   const events = await eventsResult.json();

@@ -3,7 +3,6 @@ import { format } from 'date-fns';
 import styled from 'styled-components';
 import { Wrapper, Text } from '@magle-corp/design-system';
 import { Event } from '../type';
-import { Link } from '../ui';
 import { Calendar } from '../theme/icon';
 
 interface Props {
@@ -43,9 +42,7 @@ const EventHighlight = ({ event }: Props) => {
           {format(new Date(event.date), 'kk')}:
           {format(new Date(event.date), 'mm')}
         </StyledDate>
-        <Link href="#" variant="internal">
-          <Text>{event.title}</Text>
-        </Link>
+        <Text>{event.title}</Text>
       </ContentWrapper>
     </Container>
   );
