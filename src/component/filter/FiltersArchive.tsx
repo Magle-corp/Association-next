@@ -7,16 +7,13 @@ import { ItemsArchiver } from '../../util';
 
 interface Props {
   events: Event[];
+  filters: Array<string | Array<string>>;
+  setFilters: Function;
 }
 
 const Container = styled(Wrapper)`
   > *:not(:first-child) {
     margin-top: 10px;
-  }
-  > * {
-    > *:not(:first-child) {
-      margin-top: 5px;
-    }
   }
 `;
 
@@ -32,36 +29,102 @@ const SelectedButton = styled(Button)`
   background-color: ${({ theme }) => theme.colors.grey};
 `;
 
-const FiltersArchive = ({ events }: Props) => {
+const FiltersArchive = ({ events, filters, setFilters }: Props) => {
   const { nextYearsArch, currentYearArch, pastYearsArch } =
     ItemsArchiver(events);
 
   return (
     <Container>
-      <Wrapper>
-        <Text variant="h4">A venir</Text>
-        <Wrapper direction="row">
-          {nextYearsArch.map((year) => (
-            <StyledButton key={`archive_${year}`}>{year}</StyledButton>
-          ))}
-        </Wrapper>
-      </Wrapper>
-      <Wrapper>
-        <Text variant="h4">{getYear(new Date())}</Text>
-        <Wrapper direction="row">
-          {currentYearArch.map((month) => (
-            <StyledButton key={`archive_${month}`}>{month}</StyledButton>
-          ))}
-        </Wrapper>
-      </Wrapper>
-      <Wrapper>
-        <Text variant="h4">Archives</Text>
-        <Wrapper direction="row">
-          {pastYearsArch.map((year) => (
-            <StyledButton key={`archive_${year}`}>{year}</StyledButton>
-          ))}
-        </Wrapper>
-      </Wrapper>
+      {nextYearsArch && (
+        <>
+          <Text variant="h4">A venir</Text>
+          <Wrapper direction="row">
+            {nextYearsArch.map((year) => (
+              <>
+                {filters && filters.includes(year) ? (
+                  <SelectedButton
+                    key={`archive_${year}`}
+                    onClick={() => {
+                      setFilters(filters.filter((item) => item !== year));
+                    }}
+                  >
+                    {year}
+                  </SelectedButton>
+                ) : (
+                  <StyledButton
+                    key={`archive_${year}`}
+                    onClick={() => {
+                      setFilters([...filters, year]);
+                    }}
+                  >
+                    {year}
+                  </StyledButton>
+                )}
+              </>
+            ))}
+          </Wrapper>
+        </>
+      )}
+      {currentYearArch && (
+        <>
+          <Text variant="h4">{getYear(new Date())}</Text>
+          <Wrapper direction="row">
+            {currentYearArch.map((month) => (
+              <>
+                {filters && filters.includes(month) ? (
+                  <SelectedButton
+                    key={`archive_${month}`}
+                    onClick={() => {
+                      setFilters(filters.filter((item) => item !== month));
+                    }}
+                  >
+                    {month}
+                  </SelectedButton>
+                ) : (
+                  <StyledButton
+                    key={`archive_${month}`}
+                    onClick={() => {
+                      setFilters([...filters, month]);
+                    }}
+                  >
+                    {month}
+                  </StyledButton>
+                )}
+              </>
+            ))}
+          </Wrapper>
+        </>
+      )}
+      {pastYearsArch && (
+        <>
+          <Text variant="h4">Archives</Text>
+          <Wrapper direction="row">
+            {pastYearsArch.map((year) => (
+              <>
+                {filters && filters.includes(year) ? (
+                  <SelectedButton
+                    key={`archive_${year}`}
+                    onClick={() => {
+                      setFilters(filters.filter((item) => item !== year));
+                    }}
+                  >
+                    {year}
+                  </SelectedButton>
+                ) : (
+                  <StyledButton
+                    key={`archive_${year}`}
+                    onClick={() => {
+                      setFilters([...filters, year]);
+                    }}
+                  >
+                    {year}
+                  </StyledButton>
+                )}
+              </>
+            ))}
+          </Wrapper>
+        </>
+      )}
     </Container>
   );
 };
