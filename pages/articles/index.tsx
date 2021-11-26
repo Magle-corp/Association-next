@@ -1,11 +1,9 @@
 // Use.
-import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import qs from 'qs';
 import styled from 'styled-components';
 import { Main, Aside } from '@magle-corp/design-system';
 import { Article, Taxonomy } from '../../src/type';
-import { ItemsStacker, ItemsFilter } from '../../src/util';
 import {
   Header,
   ArticlesList,
@@ -41,28 +39,6 @@ const Articles = ({ articles, taxonomies }: Props) => {
   const [stackedArticles, setStackedArticles] = useState<Array<Article[]>>([]);
   const [page, setPage] = useState<number>(0);
   const [lastPage, setLastPage] = useState<number>(0);
-  const [filters, setFilters] = useState<Array<string | Array<string>>>([]);
-
-  const router = useRouter();
-  const routerQuery = router.query.taxonomy;
-
-  useEffect(() => {
-    if (routerQuery) {
-      setFilters([...filters, routerQuery]);
-      setStackedArticles(ItemsFilter(articles, filters) as Array<Article[]>);
-    } else {
-      setStackedArticles(ItemsStacker(articles) as Array<Article[]>);
-    }
-  }, [articles, routerQuery]);
-
-  useEffect(() => {
-    if (filters.length > 0) {
-      setPage(0);
-      setStackedArticles(ItemsFilter(articles, filters) as Array<Article[]>);
-    } else {
-      setStackedArticles(ItemsStacker(articles) as Array<Article[]>);
-    }
-  }, [filters, articles]);
 
   useEffect(() => {
     setLastPage(stackedArticles.length - 1);
@@ -87,8 +63,9 @@ const Articles = ({ articles, taxonomies }: Props) => {
           <FiltersTitle>Filtres</FiltersTitle>
           <ArticlesFilters
             taxonomies={taxonomies}
-            filters={filters}
-            setFilters={setFilters}
+            articles={articles}
+            setStackedArticles={setStackedArticles}
+            setPage={setPage}
           />
         </Aside>
       </StyledLayout>

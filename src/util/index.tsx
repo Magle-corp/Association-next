@@ -1,3 +1,5 @@
 export { ItemsStacker } from './ItemsStacker';
-export { ItemsFilter } from './ItemsFilter';
+export { ItemsTaxoFilter } from './ItemsTaxoFilter';
+export { ItemsDateFilter } from './ItemsDateFilter';
 export { BlockBuilder } from './BlockBuilder';
+export { ItemsArchiver } from './ItemsArchiver';

@@ -1,16 +1,14 @@
 // Use.
-import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import qs from 'qs';
 import styled from 'styled-components';
 import { Main, Aside } from '@magle-corp/design-system';
 import { Event, Taxonomy } from '../../src/type';
-import { ItemsStacker, ItemsFilter } from '../../src/util';
 import {
   Header,
   EventsList,
   Pagination,
-  ArticlesFilters,
+  EventsFilters,
 } from '../../src/component';
 import { Layout } from '../../src/ui';
 
@@ -41,28 +39,6 @@ const Articles = ({ events, taxonomies }: Props) => {
   const [stackedEvents, setStackedEvents] = useState<Array<Event[]>>([]);
   const [page, setPage] = useState<number>(0);
   const [lastPage, setLastPage] = useState<number>(0);
-  const [filters, setFilters] = useState<Array<string | Array<string>>>([]);
-
-  const router = useRouter();
-  const routerQuery = router.query.taxonomy;
-
-  useEffect(() => {
-    if (routerQuery) {
-      setFilters([...filters, routerQuery]);
-      setStackedEvents(ItemsFilter(events, filters) as Array<Event[]>);
-    } else {
-      setStackedEvents(ItemsStacker(events) as Array<Event[]>);
-    }
-  }, [events, routerQuery]);
-
-  useEffect(() => {
-    if (filters.length > 0) {
-      setPage(0);
-      setStackedEvents(ItemsFilter(events, filters) as Array<Event[]>);
-    } else {
-      setStackedEvents(ItemsStacker(events) as Array<Event[]>);
-    }
-  }, [filters, events]);
 
   useEffect(() => {
     setLastPage(stackedEvents.length - 1);
@@ -73,7 +49,7 @@ const Articles = ({ events, taxonomies }: Props) => {
       <Header />
       <StyledLayout>
         <StyledMain gridColumn="2/3">
-          <ListTitle>Articles</ListTitle>
+          <ListTitle>Evenements</ListTitle>
           {stackedEvents.length > 0 && (
             <EventsList events={stackedEvents[page]} spacing={60} />
           )}
@@ -81,10 +57,11 @@ const Articles = ({ events, taxonomies }: Props) => {
         </StyledMain>
         <Aside gridColumn="1/2">
           <FiltersTitle>Filtres</FiltersTitle>
-          <ArticlesFilters
+          <EventsFilters
             taxonomies={taxonomies}
-            filters={filters}
-            setFilters={setFilters}
+            events={events}
+            setStackedEvents={setStackedEvents}
+            setPage={setPage}
           />
         </Aside>
       </StyledLayout>

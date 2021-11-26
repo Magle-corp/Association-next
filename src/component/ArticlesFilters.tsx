@@ -1,49 +1,53 @@
 // Use.
-import styled from 'styled-components';
-import { Taxonomy } from '../type';
-import { Wrapper, Button as UiButton } from '@magle-corp/design-system';
+import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
+import { Article, Taxonomy } from '../type';
+import { ItemsStacker, ItemsTaxoFilter } from '../util';
+import { FiltersTaxo } from './filter';
 
 interface Props {
   taxonomies: Taxonomy[];
-  filters: Array<string | Array<string>>;
-  setFilters: Function;
+  articles: Article[];
+  setStackedArticles: Function;
+  setPage: Function;
 }
 
-const Button = styled(UiButton)`
-  margin-right: 7px;
-  margin-bottom: 7px;
-  border: 2px solid ${({ theme }) => theme.colors.grey};
-`;
+const ArticlesFilters = ({
+  taxonomies,
+  articles,
+  setStackedArticles,
+  setPage,
+}: Props) => {
+  const [filters, setFilters] = useState<Array<string | Array<string>>>([]);
+  const router = useRouter();
+  const routerQuery = router.query.taxonomy;
 
-const SelectedButton = styled(Button)`
-  background-color: ${({ theme }) => theme.colors.grey};
-`;
+  useEffect(() => {
+    if (routerQuery) {
+      setFilters([...filters, routerQuery]);
+      const filteredItems = ItemsTaxoFilter(articles, filters);
+      setStackedArticles(ItemsStacker(filteredItems) as Array<Article[]>);
+    } else {
+      setStackedArticles(ItemsStacker(articles) as Array<Article[]>);
+    }
+  }, [articles, routerQuery]);
 
-const ArticlesFilters = ({ taxonomies, filters, setFilters }: Props) => {
+  useEffect(() => {
+    if (filters.length > 0) {
+      setPage(0);
+      const filteredItems = ItemsTaxoFilter(articles, filters);
+      setStackedArticles(ItemsStacker(filteredItems) as Array<Article[]>);
+    } else {
+      setStackedArticles(ItemsStacker(articles) as Array<Article[]>);
+    }
+  }, [filters, articles]);
+
   return (
-    <Wrapper direction="row">
-      {taxonomies.map((taxonomy) => (
-        <div key={taxonomy.id}>
-          {filters && filters.includes(taxonomy.title) ? (
-            <SelectedButton
-              onClick={() => {
-                setFilters(filters.filter((item) => item !== taxonomy.title));
-              }}
-            >
-              {taxonomy.title}
-            </SelectedButton>
-          ) : (
-            <Button
-              onClick={() => {
-                setFilters([...filters, taxonomy.title]);
-              }}
-            >
-              {taxonomy.title}
-            </Button>
-          )}
-        </div>
-      ))}
-    </Wrapper>
+    <FiltersTaxo
+      taxonomies={taxonomies}
+      filters={filters}
+      setFilters={setFilters}
+    />
   );
 };
 
