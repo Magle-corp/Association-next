@@ -35,6 +35,12 @@ const ContentWrapper = styled(Wrapper)<{ reverse: boolean }>`
   }
 `;
 
+/**
+ * Provide block "Image Texte" for block builder.
+ *
+ * @param block
+ *   The custom Strapi "Image Texte" component.
+ */
 const ArticleImageTexte = ({ block }: Props) => {
   return (
     <Container reverse={block.image_side == 'Droite'}>

@@ -8,9 +8,13 @@ interface Props {
   block: Wysiwyg;
 }
 
+/**
+ * Provide block "Wysiwyg" for block builder.
+ *
+ * @param block
+ *   The custom Strapi "Wysiwyg" component.
+ */
 const ArticleWysiwyg = ({ block }: Props) => {
-  console.log(block);
-
   const parseOptions = {
     replace: (domNode: {
       attribs: any;
@@ -42,12 +46,13 @@ const ArticleWysiwyg = ({ block }: Props) => {
   };
 
   return (
-    <Wrapper>
+    <>
       <Text as="h2" variant="h2">
         {block.title}
       </Text>
-      <Wrapper>{parse(block.content, parseOptions)}</Wrapper>
-    </Wrapper>
+      {/*<Wrapper>{parse(block.content, parseOptions)}</Wrapper>*/}
+      <Wrapper>WIP wysiwyg</Wrapper>
+    </>
   );
 };
 

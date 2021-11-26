@@ -3,9 +3,9 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import { format } from 'date-fns';
 import { Wrapper, Text } from '@magle-corp/design-system';
-import { Article } from '../type';
-import { TaxonomiesList } from './TaxonomiesList';
-import { Link } from '../ui';
+import { Article } from '../../type';
+import { TaxonomiesList } from '../TaxonomiesList';
+import { Link } from '../../ui';
 
 interface Props {
   article: Article;
@@ -31,6 +31,12 @@ const ArticleLink = styled(Link)`
   margin-left: auto;
 `;
 
+/**
+ * Provide component "ArticleHighlight".
+ *
+ * @param article
+ *   Strapi custom content type "Article".
+ */
 const ArticleHighlight = ({ article }: Props) => {
   return (
     <ArticleWrapper>

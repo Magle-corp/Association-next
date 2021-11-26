@@ -16,6 +16,16 @@ const StyledLink = styled(Link)`
   }
 `;
 
+/**
+ * Provide component "TaxonomiesList".
+ *
+ * @param className
+ *   String for override Styled component style.
+ * @param taxonomies
+ *   Array of Strapi custom content type "Taxonomy".
+ * @param variant
+ *   String for define behaviour of the list.
+ */
 const TaxonomiesList = ({
   className,
   taxonomies,

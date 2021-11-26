@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Event, Taxonomy } from '../type';
 import { ItemsStacker, ItemsTaxoFilter, ItemsDateFilter } from '../util';
-import { FiltersTaxo, FiltersArchive } from './filter';
+import { FiltersTaxo, FiltersArchive } from './index';
 
 interface Props {
   taxonomies: Taxonomy[];
@@ -19,6 +19,18 @@ const Container = styled.div`
   }
 `;
 
+/**
+ * Provide component "EventsFilters".
+ *
+ * @param taxonomies
+ *   Array of Strapi custom content type "Taxonomy".
+ * @param events
+ *   Array of Strapi custom content type "Events".
+ * @param setStackedEvents
+ *   Function for set "stackedArticles" state.
+ * @param setPage
+ *   Function for set "page" state.
+ */
 const EventsFilters = ({
   taxonomies,
   events,
@@ -28,12 +40,11 @@ const EventsFilters = ({
   const [taxoFilters, setTaxoFilters] = useState<Array<string | Array<string>>>(
     []
   );
-  const [dateFilters, setDateFilters] = useState<Array<string | Array<string>>>(
-    []
-  );
+  const [dateFilters, setDateFilters] = useState<Array<string | number>>([]);
   const router = useRouter();
   const routerQuery = router.query.taxonomy;
 
+  // Set stackedArticles according to the router request.
   useEffect(() => {
     if (routerQuery) {
       setTaxoFilters([...taxoFilters, routerQuery]);
@@ -44,6 +55,7 @@ const EventsFilters = ({
     }
   }, [events, routerQuery]);
 
+  // Set stackedArticles according to the filters.
   useEffect(() => {
     if (taxoFilters.length > 0 && dateFilters.length <= 0) {
       setPage(0);
@@ -54,17 +66,14 @@ const EventsFilters = ({
       const filteredItems = ItemsDateFilter(events, dateFilters);
       setStackedEvents(ItemsStacker(filteredItems) as Array<Event[]>);
     } else if (taxoFilters.length > 0 && dateFilters.length > 0) {
-      console.log('both taxo and date');
       setPage(0);
       const filteredItemsByDate = ItemsDateFilter(events, dateFilters);
-      console.log(filteredItemsByDate);
       const filteredItemsByTaxo = ItemsTaxoFilter(
         filteredItemsByDate,
         taxoFilters
       );
       setStackedEvents(ItemsStacker(filteredItemsByTaxo) as Array<Event[]>);
     } else {
-      console.log('no filters');
       setStackedEvents(ItemsStacker(events) as Array<Event[]>);
     }
   }, [events, taxoFilters, dateFilters]);

@@ -2,9 +2,9 @@
 import styled from 'styled-components';
 import { format, formatDistance, isBefore } from 'date-fns';
 import { Wrapper, Text } from '@magle-corp/design-system';
-import { Event } from '../type';
-import { TaxonomiesList } from './TaxonomiesList';
-import { AvailableEvent, CloseEvent } from '../theme/icon';
+import { Event } from '../../type';
+import { TaxonomiesList } from '../TaxonomiesList';
+import { AvailableEvent, CloseEvent } from '../../theme/icon';
 
 interface Props {
   event: Event;
@@ -44,6 +44,12 @@ const ContentWrapper = styled(Wrapper)`
   }
 `;
 
+/**
+ * Provide component "EventTeaser".
+ *
+ * @param event
+ *   Strapi custom content type "Event".
+ */
 const EventTeaser = ({ event }: Props) => {
   const startDateInterval = formatDistance(new Date(event.date), new Date(), {
     addSuffix: true,
@@ -54,7 +60,7 @@ const EventTeaser = ({ event }: Props) => {
   return (
     <EventWrapper direction="row">
       <DateWrapper>
-        <Wrapper>
+        <>
           <StyledDate as="h3" suppressHydrationWarning>
             {isPastDate && <CloseEvent width={35} height={35} />}
             {!isPastDate && <AvailableEvent width={35} height={35} />}
@@ -65,7 +71,7 @@ const EventTeaser = ({ event }: Props) => {
             {format(new Date(event.date), 'kk')}:
             {format(new Date(event.date), 'mm')}
           </StyledDate>
-        </Wrapper>
+        </>
         <Text>{startDateInterval}</Text>
       </DateWrapper>
       <ContentWrapper>

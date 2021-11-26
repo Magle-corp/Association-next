@@ -2,8 +2,8 @@
 import { format } from 'date-fns';
 import styled from 'styled-components';
 import { Wrapper, Text } from '@magle-corp/design-system';
-import { Event } from '../type';
-import { Calendar } from '../theme/icon';
+import { Event } from '../../type';
+import { Calendar } from '../../theme/icon';
 
 interface Props {
   event: Event;
@@ -27,6 +27,12 @@ const StyledDate = styled(Text)`
   line-height: 3.7rem;
 `;
 
+/**
+ * Provide component "EventHighlight".
+ *
+ * @param event
+ *   Strapi custom content type "Event".
+ */
 const EventHighlight = ({ event }: Props) => {
   return (
     <Container>

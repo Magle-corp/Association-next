@@ -20,6 +20,16 @@ const StyledButton = styled(Button)`
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'cursor')};
 `;
 
+/**
+ * Provide component "Pagination".
+ *
+ * @param page
+ *   State "page".
+ * @param lastPage
+ *   State "lastPage".
+ * @param setPage
+ *   Function for set "page" state.
+ */
 const Pagination = ({ page, lastPage, setPage }: Props) => {
   return (
     <PaginationWrapper direction="row" justifyContent="center">

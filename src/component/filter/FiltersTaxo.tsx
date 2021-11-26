@@ -1,7 +1,7 @@
 // Use.
 import styled from 'styled-components';
-import { Taxonomy } from '../../type';
 import { Wrapper, Button } from '@magle-corp/design-system';
+import { Taxonomy } from '../../type';
 
 interface Props {
   taxonomies: Taxonomy[];
@@ -15,12 +15,20 @@ const StyledButton = styled(Button)`
   border: 2px solid ${({ theme }) => theme.colors.grey};
 `;
 
-const SelectedButton = styled(Button)`
-  margin-right: 7px;
-  margin-bottom: 7px;
+const SelectedButton = styled(StyledButton)`
   background-color: ${({ theme }) => theme.colors.grey};
 `;
 
+/**
+ * Provide component "FiltersTaxo".
+ *
+ * @param taxonomies
+ *   Array of Strapi custom content type "Taxonomy".
+ * @param filters
+ *   State "filters".
+ * @param setFilters
+ *   Function for set "filters" state.
+ */
 const FiltersTaxo = ({ taxonomies, filters, setFilters }: Props) => {
   return (
     <Wrapper direction="row">

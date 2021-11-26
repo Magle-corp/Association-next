@@ -1,5 +1,5 @@
 // Use.
-import { Image } from './Image';
+import { Image } from './index';
 
 // Type for article components.
 

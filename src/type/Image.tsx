@@ -1,4 +1,5 @@
 // Type for Strapi image.
+
 interface Image {
   id: number;
   name: string;

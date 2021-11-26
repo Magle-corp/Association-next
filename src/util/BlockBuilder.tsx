@@ -16,7 +16,12 @@ const Container = styled.div`
     margin-top: 80px;
   }
 `;
-
+/**
+ * Returns a block component according to the Strapi custom component type passed.
+ *
+ * @param blocks
+ *   Array of custom Strapi components.
+ */
 const BlockBuilder = ({ blocks }: Props) => {
   return (
     <Container>

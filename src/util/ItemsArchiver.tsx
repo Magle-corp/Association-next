@@ -1,7 +1,16 @@
 // Use.
 import { getMonth, getYear, isAfter, isBefore } from 'date-fns';
+import { Event } from '../type';
 
-const ItemsArchiver = (items: Array<any>) => {
+/**
+ * Return an object containing three arrays.
+ * - nextYearsArchives : array of the next years of publication.
+ * - currentYearArch : array of publication months for the current year.
+ * - pastYearsArch : array of the past years of publication.
+ *
+ * @param items
+ */
+const ItemsArchiver = (items: Array<Event>) => {
   const { nextYearsRawArch, currentYearRawArch, pastYearsRawArch } =
     splitByCategory(items);
 
@@ -14,11 +23,20 @@ const ItemsArchiver = (items: Array<any>) => {
 
 export { ItemsArchiver };
 
-const splitByCategory = (items: Array<any>) => {
+/**
+ * Return an event object sorted in three arrays.
+ * - nextYearsArchives
+ * - currentYearArch
+ * - pastYearsArch
+ *
+ * @param items
+ *   Array of Strapi custom content type "Event".
+ */
+const splitByCategory = (items: Array<Event>) => {
   const currentDate = new Date();
-  const nextYearsRawArch: Array<any> = [];
-  const currentYearRawArch: Array<any> = [];
-  const pastYearsRawArch: Array<any> = [];
+  const nextYearsRawArch: Array<Event> = [];
+  const currentYearRawArch: Array<Event> = [];
+  const pastYearsRawArch: Array<Event> = [];
 
   items.forEach((item) => {
     const itemDate = new Date(item.date);
@@ -35,8 +53,14 @@ const splitByCategory = (items: Array<any>) => {
   return { nextYearsRawArch, currentYearRawArch, pastYearsRawArch };
 };
 
-const splitByYear = (items: Array<any>) => {
-  const archivedYears: Array<any> = [];
+/**
+ * Return an array of the next years of publication.
+ *
+ * @param items
+ *   Array of Strapi custom content type "Event".
+ */
+const splitByYear = (items: Array<Event>) => {
+  const archivedYears: Array<number> = [];
 
   items.forEach((item) => {
     const itemDate = new Date(item.date);
@@ -50,8 +74,14 @@ const splitByYear = (items: Array<any>) => {
   return archivedYears;
 };
 
-const splitByMonth = (items: Array<any>) => {
-  const archivedMonths: Array<any> = [];
+/**
+ * Return an array of publication months for the current year.
+ *
+ * @param items
+ *   Array of Strapi custom content type "Event".
+ */
+const splitByMonth = (items: Array<Event>) => {
+  const archivedMonths: Array<number> = [];
 
   items.forEach((item) => {
     const itemDate = new Date(item.date);
@@ -65,6 +95,12 @@ const splitByMonth = (items: Array<any>) => {
   return archivedMonths;
 };
 
+/**
+ * Return an array of sorted string corresponding to a month.
+ *
+ * @param items
+ *   Array of numbers corresponding to a month.
+ */
 const orderByMonth = (items: Array<number>) => {
   const months = [
     'January',

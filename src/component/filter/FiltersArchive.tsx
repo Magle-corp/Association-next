@@ -7,15 +7,9 @@ import { ItemsArchiver } from '../../util';
 
 interface Props {
   events: Event[];
-  filters: Array<string | Array<string>>;
+  filters: Array<string | number>;
   setFilters: Function;
 }
-
-const Container = styled(Wrapper)`
-  > *:not(:first-child) {
-    margin-top: 10px;
-  }
-`;
 
 const StyledButton = styled(Button)`
   margin-right: 7px;
@@ -23,18 +17,26 @@ const StyledButton = styled(Button)`
   border: 2px solid ${({ theme }) => theme.colors.grey};
 `;
 
-const SelectedButton = styled(Button)`
-  margin-right: 7px;
-  margin-bottom: 7px;
+const SelectedButton = styled(StyledButton)`
   background-color: ${({ theme }) => theme.colors.grey};
 `;
 
+/**
+ * Provide component "FiltersArchive".
+ *
+ * @param events
+ *   Array of Strapi custom content type "Event".
+ * @param filters
+ *   State "filters".
+ * @param setFilters
+ *   Function for set "filters" state.
+ */
 const FiltersArchive = ({ events, filters, setFilters }: Props) => {
   const { nextYearsArch, currentYearArch, pastYearsArch } =
     ItemsArchiver(events);
 
   return (
-    <Container>
+    <>
       {nextYearsArch && (
         <>
           <Text variant="h4">A venir</Text>
@@ -125,7 +127,7 @@ const FiltersArchive = ({ events, filters, setFilters }: Props) => {
           </Wrapper>
         </>
       )}
-    </Container>
+    </>
   );
 };
 

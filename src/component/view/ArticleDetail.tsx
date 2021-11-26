@@ -3,9 +3,9 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import { format } from 'date-fns';
 import { Wrapper, Text } from '@magle-corp/design-system';
-import { Article } from '../type';
-import { BlockBuilder } from '../util';
-import { TaxonomiesList } from './TaxonomiesList';
+import { Article } from '../../type';
+import { BlockBuilder } from '../../util';
+import { TaxonomiesList } from '../TaxonomiesList';
 
 interface Props {
   article: Article;
@@ -47,9 +47,15 @@ const StyledTaxonomies = styled(TaxonomiesList)`
   margin-top: 15px;
 `;
 
+/**
+ * Provide component "ArticleDetail".
+ *
+ * @param article
+ *   Strapi custom content type "Article".
+ */
 const ArticleDetail = ({ article }: Props) => {
   return (
-    <Wrapper>
+    <>
       <ImageWrapper>
         <Image
           src={`${process.env.BASE_URL}${article.background.url}`}
@@ -66,7 +72,7 @@ const ArticleDetail = ({ article }: Props) => {
         <StyledTaxonomies taxonomies={article.taxonomies} variant="link" />
         <BlockBuilder blocks={article.dynamic_zone} />
       </ContentWrapper>
-    </Wrapper>
+    </>
   );
 };
 

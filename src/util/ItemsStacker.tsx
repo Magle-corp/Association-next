@@ -6,8 +6,7 @@ type FilteredItem = Article | Event;
  * Returns an array of items stacked in arrays of five items.
  *
  * @param items
- *    Array.
- * @constructor
+ *   Array of Strapi custom content type "Article" or "Event".
  */
 function ItemsStacker(items: FilteredItem[]) {
   const itemsChunks = [];

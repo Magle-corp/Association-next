@@ -1,7 +1,7 @@
 // Use.
 import { Text, List } from '@magle-corp/design-system';
 import { Article } from '../type';
-import { ArticleTeaser } from './ArticleTeaser';
+import { ArticleTeaser } from './index';
 import { Link } from '../ui';
 
 interface Props {
@@ -10,6 +10,16 @@ interface Props {
   spacing?: number;
 }
 
+/**
+ * Provide component "ArticlesList".
+ *
+ * @param articles
+ *   Array of Strapi custom content type "Article".
+ * @param variant
+ *   String for define behaviour of the list.
+ * @param spacing
+ *   Number for define space between each list item.
+ */
 const ArticlesList = ({ articles, variant = 'default', spacing }: Props) => {
   return (
     <>

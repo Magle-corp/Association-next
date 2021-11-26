@@ -32,6 +32,18 @@ const StyledExternalLink = styled(ExternalLink)`
   margin-left: 5px;
 `;
 
+/**
+ * Provide component "Link".
+ *
+ * @param href
+ *   Link URL.
+ * @param className
+ *   String for override Styled component style.
+ * @param children
+ *   React Node children.
+ * @param variant
+ *   String for define behaviour of the component.
+ */
 const Link = ({ href, className, children, variant = 'default' }: Props) => (
   <NextLink href={href} passHref>
     <StyledLink className={className}>

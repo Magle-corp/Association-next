@@ -2,13 +2,13 @@
 import { Taxonomy } from '../type';
 
 /**
- * Returns an array of items containing at least one reference from the filters array.
+ * Return an array of elements containing at least
+ * one reference defined in the array of filters
  *
  * @param items
  *    Array of the items content type.
  * @param filters
  *    Array of taxonomy therms.
- * @constructor
  */
 const ItemsTaxoFilter = (
   items: Array<any>,

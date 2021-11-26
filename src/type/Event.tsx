@@ -1,6 +1,7 @@
-// Type for event content type.
-import { Taxonomy } from './Taxonomy';
+// Use.
+import { Taxonomy } from './index';
 
+// Type for event content type.
 interface Event {
   id: number;
   title: string;

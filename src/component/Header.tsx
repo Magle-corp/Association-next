@@ -1,6 +1,6 @@
 // Use.
 import styled from 'styled-components';
-import { Wrapper, Text, List } from '@magle-corp/design-system';
+import { Text, List } from '@magle-corp/design-system';
 import { Link } from '../ui';
 
 const StyledHeader = styled.header`
@@ -13,16 +13,19 @@ const StyledHeader = styled.header`
   margin: 0 auto;
 `;
 
+/**
+ * Provide component "Header".
+ */
 const Header = () => {
   return (
     <StyledHeader>
-      <Wrapper>
+      <>
         <Link href="/">
           <Text as="h1" variant="h1">
             Magle
           </Text>
         </Link>
-      </Wrapper>
+      </>
       <nav>
         <List variant="horizontal" spacing={25}>
           <li>

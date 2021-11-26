@@ -31,6 +31,12 @@ const Card = styled(Wrapper)`
   }
 `;
 
+/**
+ * Provide block "Cartes" for block builder.
+ *
+ * @param block
+ *   The custom Strapi "Cartes" component.
+ */
 const ArticleCartes = ({ block }: Props) => {
   return (
     <>

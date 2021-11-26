@@ -14,6 +14,16 @@ const StyledLayout = styled(UiLayout)`
   margin: 0 auto;
 `;
 
+/**
+ * Provide component "Layout".
+ *
+ * @param className
+ *   String for override Styled component style.
+ * @param children
+ *   React Node children.
+ * @param props
+ *   Props.
+ */
 const Layout = ({ className, children, ...props }: Props) => (
   <StyledLayout className={className} {...props}>
     {children}

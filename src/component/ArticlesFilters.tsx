@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { Article, Taxonomy } from '../type';
 import { ItemsStacker, ItemsTaxoFilter } from '../util';
-import { FiltersTaxo } from './filter';
+import { FiltersTaxo } from './index';
 
 interface Props {
   taxonomies: Taxonomy[];
@@ -12,6 +12,18 @@ interface Props {
   setPage: Function;
 }
 
+/**
+ * Provide component "ArticlesFilters".
+ *
+ * @param taxonomies
+ *   Array of Strapi custom content type "Taxonomy".
+ * @param articles
+ *   Array of Strapi custom content type "Article".
+ * @param setStackedArticles
+ *   Function for set "stackedArticles" state.
+ * @param setPage
+ *   Function for set "page" state.
+ */
 const ArticlesFilters = ({
   taxonomies,
   articles,
@@ -22,6 +34,7 @@ const ArticlesFilters = ({
   const router = useRouter();
   const routerQuery = router.query.taxonomy;
 
+  // Set stackedArticles according to the router request.
   useEffect(() => {
     if (routerQuery) {
       setFilters([...filters, routerQuery]);
@@ -32,6 +45,7 @@ const ArticlesFilters = ({
     }
   }, [articles, routerQuery]);
 
+  // Set stackedArticles according to the filters.
   useEffect(() => {
     if (filters.length > 0) {
       setPage(0);

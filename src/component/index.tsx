@@ -1,12 +1,17 @@
-export { ArticleHighlight } from './ArticleHighlight';
-export { ArticleTeaser } from './ArticleTeaser';
-export { Header } from './Header';
-export { ArticlesList } from './ArticlesList';
-export { TaxonomiesList } from './TaxonomiesList';
-export { Pagination } from './Pagination';
+// Filter components.
+export { FiltersArchive } from './filter/FiltersArchive';
+export { FiltersTaxo } from './filter/FiltersTaxo';
+// Views components..
+export { ArticleDetail } from './view/ArticleDetail';
+export { ArticleHighlight } from './view/ArticleHighlight';
+export { ArticleTeaser } from './view/ArticleTeaser';
+export { EventHighlight } from './view/EventHighlight';
+export { EventTeaser } from './view/EventTeaser';
+// Components.
 export { ArticlesFilters } from './ArticlesFilters';
-export { ArticleDetail } from './ArticleDetail';
-export { EventHighlight } from './EventHighlight';
-export { EventTeaser } from './EventTeaser';
-export { EventsList } from './EventsList';
+export { ArticlesList } from './ArticlesList';
 export { EventsFilters } from './EventsFilters';
+export { EventsList } from './EventsList';
+export { Header } from './Header';
+export { Pagination } from './Pagination';
+export { TaxonomiesList } from './TaxonomiesList';

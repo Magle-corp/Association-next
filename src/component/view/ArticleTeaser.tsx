@@ -3,8 +3,8 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import { format } from 'date-fns';
 import { Wrapper, Text } from '@magle-corp/design-system';
-import { Article } from '../type';
-import { TaxonomiesList } from './TaxonomiesList';
+import { Article } from '../../type';
+import { TaxonomiesList } from '../TaxonomiesList';
 
 interface Props {
   article: Article;
@@ -30,6 +30,12 @@ const ImageWrapper = styled(Wrapper)`
   min-height: 165px;
 `;
 
+/**
+ * Provide component "ArticleTeaser".
+ *
+ * @param article
+ *   Strapi custom content type "Article".
+ */
 const ArticleTeaser = ({ article }: Props) => {
   return (
     <ArticleWrapper direction="row" alignItem="flex-start">

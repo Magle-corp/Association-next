@@ -1,6 +1,6 @@
 // Use.
-import { Taxonomy } from './Taxonomy';
-import { Image } from './Image';
+import { Taxonomy } from './index';
+import { Image } from './index';
 import { Cartes, TexteImage, Wysiwyg } from '../type';
 
 // Type for article content type.
