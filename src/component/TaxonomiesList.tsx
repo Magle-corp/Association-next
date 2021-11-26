@@ -1,4 +1,5 @@
 // Use.
+import styled from 'styled-components';
 import { Text, List } from '@magle-corp/design-system';
 import { Taxonomy } from '../type';
 import { Link } from '../ui';
@@ -8,6 +9,12 @@ interface Props {
   taxonomies: Taxonomy[];
   variant?: 'default' | 'link';
 }
+
+const StyledLink = styled(Link)`
+  > * {
+    display: block;
+  }
+`;
 
 const TaxonomiesList = ({
   className,
@@ -26,11 +33,11 @@ const TaxonomiesList = ({
         {variant == 'link' &&
           taxonomies.map((taxonomy) => (
             <li key={taxonomy.id}>
-              <Link href={`/articles?taxonomy=${taxonomy.title}`}>
+              <StyledLink href={`/articles?taxonomy=${taxonomy.title}`}>
                 <Text as="span" variant="tag">
                   {taxonomy.title}
                 </Text>
-              </Link>
+              </StyledLink>
             </li>
           ))}
       </List>

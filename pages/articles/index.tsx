@@ -107,6 +107,7 @@ export async function getStaticProps() {
 
   const taxonomiesQuery = `/taxonomies?${qs.stringify({
     _sort: 'title:ASC',
+    _where: [{ articles_ne: null }],
   })}`;
   const taxonomiesResult = await fetch(
     `${process.env.BASE_URL}${taxonomiesQuery}`
