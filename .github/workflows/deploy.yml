@@ -24,8 +24,8 @@ jobs:
       - name: Yarn install
         run: yarn install --frozen-lockfile
       - name: Build project
-        run: NODE_ENV=developement yarn build
+        run: NODE_ENV=production yarn build
       - name: Rsync project with server one
         run: rsync -r . ${{ secrets.STAGING_SERVER }}:Association-next
       - name: Restart server
-        run: ssh ${{ secrets.STAGING_SERVER }} sudo service nginx restart
+        run: ssh ${{ secrets.STAGING_SERVER }} pm2 reload association-next
