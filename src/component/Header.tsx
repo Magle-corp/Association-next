@@ -13,11 +13,11 @@ const StyledHeader = styled.header`
   align-items: flex-end;
   justify-content: space-between;
   min-width: 100%;
-  height: 60px;
+  height: 70px;
   background-color: ${({ theme }) => theme.colors.white};
 
   > *:not(:last-child) {
-    padding: 0 20px;
+    padding: 0 20px 10px 20px;
   }
 
   @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
@@ -25,6 +25,7 @@ const StyledHeader = styled.header`
     top: 0;
     min-width: 0;
     max-width: ${({ theme }) => theme.breakpoints.maximumWidth};
+    height: 60px;
     padding: 0 20px;
     margin: 0 auto;
 
