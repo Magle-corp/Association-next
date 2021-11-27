@@ -11,6 +11,12 @@ interface Props {
   setFilters: Function;
 }
 
+const Container = styled(Wrapper)`
+  > *:not(:first-child) {
+    margin-top: 10px;
+  }
+`;
+
 const StyledButton = styled(Button)`
   margin-right: 7px;
   margin-bottom: 7px;
@@ -36,16 +42,15 @@ const FiltersArchive = ({ events, filters, setFilters }: Props) => {
     ItemsArchiver(events);
 
   return (
-    <>
+    <Container>
       {nextYearsArch && (
-        <>
+        <Container>
           <Text variant="h4">A venir</Text>
           <Wrapper direction="row">
             {nextYearsArch.map((year) => (
-              <>
+              <Wrapper key={`archive_${year}`}>
                 {filters && filters.includes(year) ? (
                   <SelectedButton
-                    key={`archive_${year}`}
                     onClick={() => {
                       setFilters(filters.filter((item) => item !== year));
                     }}
@@ -62,20 +67,19 @@ const FiltersArchive = ({ events, filters, setFilters }: Props) => {
                     {year}
                   </StyledButton>
                 )}
-              </>
+              </Wrapper>
             ))}
           </Wrapper>
-        </>
+        </Container>
       )}
       {currentYearArch && (
-        <>
+        <Container>
           <Text variant="h4">{getYear(new Date())}</Text>
           <Wrapper direction="row">
             {currentYearArch.map((month) => (
-              <>
+              <Wrapper key={`archive_${month}`}>
                 {filters && filters.includes(month) ? (
                   <SelectedButton
-                    key={`archive_${month}`}
                     onClick={() => {
                       setFilters(filters.filter((item) => item !== month));
                     }}
@@ -92,20 +96,19 @@ const FiltersArchive = ({ events, filters, setFilters }: Props) => {
                     {month}
                   </StyledButton>
                 )}
-              </>
+              </Wrapper>
             ))}
           </Wrapper>
-        </>
+        </Container>
       )}
       {pastYearsArch && (
-        <>
+        <Container>
           <Text variant="h4">Archives</Text>
           <Wrapper direction="row">
             {pastYearsArch.map((year) => (
-              <>
+              <Wrapper key={`archive_${year}`}>
                 {filters && filters.includes(year) ? (
                   <SelectedButton
-                    key={`archive_${year}`}
                     onClick={() => {
                       setFilters(filters.filter((item) => item !== year));
                     }}
@@ -122,12 +125,12 @@ const FiltersArchive = ({ events, filters, setFilters }: Props) => {
                     {year}
                   </StyledButton>
                 )}
-              </>
+              </Wrapper>
             ))}
           </Wrapper>
-        </>
+        </Container>
       )}
-    </>
+    </Container>
   );
 };
 
