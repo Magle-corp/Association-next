@@ -48,15 +48,17 @@ const ArticleHighlight = ({ article }: Props) => {
           alt={article.background.alternativeText}
         />
       </ImageWrapper>
-      <Wrapper direction="row" alignItem="flex-end">
-        <Text as="h3" variant="h3">
-          {article.title}
-        </Text>
-        <StyledDate>
-          {format(new Date(article.created_at), 'd MMM y')}
-        </StyledDate>
+      <Wrapper>
+        <Wrapper direction="row" alignItem="flex-end">
+          <Text as="h3" variant="h3">
+            {article.title}
+          </Text>
+          <StyledDate>
+            {format(new Date(article.created_at), 'd MMM y')}
+          </StyledDate>
+        </Wrapper>
+        <TaxonomiesList taxonomies={article.taxonomies} variant="link" />
       </Wrapper>
-      <TaxonomiesList taxonomies={article.taxonomies} variant="link" />
       <Text>{article.description}</Text>
       <ArticleLink href={`/articles/${article.slug}`} variant="internal">
         <Text as="span">Consulter l'article</Text>

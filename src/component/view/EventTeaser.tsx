@@ -87,10 +87,12 @@ const EventTeaser = ({ event }: Props) => {
         <Text>{startDateInterval}</Text>
       </DateWrapper>
       <ContentWrapper>
-        <Text as="h4" variant="h3">
-          {event.title}
-        </Text>
-        <TaxonomiesList taxonomies={event.taxonomies} />
+        <Wrapper>
+          <Text as="h4" variant="h3">
+            {event.title}
+          </Text>
+          <TaxonomiesList taxonomies={event.taxonomies} />
+        </Wrapper>
         <Text>{event.content}</Text>
       </ContentWrapper>
     </EventWrapper>

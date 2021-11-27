@@ -74,8 +74,10 @@ const ArticleTeaser = ({ article }: Props) => {
         <Text as="h3" variant="h3">
           {article.title}
         </Text>
-        <Text>{format(new Date(article.created_at), 'd MMM y')}</Text>
-        <TaxonomiesList taxonomies={article.taxonomies} />
+        <Wrapper>
+          <Text>{format(new Date(article.created_at), 'd MMM y')}</Text>
+          <TaxonomiesList taxonomies={article.taxonomies} />
+        </Wrapper>
         <Text>{article.description}</Text>
       </ContentWrapper>
     </ArticleWrapper>
