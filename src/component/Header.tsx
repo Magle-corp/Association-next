@@ -8,13 +8,12 @@ import { BurgerMenu } from '../theme/icon';
 const StyledHeader = styled.header`
   position: fixed;
   z-index: 10;
-  top: 10px;
   display: flex;
   flex-direction: row;
   align-items: flex-end;
   justify-content: space-between;
   min-width: 100%;
-  height: 50px;
+  height: 60px;
   background-color: ${({ theme }) => theme.colors.white};
 
   > *:not(:last-child) {
@@ -26,7 +25,7 @@ const StyledHeader = styled.header`
     top: 0;
     min-width: 0;
     max-width: ${({ theme }) => theme.breakpoints.maximumWidth};
-    padding: 10px 20px 0 20px;
+    padding: 0 20px;
     margin: 0 auto;
 
     > *:not(:last-child) {
