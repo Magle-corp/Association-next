@@ -21,6 +21,21 @@ const ArticleWrapper = styled(Wrapper)`
   }
 `;
 
+const ImageWrapper = styled(Wrapper)`
+  grid-column: 1/2;
+  grid-row: 1/2;
+  position: relative;
+  width: 100%;
+  height: 200px;
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
+    width: 235px;
+    height: 165px;
+    min-width: 235px;
+    min-height: 165px;
+  }
+`;
+
 const ContentWrapper = styled(Wrapper)`
   grid-column: 1/2;
   grid-row: 2/3;
@@ -38,19 +53,11 @@ const ContentWrapper = styled(Wrapper)`
   }
 `;
 
-const ImageWrapper = styled(Wrapper)`
-  grid-column: 1/2;
-  grid-row: 1/2;
-  position: relative;
-  width: 100%;
-  height: 200px;
-
-  @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
-    width: 235px;
-    height: 165px;
-    min-width: 235px;
-    min-height: 165px;
-  }
+const Description = styled(Text)`
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 `;
 
 /**
@@ -78,7 +85,7 @@ const ArticleTeaser = ({ article }: Props) => {
           <Text>{format(new Date(article.created_at), 'd MMM y')}</Text>
           <TaxonomiesList taxonomies={article.taxonomies} />
         </Wrapper>
-        <Text>{article.description}</Text>
+        <Description>{article.description}</Description>
       </ContentWrapper>
     </ArticleWrapper>
   );

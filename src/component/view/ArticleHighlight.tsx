@@ -27,6 +27,13 @@ const StyledTitle = styled(Text)`
   margin-right: 10px;
 `;
 
+const Description = styled(Text)`
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+`;
+
 const ArticleLink = styled(Link)`
   margin-left: auto;
 `;
@@ -55,7 +62,7 @@ const ArticleHighlight = ({ article }: Props) => {
         </Wrapper>
         <TaxonomiesList taxonomies={article.taxonomies} variant="link" />
       </Wrapper>
-      <Text>{article.description}</Text>
+      <Description>{article.description}</Description>
       <ArticleLink href={`/articles/${article.slug}`} variant="internal">
         <Text as="span">Consulter l'article</Text>
       </ArticleLink>
