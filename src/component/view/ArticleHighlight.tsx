@@ -13,7 +13,7 @@ interface Props {
 
 const ArticleWrapper = styled(Wrapper)`
   & > *:not(:first-child) {
-    margin-top: 10px;
+    margin-top: 15px;
   }
 `;
 
@@ -23,8 +23,8 @@ const ImageWrapper = styled(Wrapper)`
   height: 250px;
 `;
 
-const StyledDate = styled(Text)`
-  margin-left: 10px;
+const StyledTitle = styled(Text)`
+  margin-right: 10px;
 `;
 
 const ArticleLink = styled(Link)`
@@ -50,12 +50,8 @@ const ArticleHighlight = ({ article }: Props) => {
       </ImageWrapper>
       <Wrapper>
         <Wrapper direction="row" alignItem="flex-end">
-          <Text as="h3" variant="h3">
-            {article.title}
-          </Text>
-          <StyledDate>
-            {format(new Date(article.created_at), 'd MMM y')}
-          </StyledDate>
+          <StyledTitle variant="h3">{article.title}</StyledTitle>
+          <Text>{format(new Date(article.created_at), 'd MMM y')}</Text>
         </Wrapper>
         <TaxonomiesList taxonomies={article.taxonomies} variant="link" />
       </Wrapper>
