@@ -17,12 +17,29 @@ interface Props {
 }
 
 const StyledMain = styled(Main)`
-  margin-right: 35px;
+  grid-column: 1/2;
+  grid-row: 1/2;
+  margin-bottom: 50px;
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
+    grid-column: 1/2;
+    grid-row: 1/2;
+    margin-right: 35px;
+    margin-bottom: 0;
+  }
 `;
 
 const StyledAside = styled(Aside)`
+  grid-column: 1/2;
+  grid-row: 2/3;
+
   > *:not(:first-child) {
     margin-top: 40px;
+  }
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
+    grid-column: 2/3;
+    grid-row: 1/2;
   }
 `;
 

@@ -18,11 +18,31 @@ interface Props {
 }
 
 const StyledLayout = styled(Layout)`
-  grid-template-columns: 250px 1fr;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: max-content 1fr;
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: 1fr;
+  }
 `;
 
 const StyledMain = styled(Main)`
-  margin-left: 35px;
+  grid-column: 1/2;
+  grid-row: 2/3;
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
+    grid-column: 2/3;
+    grid-row: 1/2;
+    margin-left: 35px;
+  }
+`;
+
+const StyledAside = styled(Aside)`
+  grid-column: 1/2;
+  grid-row: 1/2;
+  margin-bottom: 50px;
 `;
 
 const ListTitle = styled.h2`
@@ -55,7 +75,7 @@ const Articles = ({ events, taxonomies }: Props) => {
           )}
           <Pagination page={page} lastPage={lastPage} setPage={setPage} />
         </StyledMain>
-        <Aside gridColumn="1/2">
+        <StyledAside gridColumn="1/2">
           <FiltersTitle>Filtres</FiltersTitle>
           <EventsFilters
             taxonomies={taxonomies}
@@ -63,7 +83,7 @@ const Articles = ({ events, taxonomies }: Props) => {
             setStackedEvents={setStackedEvents}
             setPage={setPage}
           />
-        </Aside>
+        </StyledAside>
       </StyledLayout>
     </>
   );

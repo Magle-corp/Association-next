@@ -18,11 +18,31 @@ interface Props {
 }
 
 const StyledLayout = styled(Layout)`
-  grid-template-columns: 250px 1fr;
+  grid-template-columns: 1fr;
+  grid-template-rows: max-content 1fr;
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: 1fr;
+  }
 `;
 
 const StyledMain = styled(Main)`
-  margin-left: 35px;
+  grid-column: 1/2;
+  grid-row: 2/3;
+  margin-top: 50px;
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
+    grid-column: 2/3;
+    grid-row: 1/2;
+    margin-left: 35px;
+    margin-top: 0;
+  }
+`;
+
+const StyledAside = styled(Aside)`
+  grid-column: 1/2;
+  grid-row: 1/2;
 `;
 
 const ListTitle = styled.h2`
@@ -48,7 +68,7 @@ const Articles = ({ articles, taxonomies }: Props) => {
     <>
       <Header />
       <StyledLayout>
-        <StyledMain gridColumn="2/3">
+        <StyledMain>
           <ListTitle>Articles</ListTitle>
           {stackedArticles.length > 0 && (
             <ArticlesList
@@ -59,7 +79,7 @@ const Articles = ({ articles, taxonomies }: Props) => {
           )}
           <Pagination page={page} lastPage={lastPage} setPage={setPage} />
         </StyledMain>
-        <Aside gridColumn="1/2">
+        <StyledAside>
           <FiltersTitle>Filtres</FiltersTitle>
           <ArticlesFilters
             taxonomies={taxonomies}
@@ -67,7 +87,7 @@ const Articles = ({ articles, taxonomies }: Props) => {
             setStackedArticles={setStackedArticles}
             setPage={setPage}
           />
-        </Aside>
+        </StyledAside>
       </StyledLayout>
     </>
   );

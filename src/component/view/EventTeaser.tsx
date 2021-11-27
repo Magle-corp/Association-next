@@ -12,8 +12,13 @@ interface Props {
 
 const EventWrapper = styled(Wrapper)`
   display: grid;
-  grid-template-columns: 180px 1fr;
-  grid-template-rows: 1fr;
+  grid-template-columns: 1fr;
+  grid-template-rows: max-content 1fr;
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
+    grid-template-columns: 180px 1fr;
+    grid-template-rows: 1fr;
+  }
 `;
 
 const DateWrapper = styled(Wrapper)`
@@ -35,12 +40,19 @@ const StyledDate = styled(Text)`
 `;
 
 const ContentWrapper = styled(Wrapper)`
-  grid-template-columns: 2/3;
-  grid-template-rows: 1/2;
-  margin-left: 25px;
+  grid-template-columns: 1/2;
+  grid-template-rows: 2/3;
+  margin-top: 25px;
 
   > *:not(:first-child) {
     margin-top: 10px;
+  }
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
+    grid-template-columns: 2/3;
+    grid-template-rows: 1/2;
+    margin-left: 25px;
+    margin-top: 0;
   }
 `;
 
