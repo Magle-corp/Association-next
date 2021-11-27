@@ -19,6 +19,11 @@ interface Props {
 const StyledMain = styled(Main)`
   grid-column: 1/2;
   grid-row: 1/2;
+  margin-right: 0;
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
+    margin-right: 80px;
+  }
 `;
 
 const StyledAside = styled(Aside)`
@@ -34,7 +39,6 @@ const StyledAside = styled(Aside)`
     grid-column: 2/3;
     grid-row: 1/2;
     margin-top: 0;
-    margin-left: 35px;
   }
 `;
 
