@@ -19,19 +19,12 @@ interface Props {
 const StyledMain = styled(Main)`
   grid-column: 1/2;
   grid-row: 1/2;
-  margin-bottom: 50px;
-
-  @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
-    grid-column: 1/2;
-    grid-row: 1/2;
-    margin-right: 35px;
-    margin-bottom: 0;
-  }
 `;
 
 const StyledAside = styled(Aside)`
   grid-column: 1/2;
   grid-row: 2/3;
+  margin-top: 50px;
 
   > *:not(:first-child) {
     margin-top: 40px;
@@ -40,6 +33,8 @@ const StyledAside = styled(Aside)`
   @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
     grid-column: 2/3;
     grid-row: 1/2;
+    margin-top: 0;
+    margin-left: 35px;
   }
 `;
 

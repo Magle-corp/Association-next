@@ -18,7 +18,6 @@ interface Props {
 }
 
 const StyledLayout = styled(Layout)`
-  display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: max-content 1fr;
 
@@ -31,18 +30,19 @@ const StyledLayout = styled(Layout)`
 const StyledMain = styled(Main)`
   grid-column: 1/2;
   grid-row: 2/3;
+  margin-top: 50px;
 
   @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
     grid-column: 2/3;
     grid-row: 1/2;
     margin-left: 35px;
+    margin-top: 0;
   }
 `;
 
 const StyledAside = styled(Aside)`
   grid-column: 1/2;
   grid-row: 1/2;
-  margin-bottom: 50px;
 `;
 
 const ListTitle = styled.h2`
