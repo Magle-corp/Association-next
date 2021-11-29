@@ -1,6 +1,6 @@
 // Use.
 import styled from 'styled-components';
-import { Text, List } from '@magle-corp/design-system';
+import { Text } from '@magle-corp/design-system';
 import { Taxonomy } from '../type';
 import { Link } from '../ui';
 
@@ -9,6 +9,21 @@ interface Props {
   taxonomies: Taxonomy[];
   variant?: 'default' | 'link';
 }
+
+const StyledList = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  list-style: none;
+
+  > * {
+    margin-top: 10px;
+  }
+
+  > *:not(:last-child) {
+    margin-right: 5px;
+  }
+`;
 
 const StyledLink = styled(Link)`
   > * {
@@ -33,7 +48,7 @@ const TaxonomiesList = ({
 }: Props) => {
   return (
     <>
-      <List className={className} variant="horizontal">
+      <StyledList className={className}>
         {variant == 'default' &&
           taxonomies.map((taxonomy) => (
             <li key={taxonomy.id}>
@@ -50,7 +65,7 @@ const TaxonomiesList = ({
               </StyledLink>
             </li>
           ))}
-      </List>
+      </StyledList>
     </>
   );
 };

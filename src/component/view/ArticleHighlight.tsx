@@ -13,7 +13,7 @@ interface Props {
 
 const ArticleWrapper = styled(Wrapper)`
   & > *:not(:first-child) {
-    margin-top: 10px;
+    margin-top: 15px;
   }
 `;
 
@@ -23,8 +23,15 @@ const ImageWrapper = styled(Wrapper)`
   height: 250px;
 `;
 
-const StyledDate = styled(Text)`
-  margin-left: 10px;
+const StyledTitle = styled(Text)`
+  margin-right: 10px;
+`;
+
+const Description = styled(Text)`
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 `;
 
 const ArticleLink = styled(Link)`
@@ -48,16 +55,14 @@ const ArticleHighlight = ({ article }: Props) => {
           alt={article.background.alternativeText}
         />
       </ImageWrapper>
-      <Wrapper direction="row" alignItem="flex-end">
-        <Text as="h3" variant="h3">
-          {article.title}
-        </Text>
-        <StyledDate>
-          {format(new Date(article.created_at), 'd MMM y')}
-        </StyledDate>
+      <Wrapper>
+        <Wrapper direction="row" alignItem="flex-end">
+          <StyledTitle variant="h3">{article.title}</StyledTitle>
+          <Text>{format(new Date(article.created_at), 'd MMM y')}</Text>
+        </Wrapper>
+        <TaxonomiesList taxonomies={article.taxonomies} variant="link" />
       </Wrapper>
-      <TaxonomiesList taxonomies={article.taxonomies} variant="link" />
-      <Text>{article.description}</Text>
+      <Description>{article.description}</Description>
       <ArticleLink href={`/articles/${article.slug}`} variant="internal">
         <Text as="span">Consulter l'article</Text>
       </ArticleLink>

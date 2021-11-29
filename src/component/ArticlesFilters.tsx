@@ -4,13 +4,28 @@ import { useState, useEffect } from 'react';
 import { Article, Taxonomy } from '../type';
 import { ItemsStacker, ItemsTaxoFilter } from '../util';
 import { FiltersTaxo } from './index';
+import styled from 'styled-components';
+import { Wrapper } from '@magle-corp/design-system';
 
 interface Props {
   taxonomies: Taxonomy[];
   articles: Article[];
   setStackedArticles: Function;
   setPage: Function;
+  filtersViewState: boolean;
 }
+
+const Container = styled(Wrapper)<{ viewState: boolean }>`
+  display: ${({ viewState }) => (viewState ? 'block' : 'none')};
+
+  > *:not(:first-child) {
+    margin-top: 15px;
+  }
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
+    display: block;
+  }
+`;
 
 /**
  * Provide component "ArticlesFilters".
@@ -23,11 +38,14 @@ interface Props {
  *   Function for set "stackedArticles" state.
  * @param setPage
  *   Function for set "page" state.
+ * @param filtersViewState
+ *   State "viewState".
  */
 const ArticlesFilters = ({
   taxonomies,
   articles,
   setStackedArticles,
+  filtersViewState,
   setPage,
 }: Props) => {
   const [filters, setFilters] = useState<Array<string | Array<string>>>([]);
@@ -57,11 +75,13 @@ const ArticlesFilters = ({
   }, [filters, articles]);
 
   return (
-    <FiltersTaxo
-      taxonomies={taxonomies}
-      filters={filters}
-      setFilters={setFilters}
-    />
+    <Container viewState={filtersViewState}>
+      <FiltersTaxo
+        taxonomies={taxonomies}
+        filters={filters}
+        setFilters={setFilters}
+      />
+    </Container>
   );
 };
 

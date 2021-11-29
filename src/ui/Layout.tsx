@@ -9,9 +9,21 @@ interface Props {
 }
 
 const StyledLayout = styled(UiLayout)`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
   max-width: ${({ theme }) => theme.breakpoints.maximumWidth};
-  padding: 50px 20px 0 20px;
+  padding: 110px 20px 0 20px;
   margin: 0 auto;
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
+    padding: 50px 20px 0 20px;
+  }
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
+    grid-template-columns: 1fr 250px;
+    grid-template-rows: 1fr;
+  }
 `;
 
 /**

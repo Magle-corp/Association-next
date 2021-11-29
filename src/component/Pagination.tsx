@@ -9,7 +9,7 @@ interface Props {
 }
 
 const PaginationWrapper = styled(Wrapper)`
-  margin-top: 40px;
+  margin: 60px 0;
 
   button + button {
     margin-left: 20px;
