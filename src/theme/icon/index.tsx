@@ -1,3 +1,4 @@
+export { ArrowDown } from './ArrowDown';
 export { AvailableEvent } from './AvailableEvent';
 export { BurgerMenu } from './BurgerMenu';
 export { Calendar } from './Calendar';

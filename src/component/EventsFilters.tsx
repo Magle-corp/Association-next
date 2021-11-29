@@ -2,6 +2,7 @@
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { Wrapper } from '@magle-corp/design-system';
 import { Event, Taxonomy } from '../type';
 import { ItemsStacker, ItemsTaxoFilter, ItemsDateFilter } from '../util';
 import { FiltersTaxo, FiltersArchive } from './index';
@@ -11,11 +12,18 @@ interface Props {
   events: Event[];
   setStackedEvents: Function;
   setPage: Function;
+  filtersViewState: boolean;
 }
 
-const Container = styled.div`
+const Container = styled(Wrapper)<{ viewState: boolean }>`
+  display: ${({ viewState }) => (viewState ? 'block' : 'none')};
+
   > *:not(:first-child) {
-    margin-top: 25px;
+    margin-top: 15px;
+  }
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
+    display: block;
   }
 `;
 
@@ -30,12 +38,15 @@ const Container = styled.div`
  *   Function for set "stackedArticles" state.
  * @param setPage
  *   Function for set "page" state.
+ * @param filtersViewState
+ *   State "viewState".
  */
 const EventsFilters = ({
   taxonomies,
   events,
   setStackedEvents,
   setPage,
+  filtersViewState,
 }: Props) => {
   const [taxoFilters, setTaxoFilters] = useState<Array<string | Array<string>>>(
     []
@@ -79,7 +90,7 @@ const EventsFilters = ({
   }, [events, taxoFilters, dateFilters]);
 
   return (
-    <Container>
+    <Container viewState={filtersViewState}>
       <FiltersTaxo
         taxonomies={taxonomies}
         filters={taxoFilters}

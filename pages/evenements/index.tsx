@@ -11,6 +11,7 @@ import {
   EventsFilters,
 } from '../../src/component';
 import { Layout } from '../../src/ui';
+import { ArrowDown } from '../../src/theme/icon';
 
 interface Props {
   events: Event[];
@@ -45,20 +46,32 @@ const StyledAside = styled(Aside)`
   grid-row: 1/2;
 `;
 
-const ListTitle = styled.h2`
+const Title = styled.h2`
   ${({ theme }) => theme.typography.h2}
   margin-bottom: 25px;
 `;
 
-const FiltersTitle = styled.h2`
-  ${({ theme }) => theme.typography.h2}
-  margin-bottom: 25px;
+const Wrapper = styled.div`
+  display: flex;
+
+  > *:not(:first-child) {
+    margin-left: 25px;
+  }
+`;
+
+const ArrowIcon = styled(ArrowDown)`
+  display: block;
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
+    display: none;
+  }
 `;
 
 const Articles = ({ events, taxonomies }: Props) => {
   const [stackedEvents, setStackedEvents] = useState<Array<Event[]>>([]);
   const [page, setPage] = useState<number>(0);
   const [lastPage, setLastPage] = useState<number>(0);
+  const [filtersViewState, setFiltersViewState] = useState<boolean>(false);
 
   useEffect(() => {
     setLastPage(stackedEvents.length - 1);
@@ -69,19 +82,27 @@ const Articles = ({ events, taxonomies }: Props) => {
       <Header />
       <StyledLayout>
         <StyledMain gridColumn="2/3">
-          <ListTitle>Evenements</ListTitle>
+          <Title>Evenements</Title>
           {stackedEvents.length > 0 && (
             <EventsList events={stackedEvents[page]} spacing={60} />
           )}
           <Pagination page={page} lastPage={lastPage} setPage={setPage} />
         </StyledMain>
         <StyledAside gridColumn="1/2">
-          <FiltersTitle>Filtres</FiltersTitle>
+          <Wrapper
+            onClick={() => {
+              setFiltersViewState(!filtersViewState);
+            }}
+          >
+            <Title>Filtres</Title>
+            <ArrowIcon />
+          </Wrapper>
           <EventsFilters
             taxonomies={taxonomies}
             events={events}
             setStackedEvents={setStackedEvents}
             setPage={setPage}
+            filtersViewState={filtersViewState}
           />
         </StyledAside>
       </StyledLayout>
