@@ -13,6 +13,7 @@ const StyledButton = styled(Button)`
   margin-right: 7px;
   margin-bottom: 7px;
   border: 2px solid ${({ theme }) => theme.colors.grey};
+  color: black;
 `;
 
 const SelectedButton = styled(StyledButton)`

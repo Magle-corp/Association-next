@@ -15,8 +15,9 @@ interface Props {
   filtersViewState: boolean;
 }
 
-const Container = styled(Wrapper)<{ viewState: boolean }>`
-  display: ${({ viewState }) => (viewState ? 'block' : 'none')};
+const Container = styled(Wrapper)<{ viewState: boolean; filters: boolean }>`
+  display: ${({ viewState, filters }) =>
+    viewState || filters ? 'block' : 'none'};
 
   > *:not(:first-child) {
     margin-top: 15px;
@@ -75,7 +76,7 @@ const ArticlesFilters = ({
   }, [filters, articles]);
 
   return (
-    <Container viewState={filtersViewState}>
+    <Container viewState={filtersViewState} filters={filters.length > 0}>
       <FiltersTaxo
         taxonomies={taxonomies}
         filters={filters}
