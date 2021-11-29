@@ -87,7 +87,7 @@ const Articles = ({ articles, taxonomies }: Props) => {
             <ArticlesList
               articles={stackedArticles[page]}
               variant="teaser"
-              spacing={30}
+              spacing={60}
             />
           )}
           <Pagination page={page} lastPage={lastPage} setPage={setPage} />
