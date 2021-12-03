@@ -30,7 +30,6 @@ const ImageWrapper = styled(Wrapper)`
 
   @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
     width: 235px;
-    height: 165px;
     min-width: 235px;
     min-height: 165px;
   }
@@ -71,7 +70,7 @@ const ArticleTeaser = ({ article }: Props) => {
     <ArticleWrapper direction="row" alignItem="flex-start">
       <ImageWrapper>
         <Image
-          src={`${process.env.BASE_URL}${article.background.formats.small.url}`}
+          src={`${process.env.BASE_URL}${article.background.formats.medium.url}`}
           layout="fill"
           objectFit="cover"
           alt={article.background.alternativeText}

@@ -18,29 +18,40 @@ const ImageWrapper = styled(Wrapper)`
   height: 350px;
 `;
 
+const AbsoluteTitle = styled.h1`
+  display: none;
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
+    ${({ theme }) => theme.typography.h1}
+    z-index: 10;
+    position: absolute;
+    transform: translate(-50%);
+    bottom: 0;
+    left: 50%;
+    display: flex;
+    width: 70%;
+    padding: 25px 20px 0 20px;
+    background-color: ${({ theme }) => theme.colors.white};
+    text-align: center;
+  }
+`;
+
 const Title = styled.h1`
-  ${({ theme }) => theme.typography.h1}
-  z-index: 10;
-  position: absolute;
-  transform: translate(-50%);
-  top: 100%;
-  left: 50%;
-  width: 100%;
-  padding: 25px 0 15px 0;
-  background-color: ${({ theme }) => theme.colors.white};
+  ${({ theme }) => theme.typography.h1};
   text-align: center;
 
   @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
-    top: unset;
-    bottom: 0;
-    width: 85%;
-    padding: 25px 15px 15px 15px;
+    display: none;
   }
 `;
 
 const ContentWrapper = styled(Wrapper)`
   width: 85%;
-  margin: 100px auto 0 auto;
+  margin: 35px auto 0 auto;
+
+  > *:not(:first-child) {
+    margin-top: 40px;
+  }
 
   @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
     margin: 0 auto;
@@ -55,7 +66,6 @@ const StyledDate = styled(Text)`
 
 const StyledTaxonomies = styled(TaxonomiesList)`
   justify-content: center;
-  margin-top: 5px;
 `;
 
 /**
@@ -74,13 +84,16 @@ const ArticleDetail = ({ article }: Props) => {
           objectFit="cover"
           alt={article.background.alternativeText}
         />
-        <Title>{article.title}</Title>
+        <AbsoluteTitle>{article.title}</AbsoluteTitle>
       </ImageWrapper>
       <ContentWrapper>
-        <StyledDate variant="h4">
-          {format(new Date(article.created_at), 'd LLLL y')}
-        </StyledDate>
-        <StyledTaxonomies taxonomies={article.taxonomies} variant="link" />
+        <Title>{article.title}</Title>
+        <Wrapper>
+          <StyledDate variant="h4">
+            {format(new Date(article.created_at), 'd LLLL y')}
+          </StyledDate>
+          <StyledTaxonomies taxonomies={article.taxonomies} variant="link" />
+        </Wrapper>
         <BlockBuilder blocks={article.dynamic_zone} />
       </ContentWrapper>
     </>

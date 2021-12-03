@@ -107,6 +107,7 @@ const Articles = ({ articles, taxonomies }: Props) => {
             setStackedArticles={setStackedArticles}
             setPage={setPage}
             filtersViewState={filtersViewState}
+            setFiltersViewState={setFiltersViewState}
           />
         </StyledAside>
       </StyledLayout>

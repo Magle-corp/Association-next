@@ -44,7 +44,7 @@ const ContentWrapper = styled(Wrapper)<{ reverse: boolean }>`
   margin-top: 15px;
 
   > *:not(:first-child) {
-    margin-top: 15px;
+    margin-top: 20px;
   }
 
   @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {

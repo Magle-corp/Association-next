@@ -9,11 +9,24 @@ interface Props {
 }
 
 const PaginationWrapper = styled(Wrapper)`
-  margin-top: 60px;
-
-  button + button {
-    margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: max-content;
+  margin: 60px auto auto;
+  
+  > *:not(:first-child) {
+  margin-top: 15px
   }
+}
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
+    flex-direction: row;
+
+    > *:not(:first-child) {
+      margin-top: 0;
+      margin-left: 20px;
+    }
 `;
 
 const StyledButton = styled(Button)`

@@ -8,11 +8,7 @@ interface Props {
 }
 
 const Container = styled.div`
-  > *:first-child {
-    margin-top: 100px;
-  }
-
-  > *:not(:first-child) {
+  > * {
     margin-top: 80px;
   }
 `;

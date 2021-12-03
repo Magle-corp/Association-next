@@ -9,7 +9,7 @@ interface Props {
 
 const Container = styled(Wrapper)`
   > *:not(:first-child) {
-    margin-top: 15px;
+    margin-top: 20px;
   }
 `;
 

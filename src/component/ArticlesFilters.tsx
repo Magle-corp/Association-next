@@ -13,11 +13,11 @@ interface Props {
   setStackedArticles: Function;
   setPage: Function;
   filtersViewState: boolean;
+  setFiltersViewState: Function;
 }
 
-const Container = styled(Wrapper)<{ viewState: boolean; filters: boolean }>`
-  display: ${({ viewState, filters }) =>
-    viewState || filters ? 'block' : 'none'};
+const Container = styled(Wrapper)<{ viewState: boolean }>`
+  display: ${({ viewState }) => (viewState ? 'block' : 'none')};
 
   > *:not(:first-child) {
     margin-top: 15px;
@@ -39,6 +39,8 @@ const Container = styled(Wrapper)<{ viewState: boolean; filters: boolean }>`
  *   Function for set "stackedArticles" state.
  * @param setPage
  *   Function for set "page" state.
+ * @param setFiltersViewState
+ *   Function for set "viewState" state.
  * @param filtersViewState
  *   State "viewState".
  */
@@ -46,8 +48,9 @@ const ArticlesFilters = ({
   taxonomies,
   articles,
   setStackedArticles,
-  filtersViewState,
   setPage,
+  setFiltersViewState,
+  filtersViewState,
 }: Props) => {
   const [filters, setFilters] = useState<Array<string | Array<string>>>([]);
   const router = useRouter();
@@ -56,6 +59,7 @@ const ArticlesFilters = ({
   // Set stackedArticles according to the router request.
   useEffect(() => {
     if (routerQuery) {
+      setFiltersViewState(true);
       setFilters([...filters, routerQuery]);
       const filteredItems = ItemsTaxoFilter(articles, filters);
       setStackedArticles(ItemsStacker(filteredItems) as Array<Article[]>);
@@ -76,7 +80,7 @@ const ArticlesFilters = ({
   }, [filters, articles]);
 
   return (
-    <Container viewState={filtersViewState} filters={filters.length > 0}>
+    <Container viewState={filtersViewState}>
       <FiltersTaxo
         taxonomies={taxonomies}
         filters={filters}
