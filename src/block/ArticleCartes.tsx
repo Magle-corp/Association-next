@@ -8,6 +8,8 @@ interface Props {
 }
 
 const Container = styled(Wrapper)`
+  text-align: center;
+
   > *:not(:first-child) {
     margin-top: 35px;
   }
@@ -53,7 +55,6 @@ const Card = styled(Wrapper)`
   padding: 20px 12px;
   border: 2px solid ${({ theme }) => theme.colors.grey};
   border-radius: 3px;
-  text-align: center;
 
   > *:not(:first-child) {
     margin-top: 15px;

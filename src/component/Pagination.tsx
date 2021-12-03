@@ -49,6 +49,7 @@ const Pagination = ({ page, lastPage, setPage }: Props) => {
       {page !== null && lastPage !== null && (
         <>
           <StyledButton
+            suppressHydrationWarning
             onClick={() => {
               page <= 0 ? setPage() : setPage(page - 1);
             }}
@@ -57,6 +58,7 @@ const Pagination = ({ page, lastPage, setPage }: Props) => {
             Précédent
           </StyledButton>
           <StyledButton
+            suppressHydrationWarning
             onClick={() => {
               page >= lastPage ? setPage() : setPage(page + 1);
             }}
