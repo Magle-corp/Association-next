@@ -7,7 +7,7 @@ import { BurgerMenu } from '../theme/icon';
 
 const StyledHeader = styled.header`
   position: fixed;
-  z-index: 10;
+  z-index: 100;
   display: flex;
   flex-direction: row;
   align-items: flex-end;

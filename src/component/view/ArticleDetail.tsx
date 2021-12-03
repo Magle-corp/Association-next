@@ -23,17 +23,28 @@ const Title = styled.h1`
   z-index: 10;
   position: absolute;
   transform: translate(-50%);
-  bottom: 0;
+  top: 100%;
   left: 50%;
-  width: 85%;
+  width: 100%;
   padding: 25px 0 15px 0;
   background-color: ${({ theme }) => theme.colors.white};
   text-align: center;
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
+    top: unset;
+    bottom: 0;
+    width: 85%;
+    padding: 25px 15px 15px 15px;
+  }
 `;
 
 const ContentWrapper = styled(Wrapper)`
   width: 85%;
-  margin: 0 auto;
+  margin: 100px auto 0 auto;
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
+    margin: 0 auto;
+  }
 `;
 
 const StyledDate = styled(Text)`

@@ -13,21 +13,54 @@ const Container = styled(Wrapper)`
   }
 `;
 
-const CardsWrapper = styled(Wrapper)`
-  flex-direction: row;
-  justify-content: space-between;
+const CardsWrapper = styled(Wrapper)<{ cardinality: number }>`
+  flex-direction: column;
+  align-items: center;
   width: 80%;
+
+  > *:not(:first-child) {
+    margin-top: 35px;
+  }
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: unset;
+
+    > *:not(:first-child) {
+      margin-top: 0;
+    }
+
+    > *:last-child {
+      margin-top: ${({ cardinality }) => (cardinality > 2 ? '35px;' : '0')};
+    }
+  }
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
+    width: 100%;
+
+    > *:last-child {
+      margin-top: 0;
+    }
+  }
 `;
 
 const Card = styled(Wrapper)`
-  width: 200px;
-  padding: 10px;
+  width: 190px;
+  min-width: 190px;
+  min-height: 150px;
+  padding: 20px 12px;
   border: 2px solid ${({ theme }) => theme.colors.grey};
   border-radius: 3px;
   text-align: center;
 
   > *:not(:first-child) {
     margin-top: 15px;
+  }
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
+    margin: 0 10px;
   }
 `;
 
@@ -41,10 +74,12 @@ const ArticleCartes = ({ block }: Props) => {
   return (
     <>
       <Container alignItem="center">
-        <Text as="h3" variant="h3">
-          {block.title}
-        </Text>
-        <CardsWrapper>
+        {block.title && (
+          <Text as="h3" variant="h3">
+            {block.title}
+          </Text>
+        )}
+        <CardsWrapper cardinality={block.cartes.length}>
           {block.cartes.map((carte) => (
             <Card key={`${carte.__component}_${carte.id}`}>
               <Text as="h4" variant="h4">

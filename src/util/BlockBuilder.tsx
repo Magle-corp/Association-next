@@ -41,8 +41,13 @@ const BlockBuilder = ({ blocks }: Props) => {
                 key={`${block.__component}_${block.id}`}
               />
             );
-          // case 'global.wysiwyg':
-          //   return <ArticleWysiwyg block={block} key={`${block.__component}_${block.id}`}/>;
+          case 'global.wysiwyg':
+            return (
+              <ArticleWysiwyg
+                block={block as Wysiwyg}
+                key={`${block.__component}_${block.id}`}
+              />
+            );
         }
       })}
     </Container>

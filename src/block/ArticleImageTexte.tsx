@@ -10,28 +10,47 @@ interface Props {
 
 const Container = styled(Wrapper)<{ reverse: boolean }>`
   display: grid;
-  grid-template-columns: ${({ reverse }) =>
-    reverse ? '1fr 300px' : '300px 1fr'};
-  grid-template-rows: 1fr;
+  grid-template-columns: 1fr;
+  grid-template-rows: max-content 1fr;
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
+    grid-template-columns: ${({ reverse }) =>
+      reverse ? '1fr 300px' : '300px 1fr'};
+    grid-template-rows: 1fr;
+  }
 `;
 
 const ImageWrapper = styled(Wrapper)<{ reverse: boolean }>`
-  grid-column: ${({ reverse }) => (reverse ? '2/3' : '1/2')};
+  grid-column: 1/2;
   grid-row: 1/2;
   position: relative;
-  width: 300px;
+  width: 100%;
   height: 230px;
-  min-width: 300px;
   min-height: 230px;
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
+    grid-column: ${({ reverse }) => (reverse ? '2/3' : '1/2')};
+    grid-row: 1/2;
+    width: 300px;
+    height: 230px;
+    min-width: 300px;
+    min-height: 230px;
+  }
 `;
 
 const ContentWrapper = styled(Wrapper)<{ reverse: boolean }>`
-  grid-column: ${({ reverse }) => (reverse ? '1/2' : '2/3')};
-  grid-row: 1/2;
-  margin: ${({ reverse }) => (reverse ? '0 20px 0 0' : '0 0 0 20px')};
+  grid-column: 1/2;
+  grid-row: 2/3;
+  margin-top: 15px;
 
   > *:not(:first-child) {
     margin-top: 15px;
+  }
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
+    grid-column: ${({ reverse }) => (reverse ? '1/2' : '2/3')};
+    grid-row: 1/2;
+    margin: ${({ reverse }) => (reverse ? '0 20px 0 0' : '0 0 0 20px')};
   }
 `;
 
@@ -53,9 +72,11 @@ const ArticleImageTexte = ({ block }: Props) => {
         />
       </ImageWrapper>
       <ContentWrapper reverse={block.image_side == 'Droite'}>
-        <Text as="h2" variant="h2">
-          {block.title}
-        </Text>
+        {block.title && (
+          <Text as="h2" variant="h2">
+            {block.title}
+          </Text>
+        )}
         <Text>{block.content}</Text>
       </ContentWrapper>
     </Container>

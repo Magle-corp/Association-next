@@ -18,6 +18,7 @@ interface Props {
 
 const StyledLayout = styled(Layout)`
   grid-template-columns: 1fr;
+  grid-template-rows: max-content max-content;
 `;
 
 const Post = ({ article }: Props) => {
