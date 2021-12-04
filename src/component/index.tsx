@@ -12,6 +12,7 @@ export { ArticlesFilters } from './ArticlesFilters';
 export { ArticlesList } from './ArticlesList';
 export { EventsFilters } from './EventsFilters';
 export { EventsList } from './EventsList';
+export { Footer } from './Footer';
 export { Header } from './Header';
 export { Pagination } from './Pagination';
 export { TaxonomiesList } from './TaxonomiesList';

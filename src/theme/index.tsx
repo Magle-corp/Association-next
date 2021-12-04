@@ -17,6 +17,12 @@ const theme: object = {
 export { theme };
 
 export const GlobalStyle = createGlobalStyle`
+  #__next {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  
   html {
     font-size: 62.5%;
   }
