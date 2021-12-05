@@ -3,12 +3,13 @@ import { useState, useEffect } from 'react';
 import qs from 'qs';
 import styled from 'styled-components';
 import { Main, Aside } from '@magle-corp/design-system';
-import { Article, Taxonomy } from '../../src/type';
+import { Article, Taxonomy, Identity } from '../../src/type';
 import {
   Header,
   ArticlesList,
   Pagination,
   ArticlesFilters,
+  Footer,
 } from '../../src/component';
 import { Layout } from '../../src/ui';
 import { ArrowDown } from '../../src/theme/icon';
@@ -16,6 +17,7 @@ import { ArrowDown } from '../../src/theme/icon';
 interface Props {
   articles: Article[];
   taxonomies: Taxonomy[];
+  identity: Identity;
 }
 
 const StyledLayout = styled(Layout)`
@@ -67,7 +69,7 @@ const ArrowIcon = styled(ArrowDown)`
   }
 `;
 
-const Articles = ({ articles, taxonomies }: Props) => {
+const Articles = ({ articles, taxonomies, identity }: Props) => {
   const [stackedArticles, setStackedArticles] = useState<Array<Article[]>>([]);
   const [page, setPage] = useState<number>(0);
   const [lastPage, setLastPage] = useState<number>(0);
@@ -79,7 +81,7 @@ const Articles = ({ articles, taxonomies }: Props) => {
 
   return (
     <>
-      <Header />
+      <Header identity={identity} />
       <StyledLayout>
         <StyledMain>
           <Title>Articles</Title>
@@ -111,6 +113,7 @@ const Articles = ({ articles, taxonomies }: Props) => {
           />
         </StyledAside>
       </StyledLayout>
+      <Footer identity={identity} />
     </>
   );
 };
@@ -133,8 +136,12 @@ export async function getStaticProps() {
   );
   const taxonomies = await taxonomiesResult.json();
 
+  const identityQuery = `/identite`;
+  const identityResult = await fetch(`${process.env.BASE_URL}${identityQuery}`);
+  const identity = await identityResult.json();
+
   return {
-    props: { articles, taxonomies },
+    props: { articles, taxonomies, identity },
     revalidate: 60 * 60,
   };
 }

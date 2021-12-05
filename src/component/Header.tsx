@@ -20,7 +20,7 @@ const StyledHeader = styled.header`
   justify-content: space-between;
   width: 100%;
   min-width: 100%;
-  height: 70px;
+  min-height: 70px;
   background-color: ${({ theme }) => theme.colors.white};
 
   > *:not(:last-child) {
@@ -32,13 +32,18 @@ const StyledHeader = styled.header`
     top: 0;
     min-width: 0;
     max-width: ${({ theme }) => theme.breakpoints.maximumWidth};
-    height: 60px;
-    padding: 0 20px;
+    min-height: 60px;
     margin: 0 auto;
 
     > *:not(:last-child) {
       padding: 0;
     }
+  }
+`;
+
+const BrandWrapper = styled(Wrapper)`
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
+    margin-left: 20px;
   }
 `;
 
@@ -78,7 +83,7 @@ const StyledNav = styled.nav<{ view: boolean }>`
     display: flex;
     top: 0;
     width: max-content;
-    padding: 0;
+    margin-right: 20px;
   }
 `;
 
@@ -109,7 +114,7 @@ const Header = ({ identity }: Props) => {
 
   return (
     <StyledHeader>
-      <Wrapper direction="row">
+      <BrandWrapper direction="row">
         <Logo>
           <Image
             src={`${process.env.BASE_URL}${identity.logo.formats.thumbnail.url}`}
@@ -123,7 +128,7 @@ const Header = ({ identity }: Props) => {
             {identity.name}
           </Text>
         </Link>
-      </Wrapper>
+      </BrandWrapper>
       <StyledBurgerMenu
         width={45}
         height={45}

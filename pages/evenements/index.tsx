@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import qs from 'qs';
 import styled from 'styled-components';
 import { Main, Aside } from '@magle-corp/design-system';
-import { Event, Taxonomy } from '../../src/type';
+import { Event, Taxonomy, Identity } from '../../src/type';
 import {
   Header,
   EventsList,
@@ -16,6 +16,7 @@ import { ArrowDown } from '../../src/theme/icon';
 interface Props {
   events: Event[];
   taxonomies: Taxonomy[];
+  identity: Identity;
 }
 
 const StyledLayout = styled(Layout)`
@@ -67,7 +68,7 @@ const ArrowIcon = styled(ArrowDown)`
   }
 `;
 
-const Articles = ({ events, taxonomies }: Props) => {
+const Articles = ({ events, taxonomies, identity }: Props) => {
   const [stackedEvents, setStackedEvents] = useState<Array<Event[]>>([]);
   const [page, setPage] = useState<number>(0);
   const [lastPage, setLastPage] = useState<number>(0);
@@ -79,7 +80,7 @@ const Articles = ({ events, taxonomies }: Props) => {
 
   return (
     <>
-      <Header />
+      <Header identity={identity} />
       <StyledLayout>
         <StyledMain gridColumn="2/3">
           <Title>Evenements</Title>
@@ -128,8 +129,12 @@ export async function getStaticProps() {
   );
   const taxonomies = await taxonomiesResult.json();
 
+  const identityQuery = `/identite`;
+  const identityResult = await fetch(`${process.env.BASE_URL}${identityQuery}`);
+  const identity = await identityResult.json();
+
   return {
-    props: { events, taxonomies },
+    props: { events, taxonomies, identity },
     revalidate: 60 * 60,
   };
 }
