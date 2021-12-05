@@ -3,7 +3,7 @@ import qs from 'qs';
 import styled from 'styled-components';
 import { Main } from '@magle-corp/design-system';
 import { Article, Identity } from '../../src/type';
-import { Header, ArticleDetail } from '../../src/component';
+import { Header, ArticleDetail, Footer } from '../../src/component';
 import { Layout } from '../../src/ui';
 
 interface StaticParams {
@@ -31,6 +31,7 @@ const Post = ({ article, identity }: Props) => {
           <ArticleDetail article={article[0]} />
         </Main>
       </StyledLayout>
+      <Footer identity={identity} />
     </>
   );
 };

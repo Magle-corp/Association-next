@@ -53,6 +53,24 @@ const Logo = styled(Wrapper)`
 const Footer = ({ identity }: Props) => {
   return (
     <StyledFooter>
+      <Wrapper direction="row">
+        <AddressWrapper>
+          <Text>
+            {identity.address ? identity.address : ''}
+            <br /> {identity.zip_code ? identity.zip_code : ''}{' '}
+            {identity.city ? identity.city : ''}
+          </Text>
+          {identity.phone && <Text>{identity.phone}</Text>}
+        </AddressWrapper>
+        <Logo>
+          <Image
+            src={`${process.env.BASE_URL}${identity.logo.formats.thumbnail.url}`}
+            layout="fill"
+            objectFit="cover"
+            alt={identity.logo.alternativeText}
+          />
+        </Logo>
+      </Wrapper>
       <SocialWrapper direction="row">
         {identity.facebook && (
           <Link href={identity.facebook}>
@@ -73,24 +91,6 @@ const Footer = ({ identity }: Props) => {
       <Wrapper>
         <Text>{identity.name} 2021</Text>
         <Text>{identity.email}</Text>
-      </Wrapper>
-      <Wrapper direction="row">
-        <AddressWrapper>
-          <Text>
-            {identity.address ? identity.address : ''},<br />{' '}
-            {identity.zip_code ? identity.zip_code : ''}{' '}
-            {identity.city ? identity.city : ''}
-          </Text>
-          {identity.phone && <Text>{identity.phone}</Text>}
-        </AddressWrapper>
-        <Logo>
-          <Image
-            src={`${process.env.BASE_URL}${identity.logo.formats.thumbnail.url}`}
-            layout="fill"
-            objectFit="cover"
-            alt={identity.logo.alternativeText}
-          />
-        </Logo>
       </Wrapper>
     </StyledFooter>
   );

@@ -9,6 +9,7 @@ import {
   EventsList,
   Pagination,
   EventsFilters,
+  Footer,
 } from '../../src/component';
 import { Layout } from '../../src/ui';
 import { ArrowDown } from '../../src/theme/icon';
@@ -107,6 +108,7 @@ const Articles = ({ events, taxonomies, identity }: Props) => {
           />
         </StyledAside>
       </StyledLayout>
+      <Footer identity={identity} />
     </>
   );
 };
