@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Text, Wrapper } from '@magle-corp/design-system';
 import { Identity } from '../type';
 import { Link } from '../ui';
-import { BurgerMenu } from '../theme/icon';
+import { BurgerMenu, ArrowDown } from '../theme/icon';
 
 interface Props {
   identity: Identity;
@@ -22,7 +22,7 @@ const StyledHeader = styled.header`
   min-height: 70px;
   background-color: ${({ theme }) => theme.colors.white};
 
-  > * {
+  > *:not(:last-child) {
     margin: 0 20px;
   }
 
@@ -32,7 +32,7 @@ const StyledHeader = styled.header`
     padding: 0 20px;
     margin: 0 auto;
 
-    > * {
+    > *:not(:last-child) {
       margin: 0;
     }
   }
@@ -54,7 +54,7 @@ const StyledBurgerMenu = styled(BurgerMenu)`
   }
 `;
 
-const StyledNav = styled.nav<{ view: boolean }>`
+const Navbar = styled.nav<{ view: boolean }>`
   display: none;
 
   ${({ theme, view }) =>
@@ -74,10 +74,11 @@ const StyledNav = styled.nav<{ view: boolean }>`
     display: flex;
     top: 0;
     width: max-content;
+    padding: 0;
   }
 `;
 
-const StyledList = styled.ul`
+const Menu = styled.ul`
   display: flex;
   flex-direction: column;
   list-style: none;
@@ -93,6 +94,35 @@ const StyledList = styled.ul`
       margin-left: 30px;
       margin-top: 0;
     }
+
+    > li {
+      &:hover {
+        ul {
+          display: block;
+        }
+      }
+    }
+  }
+`;
+
+const StyledArrowIcon = styled(ArrowDown)`
+  margin-left: 5px;
+`;
+
+const SubMenu = styled.ul`
+  margin: 10px 0 0 15px;
+  list-style: none;
+
+  > *:not(:first-child) {
+    margin-top: 10px;
+  }
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
+    display: none;
+    position: absolute;
+    width: 150px;
+    padding-top: 10px;
+    margin: 0;
   }
 `;
 
@@ -124,14 +154,31 @@ const Header = ({ identity }: Props) => {
         height={45}
         onClick={() => setNavbarView(!navbarView)}
       />
-      <StyledNav view={navbarView}>
-        <StyledList>
+      <Navbar view={navbarView}>
+        <Menu>
           <li>
             <Link href="/articles">
               <Text as="span" variant="h4">
-                Articles
+                Publications
+                <StyledArrowIcon width={20} height={20} />
               </Text>
             </Link>
+            <SubMenu>
+              <li>
+                <Link href="/articles">
+                  <Text as="span" variant="h4">
+                    Articles
+                  </Text>
+                </Link>
+              </li>
+              <li>
+                <Link href="/evenements">
+                  <Text as="span" variant="h4">
+                    Evenements
+                  </Text>
+                </Link>
+              </li>
+            </SubMenu>
           </li>
           <li>
             <Link href="#">
@@ -147,8 +194,8 @@ const Header = ({ identity }: Props) => {
               </Text>
             </Link>
           </li>
-        </StyledList>
-      </StyledNav>
+        </Menu>
+      </Navbar>
     </StyledHeader>
   );
 };
