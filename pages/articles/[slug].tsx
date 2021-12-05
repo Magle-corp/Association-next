@@ -2,7 +2,7 @@
 import qs from 'qs';
 import styled from 'styled-components';
 import { Main } from '@magle-corp/design-system';
-import { Article } from '../../src/type';
+import { Article, Identity } from '../../src/type';
 import { Header, ArticleDetail } from '../../src/component';
 import { Layout } from '../../src/ui';
 
@@ -14,6 +14,7 @@ interface StaticParams {
 
 interface Props {
   article: Article[];
+  identity: Identity;
 }
 
 const StyledLayout = styled(Layout)`
@@ -21,10 +22,10 @@ const StyledLayout = styled(Layout)`
   grid-template-rows: max-content max-content;
 `;
 
-const Post = ({ article }: Props) => {
+const Post = ({ article, identity }: Props) => {
   return (
     <>
-      <Header />
+      <Header identity={identity} />
       <StyledLayout>
         <Main>
           <ArticleDetail article={article[0]} />
@@ -44,9 +45,14 @@ export async function getStaticProps({ params }: StaticParams) {
   const articleResult = await fetch(`${process.env.BASE_URL}${articleQuery}`);
   const article = await articleResult.json();
 
+  const identityQuery = `/identite`;
+  const identityResult = await fetch(`${process.env.BASE_URL}${identityQuery}`);
+  const identity = await identityResult.json();
+
   return {
     props: {
       article,
+      identity,
     },
     revalidate: 60 * 60,
   };

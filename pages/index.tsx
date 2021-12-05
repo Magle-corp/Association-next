@@ -2,18 +2,20 @@
 import qs from 'qs';
 import styled from 'styled-components';
 import { Main, Aside, Wrapper, Text } from '@magle-corp/design-system';
-import { Article, Event } from '../src/type';
+import { Article, Event, Identity } from '../src/type';
 import {
   Header,
   ArticleHighlight,
   ArticlesList,
   EventHighlight,
+  Footer,
 } from '../src/component';
 import { Layout, Link } from '../src/ui';
 
 interface Props {
   articles: Article[];
   events: Event[];
+  identity: Identity;
 }
 
 const StyledMain = styled(Main)`
@@ -59,10 +61,10 @@ const EventWrapper = styled(Wrapper)`
   }
 `;
 
-const Home = ({ articles, events }: Props) => {
+const Home = ({ articles, events, identity }: Props) => {
   return (
     <>
-      <Header />
+      <Header identity={identity} />
       <Layout>
         <StyledMain>
           <article>
@@ -83,6 +85,7 @@ const Home = ({ articles, events }: Props) => {
           </EventWrapper>
         </StyledAside>
       </Layout>
+      <Footer identity={identity} />
     </>
   );
 };
@@ -106,8 +109,12 @@ export async function getStaticProps() {
   const eventResult = await fetch(`${process.env.BASE_URL}${eventsQuery}`);
   const events = await eventResult.json();
 
+  const identityQuery = `/identite`;
+  const identityResult = await fetch(`${process.env.BASE_URL}${identityQuery}`);
+  const identity = await identityResult.json();
+
   return {
-    props: { articles, events },
+    props: { articles, events, identity },
     revalidate: 60 * 60,
   };
 }

@@ -4,4 +4,7 @@ export { BurgerMenu } from './BurgerMenu';
 export { Calendar } from './Calendar';
 export { CloseEvent } from './CloseEvent';
 export { ExternalLink } from './ExternalLink';
+export { Facebook } from './Facebook';
+export { Instagram } from './Instagram';
 export { InternalLink } from './InternalLink';
+export { Twitter } from './Twitter';
