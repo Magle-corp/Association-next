@@ -24,7 +24,7 @@ const StyledMain = styled(Main)`
   margin-right: 0;
 
   @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
-    margin-right: 80px;
+    margin-right: 120px;
   }
 `;
 
@@ -73,16 +73,16 @@ const Home = ({ articles, events, identity }: Props) => {
           </article>
         </StyledMain>
         <StyledAside>
-          <Wrapper>
-            <Title>Derniers articles</Title>
-            <ArticlesList articles={articles} spacing={15} />
-          </Wrapper>
           <EventWrapper>
             <EventHighlight event={events[0]} />
             <Link href="/evenements" variant="internal">
               <Text as="span">Voir tous les évènements</Text>
             </Link>
           </EventWrapper>
+          <Wrapper>
+            <Title>Derniers articles</Title>
+            <ArticlesList articles={articles} spacing={15} />
+          </Wrapper>
         </StyledAside>
       </Layout>
       <Footer identity={identity} />

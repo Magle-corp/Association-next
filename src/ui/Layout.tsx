@@ -13,11 +13,11 @@ const StyledLayout = styled(UiLayout)`
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr;
   max-width: ${({ theme }) => theme.breakpoints.maximumWidth};
-  padding: 120px 20px;
+  padding: 150px 20px;
   margin: 0 auto;
 
   @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
-    padding: 50px 20px 120px 20px;
+    padding: 80px 20px 120px 20px;
   }
 
   @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {

@@ -49,7 +49,7 @@ const ArticleHighlight = ({ article }: Props) => {
     <ArticleWrapper>
       <ImageWrapper>
         <Image
-          src={`${process.env.BASE_URL}${article.background.formats.large.url}`}
+          src={`${process.env.BASE_URL}${article.background.url}`}
           layout="fill"
           objectFit="cover"
           alt={article.background.alternativeText}
