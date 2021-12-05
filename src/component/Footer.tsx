@@ -1,4 +1,5 @@
 // Use.
+import Image from 'next/image';
 import styled from 'styled-components';
 import { Identity } from '../type';
 import { Wrapper, Text } from '@magle-corp/design-system';
@@ -10,13 +11,23 @@ interface Props {
 }
 
 const StyledFooter = styled.footer`
-  display: flex;
-  justify-content: space-between;
   width: 100%;
   max-width: ${({ theme }) => theme.breakpoints.maximumWidth};
-  padding: 10px 20px;
   margin: auto auto 0 auto;
-  border-top: 1px solid ${({ theme }) => theme.colors.black};
+
+  > * {
+    margin: 30px 20px;
+  }
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+
+    > * {
+      margin: 20px 0;
+    }
+  }
 `;
 
 const SocialWrapper = styled(Wrapper)`
@@ -25,10 +36,18 @@ const SocialWrapper = styled(Wrapper)`
   }
 `;
 
-const InformationWrapper = styled(Wrapper)`
+const AddressWrapper = styled(Wrapper)`
   > *:not(:first-child) {
     margin-top: 5px;
   }
+`;
+
+const Logo = styled(Wrapper)`
+  display: flex;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  margin-left: 10px;
 `;
 
 const Footer = ({ identity }: Props) => {
@@ -37,30 +56,42 @@ const Footer = ({ identity }: Props) => {
       <SocialWrapper direction="row">
         {identity.facebook && (
           <Link href={identity.facebook}>
-            <Facebook width={35} height={35} />
+            <Facebook width={30} height={30} />
           </Link>
         )}
         {identity.instagram && (
           <Link href={identity.instagram}>
-            <Instagram width={35} height={35} />
+            <Instagram width={30} height={30} />
           </Link>
         )}
         {identity.twitter && (
           <Link href={identity.twitter}>
-            <Twitter width={35} height={35} />
+            <Twitter width={30} height={30} />
           </Link>
         )}
       </SocialWrapper>
-      <Text>{identity.name} 2021</Text>
-      <InformationWrapper>
+      <Wrapper>
+        <Text>{identity.name} 2021</Text>
         <Text>{identity.email}</Text>
-        <Text>
-          {identity.address ? identity.address : ''},{' '}
-          {identity.zip_code ? identity.zip_code : ''}{' '}
-          {identity.city ? identity.city : ''}
-        </Text>
-        {identity.phone && <Text>{identity.phone}</Text>}
-      </InformationWrapper>
+      </Wrapper>
+      <Wrapper direction="row">
+        <AddressWrapper>
+          <Text>
+            {identity.address ? identity.address : ''},<br />{' '}
+            {identity.zip_code ? identity.zip_code : ''}{' '}
+            {identity.city ? identity.city : ''}
+          </Text>
+          {identity.phone && <Text>{identity.phone}</Text>}
+        </AddressWrapper>
+        <Logo>
+          <Image
+            src={`${process.env.BASE_URL}${identity.logo.formats.thumbnail.url}`}
+            layout="fill"
+            objectFit="cover"
+            alt={identity.logo.alternativeText}
+          />
+        </Logo>
+      </Wrapper>
     </StyledFooter>
   );
 };

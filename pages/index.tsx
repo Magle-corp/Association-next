@@ -83,12 +83,6 @@ const Home = ({ articles, events, identity }: Props) => {
               <Text>Voir tous les évènements</Text>
             </Link>
           </EventWrapper>
-          <EventWrapper>
-            <EventHighlight event={events[0]} />
-            <Link href="/evenements" variant="internal">
-              <Text>Voir tous les évènements</Text>
-            </Link>
-          </EventWrapper>
         </StyledAside>
       </Layout>
       <Footer identity={identity} />

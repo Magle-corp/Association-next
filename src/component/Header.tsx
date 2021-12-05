@@ -19,31 +19,22 @@ const StyledHeader = styled.header`
   align-items: flex-end;
   justify-content: space-between;
   width: 100%;
-  min-width: 100%;
   min-height: 70px;
   background-color: ${({ theme }) => theme.colors.white};
 
-  > *:not(:last-child) {
-    padding: 0 20px 10px 20px;
+  > * {
+    margin: 0 20px;
   }
 
   @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
     position: relative;
-    top: 0;
-    min-width: 0;
     max-width: ${({ theme }) => theme.breakpoints.maximumWidth};
-    min-height: 60px;
+    padding: 0 20px;
     margin: 0 auto;
 
-    > *:not(:last-child) {
-      padding: 0;
+    > * {
+      margin: 0;
     }
-  }
-`;
-
-const BrandWrapper = styled(Wrapper)`
-  @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
-    margin-left: 20px;
   }
 `;
 
@@ -83,7 +74,6 @@ const StyledNav = styled.nav<{ view: boolean }>`
     display: flex;
     top: 0;
     width: max-content;
-    margin-right: 20px;
   }
 `;
 
@@ -114,7 +104,7 @@ const Header = ({ identity }: Props) => {
 
   return (
     <StyledHeader>
-      <BrandWrapper direction="row">
+      <Wrapper direction="row">
         <Logo>
           <Image
             src={`${process.env.BASE_URL}${identity.logo.formats.thumbnail.url}`}
@@ -128,7 +118,7 @@ const Header = ({ identity }: Props) => {
             {identity.name}
           </Text>
         </Link>
-      </BrandWrapper>
+      </Wrapper>
       <StyledBurgerMenu
         width={45}
         height={45}
