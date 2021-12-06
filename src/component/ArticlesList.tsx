@@ -27,12 +27,15 @@ const ArticlesList = ({ articles, variant = 'default', spacing }: Props) => {
         {articles.map((article) => (
           <li key={article.id}>
             {variant === 'default' && (
-              <Link href={`/articles/${article.slug}`} variant="internal">
+              <Link
+                href={`/publications/articles/${article.slug}`}
+                variant="internal"
+              >
                 <Text as="span">{article.title}</Text>
               </Link>
             )}
             {variant === 'teaser' && (
-              <Link href={`/articles/${article.slug}`}>
+              <Link href={`/publications/articles/${article.slug}`}>
                 <article>
                   <ArticleTeaser article={article} />
                 </article>

@@ -58,7 +58,9 @@ const TaxonomiesList = ({
         {variant == 'link' &&
           taxonomies.map((taxonomy) => (
             <li key={taxonomy.id}>
-              <StyledLink href={`/articles?taxonomy=${taxonomy.title}`}>
+              <StyledLink
+                href={`/publications/articles?taxonomy=${taxonomy.title}`}
+              >
                 <Text as="span" variant="tag">
                   {taxonomy.title}
                 </Text>

@@ -75,7 +75,7 @@ const Home = ({ articles, events, identity }: Props) => {
         <StyledAside>
           <EventWrapper>
             <EventHighlight event={events[0]} />
-            <Link href="/evenements" variant="internal">
+            <Link href="/publications/evenements" variant="internal">
               <Text as="span">Voir tous les évènements</Text>
             </Link>
           </EventWrapper>

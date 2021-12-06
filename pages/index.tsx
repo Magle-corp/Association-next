@@ -3,13 +3,7 @@ import qs from 'qs';
 import styled from 'styled-components';
 import { Main, Aside, Wrapper, Text } from '@magle-corp/design-system';
 import { Article, Event, Identity } from '../src/type';
-import {
-  Header,
-  ArticleHighlight,
-  ArticlesList,
-  EventHighlight,
-  Footer,
-} from '../src/component';
+import { Header, Footer } from '../src/component';
 import { Layout, Link } from '../src/ui';
 
 interface Props {
@@ -18,72 +12,13 @@ interface Props {
   identity: Identity;
 }
 
-const StyledMain = styled(Main)`
-  grid-column: 1/2;
-  grid-row: 1/2;
-  margin-right: 0;
-
-  @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
-    margin-right: 120px;
-  }
-`;
-
-const StyledAside = styled(Aside)`
-  grid-column: 1/2;
-  grid-row: 2/3;
-  margin-top: 50px;
-
-  > *:not(:first-child) {
-    margin-top: 40px;
-  }
-
-  @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
-    grid-column: 2/3;
-    grid-row: 1/2;
-    margin-top: 0;
-  }
-`;
-
-const Title = styled.h2`
-  ${({ theme }) => theme.typography.h2}
-  margin-bottom: 25px;
-`;
-
-const EventWrapper = styled(Wrapper)`
-  > *:first-child {
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-    border-bottom: 2px solid ${({ theme }) => theme.colors.grey};
-  }
-
-  > *:not(:first-child) {
-    text-align: center;
-  }
-`;
-
 const Home = ({ articles, events, identity }: Props) => {
   return (
     <>
       <Header identity={identity} />
       <Layout>
-        <StyledMain>
-          {/*<article>*/}
-          {/*  <Title>A la une</Title>*/}
-          {/*  {articles.length > 0 && <ArticleHighlight article={articles[0]} />}*/}
-          {/*</article>*/}
-        </StyledMain>
-        <StyledAside>
-          {/*<EventWrapper>*/}
-          {/*  <EventHighlight event={events[0]} />*/}
-          {/*  <Link href="/evenements" variant="internal">*/}
-          {/*    <Text as="span">Voir tous les évènements</Text>*/}
-          {/*  </Link>*/}
-          {/*</EventWrapper>*/}
-          {/*<Wrapper>*/}
-          {/*  <Title>Derniers articles</Title>*/}
-          {/*  <ArticlesList articles={articles} spacing={15} />*/}
-          {/*</Wrapper>*/}
-        </StyledAside>
+        <Main></Main>
+        <Aside></Aside>
       </Layout>
       <Footer identity={identity} />
     </>
