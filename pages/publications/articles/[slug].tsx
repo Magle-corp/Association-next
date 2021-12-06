@@ -2,9 +2,9 @@
 import qs from 'qs';
 import styled from 'styled-components';
 import { Main } from '@magle-corp/design-system';
-import { Article, Identity } from '../../src/type';
-import { Header, ArticleDetail, Footer } from '../../src/component';
-import { Layout } from '../../src/ui';
+import { Article, Identity } from '../../../src/type';
+import { Header, ArticleDetail, Footer } from '../../../src/component';
+import { Layout } from '../../../src/ui';
 
 interface StaticParams {
   params: {

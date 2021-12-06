@@ -2,15 +2,15 @@
 import qs from 'qs';
 import styled from 'styled-components';
 import { Main, Aside, Wrapper, Text } from '@magle-corp/design-system';
-import { Article, Event, Identity } from '../src/type';
+import { Article, Event, Identity } from '../../src/type';
 import {
   Header,
   ArticleHighlight,
   ArticlesList,
   EventHighlight,
   Footer,
-} from '../src/component';
-import { Layout, Link } from '../src/ui';
+} from '../../src/component';
+import { Layout, Link } from '../../src/ui';
 
 interface Props {
   articles: Article[];
@@ -67,22 +67,22 @@ const Home = ({ articles, events, identity }: Props) => {
       <Header identity={identity} />
       <Layout>
         <StyledMain>
-          {/*<article>*/}
-          {/*  <Title>A la une</Title>*/}
-          {/*  {articles.length > 0 && <ArticleHighlight article={articles[0]} />}*/}
-          {/*</article>*/}
+          <article>
+            <Title>A la une</Title>
+            {articles.length > 0 && <ArticleHighlight article={articles[0]} />}
+          </article>
         </StyledMain>
         <StyledAside>
-          {/*<EventWrapper>*/}
-          {/*  <EventHighlight event={events[0]} />*/}
-          {/*  <Link href="/evenements" variant="internal">*/}
-          {/*    <Text as="span">Voir tous les évènements</Text>*/}
-          {/*  </Link>*/}
-          {/*</EventWrapper>*/}
-          {/*<Wrapper>*/}
-          {/*  <Title>Derniers articles</Title>*/}
-          {/*  <ArticlesList articles={articles} spacing={15} />*/}
-          {/*</Wrapper>*/}
+          <EventWrapper>
+            <EventHighlight event={events[0]} />
+            <Link href="/evenements" variant="internal">
+              <Text as="span">Voir tous les évènements</Text>
+            </Link>
+          </EventWrapper>
+          <Wrapper>
+            <Title>Derniers articles</Title>
+            <ArticlesList articles={articles} spacing={15} />
+          </Wrapper>
         </StyledAside>
       </Layout>
       <Footer identity={identity} />

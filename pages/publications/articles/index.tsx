@@ -3,19 +3,19 @@ import { useState, useEffect } from 'react';
 import qs from 'qs';
 import styled from 'styled-components';
 import { Main, Aside } from '@magle-corp/design-system';
-import { Event, Taxonomy, Identity } from '../../src/type';
+import { Article, Taxonomy, Identity } from '../../../src/type';
 import {
   Header,
-  EventsList,
+  ArticlesList,
   Pagination,
-  EventsFilters,
+  ArticlesFilters,
   Footer,
-} from '../../src/component';
-import { Layout } from '../../src/ui';
-import { ArrowDown } from '../../src/theme/icon';
+} from '../../../src/component';
+import { Layout } from '../../../src/ui';
+import { ArrowDown } from '../../../src/theme/icon';
 
 interface Props {
-  events: Event[];
+  articles: Article[];
   taxonomies: Taxonomy[];
   identity: Identity;
 }
@@ -69,28 +69,32 @@ const ArrowIcon = styled(ArrowDown)`
   }
 `;
 
-const Articles = ({ events, taxonomies, identity }: Props) => {
-  const [stackedEvents, setStackedEvents] = useState<Array<Event[]>>([]);
+const Articles = ({ articles, taxonomies, identity }: Props) => {
+  const [stackedArticles, setStackedArticles] = useState<Array<Article[]>>([]);
   const [page, setPage] = useState<number>(0);
   const [lastPage, setLastPage] = useState<number>(0);
   const [filtersViewState, setFiltersViewState] = useState<boolean>(false);
 
   useEffect(() => {
-    setLastPage(stackedEvents.length - 1);
-  }, [stackedEvents]);
+    setLastPage(stackedArticles.length - 1);
+  }, [stackedArticles]);
 
   return (
     <>
       <Header identity={identity} />
       <StyledLayout>
-        <StyledMain gridColumn="2/3">
-          <Title>Evenements</Title>
-          {stackedEvents.length > 0 && (
-            <EventsList events={stackedEvents[page]} spacing={60} />
+        <StyledMain>
+          <Title>Articles</Title>
+          {stackedArticles.length > 0 && (
+            <ArticlesList
+              articles={stackedArticles[page]}
+              variant="teaser"
+              spacing={60}
+            />
           )}
           <Pagination page={page} lastPage={lastPage} setPage={setPage} />
         </StyledMain>
-        <StyledAside gridColumn="1/2">
+        <StyledAside>
           <Wrapper
             onClick={() => {
               setFiltersViewState(!filtersViewState);
@@ -99,12 +103,13 @@ const Articles = ({ events, taxonomies, identity }: Props) => {
             <Title>Filtres</Title>
             <ArrowIcon />
           </Wrapper>
-          <EventsFilters
+          <ArticlesFilters
             taxonomies={taxonomies}
-            events={events}
-            setStackedEvents={setStackedEvents}
+            articles={articles}
+            setStackedArticles={setStackedArticles}
             setPage={setPage}
             filtersViewState={filtersViewState}
+            setFiltersViewState={setFiltersViewState}
           />
         </StyledAside>
       </StyledLayout>
@@ -116,15 +121,15 @@ const Articles = ({ events, taxonomies, identity }: Props) => {
 export default Articles;
 
 export async function getStaticProps() {
-  const eventsQuery = `/evenements?${qs.stringify({
-    _sort: 'date:DESC',
+  const articlesQuery = `/articles?${qs.stringify({
+    _sort: 'published_at:DESC',
   })}`;
-  const eventsResult = await fetch(`${process.env.BASE_URL}${eventsQuery}`);
-  const events = await eventsResult.json();
+  const articlesResult = await fetch(`${process.env.BASE_URL}${articlesQuery}`);
+  const articles = await articlesResult.json();
 
   const taxonomiesQuery = `/taxonomies?${qs.stringify({
     _sort: 'title:ASC',
-    _where: [{ evenements_ne: null }],
+    _where: [{ articles_ne: null }],
   })}`;
   const taxonomiesResult = await fetch(
     `${process.env.BASE_URL}${taxonomiesQuery}`
@@ -136,7 +141,7 @@ export async function getStaticProps() {
   const identity = await identityResult.json();
 
   return {
-    props: { events, taxonomies, identity },
+    props: { articles, taxonomies, identity },
     revalidate: 60 * 60,
   };
 }

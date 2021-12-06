@@ -157,7 +157,7 @@ const Header = ({ identity }: Props) => {
       <Navbar view={navbarView}>
         <Menu>
           <li>
-            <Link href="/articles">
+            <Link href="/publications">
               <Text as="span" variant="h4">
                 Publications
                 <StyledArrowIcon width={20} height={20} />
@@ -165,14 +165,14 @@ const Header = ({ identity }: Props) => {
             </Link>
             <SubMenu>
               <li>
-                <Link href="/articles">
+                <Link href="/publications/articles">
                   <Text as="span" variant="h4">
                     Articles
                   </Text>
                 </Link>
               </li>
               <li>
-                <Link href="/evenements">
+                <Link href="/publications/evenements">
                   <Text as="span" variant="h4">
                     Evenements
                   </Text>
