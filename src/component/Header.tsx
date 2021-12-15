@@ -141,7 +141,7 @@ const Header = ({ identity }: Props) => {
   const [navbarView, setNavbarView] = useState(Boolean);
 
   return (
-    <StyledHeader>
+    <StyledHeader data-cy="header">
       <Brand direction="row">
         <Logo>
           <Image
@@ -164,7 +164,7 @@ const Header = ({ identity }: Props) => {
       />
       <Navbar view={navbarView}>
         <Menu>
-          <li>
+          <li data-cy="link-publications">
             <Link href="/publications">
               <Text as="span" variant="h4">
                 Publications
