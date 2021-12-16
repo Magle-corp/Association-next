@@ -28,6 +28,7 @@ const StyledHeader = styled.header`
 
   @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
     position: relative;
+    box-sizing: border-box;
     max-width: ${({ theme }) => theme.breakpoints.maximumWidth};
     padding: 0 20px;
     margin: 0 auto;

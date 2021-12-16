@@ -11,6 +11,7 @@ interface Props {
 }
 
 const StyledFooter = styled.footer`
+  box-sizing: border-box;
   width: 100%;
   max-width: ${({ theme }) => theme.breakpoints.maximumWidth};
   margin: auto auto 0 auto;
