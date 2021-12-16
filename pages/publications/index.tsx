@@ -107,7 +107,7 @@ export default Home;
 
 export async function getStaticProps() {
   const articlesQuery = `/articles?${qs.stringify({
-    _sort: 'published_at:DESC',
+    _sort: 'created_at:DESC',
     _start: 0,
     _limit: 5,
   })}`;
@@ -115,7 +115,7 @@ export async function getStaticProps() {
   const articles = await articlesResult.json();
 
   const eventsQuery = `/evenements?${qs.stringify({
-    _sort: 'published_at:DESC',
+    _sort: 'date:DESC',
     _start: 0,
     _limit: 5,
   })}`;
