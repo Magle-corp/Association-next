@@ -29,6 +29,7 @@ const AbsoluteTitle = styled.h1`
     bottom: 0;
     left: 50%;
     display: flex;
+    justify-content: center;
     width: 70%;
     padding: 25px 20px 0 20px;
     background-color: ${({ theme }) => theme.colors.white};

@@ -44,7 +44,7 @@ const StyledAside = styled(Aside)`
   }
 `;
 
-const Title = styled.h2`
+const Title = styled.h1`
   ${({ theme }) => theme.typography.h2}
   margin-bottom: 25px;
 `;

@@ -189,8 +189,8 @@ const Header = ({ identity }: Props) => {
               </li>
             </SubMenu>
           </li>
-          <li>
-            <Link href="#">
+          <li data-cy="link-propos">
+            <Link href="/a-propos">
               <Text as="span" variant="h4">
                 A propos
               </Text>
