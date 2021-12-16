@@ -50,7 +50,7 @@ const StyledAside = styled(Aside)`
 
 const Title = styled.h2`
   ${({ theme }) => theme.typography.h2}
-  margin-bottom: 25px;
+  margin-bottom: 70px;
 `;
 
 const Wrapper = styled.div`

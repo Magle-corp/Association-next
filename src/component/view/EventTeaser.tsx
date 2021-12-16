@@ -35,7 +35,7 @@ const DateWrapper = styled(Wrapper)`
 `;
 
 const StyledDate = styled(Text)`
-  ${({ theme }) => theme.typography.h3}
+  ${({ theme }) => theme.typography.h4}
   line-height: 3.7rem;
 `;
 
@@ -74,8 +74,8 @@ const EventTeaser = ({ event }: Props) => {
       <DateWrapper>
         <>
           <StyledDate as="h3" suppressHydrationWarning>
-            {isPastDate && <CloseEvent width={35} height={35} />}
-            {!isPastDate && <AvailableEvent width={35} height={35} />}
+            {isPastDate && <CloseEvent width={28} height={28} />}
+            {!isPastDate && <AvailableEvent width={28} height={28} />}
             {format(new Date(event.date), 'EEEE')}{' '}
             {format(new Date(event.date), 'd')}{' '}
             {format(new Date(event.date), 'LLLL')}{' '}
