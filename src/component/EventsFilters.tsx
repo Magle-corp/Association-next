@@ -96,11 +96,13 @@ const EventsFilters = ({
         filters={taxoFilters}
         setFilters={setTaxoFilters}
       />
-      <FiltersArchive
-        events={events}
-        filters={dateFilters}
-        setFilters={setDateFilters}
-      />
+      {events.length > 0 && (
+        <FiltersArchive
+          events={events}
+          filters={dateFilters}
+          setFilters={setDateFilters}
+        />
+      )}
     </Container>
   );
 };
