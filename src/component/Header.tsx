@@ -153,7 +153,7 @@ const Header = ({ identity }: Props) => {
             alt={identity.logo.alternativeText}
           />
         </Logo>
-        <Wrapper data-cy="link-homepage">
+        <Wrapper data-cy="link">
           <Link href="/">
             <Text as="h1" variant="h1">
               {identity.name}
@@ -168,7 +168,7 @@ const Header = ({ identity }: Props) => {
       />
       <Navbar view={navbarView}>
         <Menu>
-          <li data-cy="link-publications">
+          <li data-cy="link">
             <Link href="/publications">
               <Text as="span" variant="h4">
                 Publications
@@ -176,14 +176,14 @@ const Header = ({ identity }: Props) => {
               </Text>
             </Link>
             <SubMenu>
-              <li data-cy="link-publications-articles">
+              <li data-cy="link">
                 <Link href="/publications/articles">
                   <Text as="span" variant="h4">
                     Articles
                   </Text>
                 </Link>
               </li>
-              <li data-cy="link-publications-evenements">
+              <li data-cy="link">
                 <Link href="/publications/evenements">
                   <Text as="span" variant="h4">
                     Evenements
@@ -192,7 +192,7 @@ const Header = ({ identity }: Props) => {
               </li>
             </SubMenu>
           </li>
-          <li data-cy="link-propos">
+          <li data-cy="link">
             <Link href="/a-propos">
               <Text as="span" variant="h4">
                 A propos

@@ -63,7 +63,7 @@ const EventWrapper = styled(Wrapper)`
 
 const Home = ({ articles, events, identity }: Props) => {
   return (
-    <>
+    <Wrapper data-cy="page">
       <Header identity={identity} />
       <Layout>
         <StyledMain>
@@ -75,9 +75,11 @@ const Home = ({ articles, events, identity }: Props) => {
         <StyledAside>
           <EventWrapper>
             <EventHighlight event={events[0]} />
-            <Link href="/publications/evenements" variant="internal">
-              <Text as="span">Voir tous les évènements</Text>
-            </Link>
+            <Wrapper data-cy="link">
+              <Link href="/publications/evenements" variant="internal">
+                <Text as="span">Voir tous les évènements</Text>
+              </Link>
+            </Wrapper>
           </EventWrapper>
           <Wrapper>
             <Title>Derniers articles</Title>
@@ -86,7 +88,7 @@ const Home = ({ articles, events, identity }: Props) => {
         </StyledAside>
       </Layout>
       <Footer identity={identity} />
-    </>
+    </Wrapper>
   );
 };
 
