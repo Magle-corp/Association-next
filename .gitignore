@@ -6,6 +6,9 @@ out
 # Node.js
 node_modules
 
+# Jest
+coverage
+
 # Misc.
 *#
 ssl
