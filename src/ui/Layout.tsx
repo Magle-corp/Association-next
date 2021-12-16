@@ -12,6 +12,7 @@ const StyledLayout = styled(UiLayout)`
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr;
+  width: 100%;
   max-width: ${({ theme }) => theme.breakpoints.maximumWidth};
   padding: 170px 20px;
   margin: 0 auto;
