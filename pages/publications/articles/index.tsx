@@ -6,9 +6,10 @@ import { Main, Aside } from '@magle-corp/design-system';
 import { Article, Taxonomy, Identity } from '../../../src/type';
 import {
   Header,
+  EmptyResult,
+  ArticlesFilters,
   ArticlesList,
   Pagination,
-  ArticlesFilters,
   Footer,
 } from '../../../src/component';
 import { Layout } from '../../../src/ui';
@@ -85,12 +86,14 @@ const Articles = ({ articles, taxonomies, identity }: Props) => {
       <StyledLayout>
         <StyledMain>
           <Title>Articles</Title>
-          {stackedArticles.length > 0 && (
+          {stackedArticles.length > 0 ? (
             <ArticlesList
               articles={stackedArticles[page]}
               variant="teaser"
               spacing={60}
             />
+          ) : (
+            <EmptyResult />
           )}
           <Pagination page={page} lastPage={lastPage} setPage={setPage} />
         </StyledMain>

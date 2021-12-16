@@ -2,13 +2,14 @@
 import { useState, useEffect } from 'react';
 import qs from 'qs';
 import styled from 'styled-components';
-import { Main, Aside } from '@magle-corp/design-system';
+import { Main, Aside, Wrapper } from '@magle-corp/design-system';
 import { Event, Taxonomy, Identity } from '../../../src/type';
 import {
   Header,
+  EmptyResult,
+  EventsFilters,
   EventsList,
   Pagination,
-  EventsFilters,
   Footer,
 } from '../../../src/component';
 import { Layout } from '../../../src/ui';
@@ -53,9 +54,7 @@ const Title = styled.h2`
   margin-bottom: 70px;
 `;
 
-const Wrapper = styled.div`
-  display: flex;
-
+const StyledWrapper = styled(Wrapper)`
   > *:not(:first-child) {
     margin-left: 25px;
   }
@@ -85,20 +84,22 @@ const Articles = ({ events, taxonomies, identity }: Props) => {
       <StyledLayout>
         <StyledMain gridColumn="2/3">
           <Title>Evenements</Title>
-          {stackedEvents.length > 0 && (
+          {stackedEvents.length > 0 ? (
             <EventsList events={stackedEvents[page]} spacing={60} />
+          ) : (
+            <EmptyResult />
           )}
           <Pagination page={page} lastPage={lastPage} setPage={setPage} />
         </StyledMain>
         <StyledAside gridColumn="1/2">
-          <Wrapper
+          <StyledWrapper
             onClick={() => {
               setFiltersViewState(!filtersViewState);
             }}
           >
             <Title>Filtres</Title>
             <ArrowIcon />
-          </Wrapper>
+          </StyledWrapper>
           <EventsFilters
             taxonomies={taxonomies}
             events={events}

@@ -5,6 +5,7 @@ import { Main, Aside, Wrapper, Text } from '@magle-corp/design-system';
 import { Article, Event, Identity } from '../../src/type';
 import {
   Header,
+  EmptyResult,
   ArticleHighlight,
   ArticlesList,
   EventHighlight,
@@ -69,21 +70,31 @@ const Home = ({ articles, events, identity }: Props) => {
         <StyledMain>
           <article>
             <Title>A la une</Title>
-            {articles.length > 0 && <ArticleHighlight article={articles[0]} />}
+            {articles.length > 0 ? (
+              <ArticleHighlight article={articles[0]} />
+            ) : (
+              <EmptyResult />
+            )}
           </article>
         </StyledMain>
         <StyledAside>
-          <EventWrapper>
-            <EventHighlight event={events[0]} />
-            <Wrapper data-cy="link">
-              <Link href="/publications/evenements" variant="internal">
-                <Text as="span">Voir tous les évènements</Text>
-              </Link>
-            </Wrapper>
-          </EventWrapper>
+          {events.length > 0 && (
+            <EventWrapper>
+              <EventHighlight event={events[0]} />
+              <Wrapper data-cy="link">
+                <Link href="/publications/evenements" variant="internal">
+                  <Text as="span">Voir tous les évènements</Text>
+                </Link>
+              </Wrapper>
+            </EventWrapper>
+          )}
           <Wrapper>
             <Title>Derniers articles</Title>
-            <ArticlesList articles={articles} spacing={15} />
+            {articles.length > 0 ? (
+              <ArticlesList articles={articles} spacing={15} />
+            ) : (
+              <EmptyResult />
+            )}
           </Wrapper>
         </StyledAside>
       </Layout>
