@@ -38,6 +38,10 @@ const StyledHeader = styled.header`
   }
 `;
 
+const Brand = styled(Wrapper)`
+  flex-wrap: nowrap;
+`;
+
 const Logo = styled(Wrapper)`
   display: flex;
   position: relative;
@@ -48,6 +52,10 @@ const Logo = styled(Wrapper)`
 
 const StyledBurgerMenu = styled(BurgerMenu)`
   display: block;
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
+  min-height: 40px;
 
   @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
     display: none;
@@ -133,8 +141,8 @@ const Header = ({ identity }: Props) => {
   const [navbarView, setNavbarView] = useState(Boolean);
 
   return (
-    <StyledHeader>
-      <Wrapper direction="row">
+    <StyledHeader data-cy="header">
+      <Brand direction="row">
         <Logo>
           <Image
             src={`${process.env.BASE_URL}${identity.logo.formats.thumbnail.url}`}
@@ -148,7 +156,7 @@ const Header = ({ identity }: Props) => {
             {identity.name}
           </Text>
         </Link>
-      </Wrapper>
+      </Brand>
       <StyledBurgerMenu
         width={45}
         height={45}
@@ -156,7 +164,7 @@ const Header = ({ identity }: Props) => {
       />
       <Navbar view={navbarView}>
         <Menu>
-          <li>
+          <li data-cy="link-publications">
             <Link href="/publications">
               <Text as="span" variant="h4">
                 Publications
