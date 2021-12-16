@@ -1,5 +1,6 @@
 // Use.
 import { Article, Event } from '../type';
+
 type FilteredItem = Article | Event;
 
 /**

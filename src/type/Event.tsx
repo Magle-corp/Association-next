@@ -9,7 +9,7 @@ interface Event {
   content: string;
   date: string;
   slug: string;
-  taxonomies: Taxonomy[];
+  taxonomies?: Taxonomy[];
 }
 
 export type { Event };

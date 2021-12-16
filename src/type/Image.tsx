@@ -6,10 +6,10 @@ interface Image {
   url: string;
   alternativeText: string;
   caption: string;
-  formats: BackgroundFormat;
+  formats: BackgroundFormats;
 }
 
-interface BackgroundFormat {
+interface BackgroundFormats {
   thumbnail: Format;
   small: Format;
   medium: Format;

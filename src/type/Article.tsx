@@ -10,9 +10,9 @@ interface Article {
   description: string;
   created_at: string;
   slug: string;
-  taxonomies: Taxonomy[];
+  taxonomies?: Taxonomy[];
   background: Image;
-  dynamic_zone: [Cartes | TexteImage | Wysiwyg];
+  dynamic_zone?: [Cartes | TexteImage | Wysiwyg];
 }
 
 export type { Article };
