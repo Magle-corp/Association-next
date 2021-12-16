@@ -30,6 +30,6 @@ jobs:
       - name: Rsync project with server one
         run: rsync -r . ${{ secrets.STAGING_SERVER }}:Association-next
       - name: Rsync tests report with server one
-        run: rsync -r coverage/lcov-report ${{ secrets.STAGING_SERVER }}:Association-next-tests
+        run: rsync -r coverage/lcov-report/ ${{ secrets.STAGING_SERVER }}:Association-next-tests
       - name: Restart server
         run: ssh ${{ secrets.STAGING_SERVER }} pm2 reload association-next
