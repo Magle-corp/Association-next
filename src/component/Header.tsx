@@ -172,14 +172,14 @@ const Header = ({ identity }: Props) => {
               </Text>
             </Link>
             <SubMenu>
-              <li>
+              <li data-cy="link-publications-articles">
                 <Link href="/publications/articles">
                   <Text as="span" variant="h4">
                     Articles
                   </Text>
                 </Link>
               </li>
-              <li>
+              <li data-cy="link-publications-evenements">
                 <Link href="/publications/evenements">
                   <Text as="span" variant="h4">
                     Evenements
