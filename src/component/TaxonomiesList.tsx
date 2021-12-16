@@ -6,7 +6,7 @@ import { Link } from '../ui';
 
 interface Props {
   className?: string;
-  taxonomies: Taxonomy[];
+  taxonomies?: Taxonomy[];
   variant?: 'default' | 'link';
 }
 
@@ -48,26 +48,28 @@ const TaxonomiesList = ({
 }: Props) => {
   return (
     <>
-      <StyledList className={className}>
-        {variant == 'default' &&
-          taxonomies.map((taxonomy) => (
-            <li key={taxonomy.id}>
-              <Text variant="tag">{taxonomy.title}</Text>
-            </li>
-          ))}
-        {variant == 'link' &&
-          taxonomies.map((taxonomy) => (
-            <li key={taxonomy.id}>
-              <StyledLink
-                href={`/publications/articles?taxonomy=${taxonomy.title}`}
-              >
-                <Text as="span" variant="tag">
-                  {taxonomy.title}
-                </Text>
-              </StyledLink>
-            </li>
-          ))}
-      </StyledList>
+      {taxonomies && (
+        <StyledList className={className}>
+          {variant == 'default' &&
+            taxonomies.map((taxonomy) => (
+              <li key={taxonomy.id}>
+                <Text variant="tag">{taxonomy.title}</Text>
+              </li>
+            ))}
+          {variant == 'link' &&
+            taxonomies.map((taxonomy) => (
+              <li key={taxonomy.id}>
+                <StyledLink
+                  href={`/publications/articles?taxonomy=${taxonomy.title}`}
+                >
+                  <Text as="span" variant="tag">
+                    {taxonomy.title}
+                  </Text>
+                </StyledLink>
+              </li>
+            ))}
+        </StyledList>
+      )}
     </>
   );
 };
