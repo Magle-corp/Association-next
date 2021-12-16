@@ -18,7 +18,7 @@ describe('Test util ItemsStacker', () => {
 
     const stackResult = ItemsStacker(articlesArray);
 
-    expect(stackResult.length).toStrictEqual(2);
+    expect(stackResult.length).toStrictEqual(1);
   });
 
   test('Stack with 13 Article', () => {
