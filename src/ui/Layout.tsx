@@ -9,6 +9,7 @@ interface Props {
 }
 
 const StyledLayout = styled(UiLayout)`
+  box-sizing: border-box;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr;
