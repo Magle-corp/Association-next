@@ -20,6 +20,7 @@ const StyledHeader = styled.header`
   justify-content: space-between;
   width: 100%;
   min-height: 70px;
+  padding-bottom: 10px;
   background-color: ${({ theme }) => theme.colors.white};
 
   > *:not(:last-child) {
@@ -152,11 +153,13 @@ const Header = ({ identity }: Props) => {
             alt={identity.logo.alternativeText}
           />
         </Logo>
-        <Link href="/">
-          <Text as="h1" variant="h1">
-            {identity.name}
-          </Text>
-        </Link>
+        <Wrapper data-cy="link-homepage">
+          <Link href="/">
+            <Text as="h1" variant="h1">
+              {identity.name}
+            </Text>
+          </Link>
+        </Wrapper>
       </Brand>
       <StyledBurgerMenu
         width={45}
