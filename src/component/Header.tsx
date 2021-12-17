@@ -138,6 +138,10 @@ const SubMenu = styled.ul`
 
 /**
  * Provide component "Header".
+ *
+ * @param identity
+ *   Strapi custom content type "Identite".
+ *
  */
 const Header = ({ identity }: Props) => {
   const [navbarView, setNavbarView] = useState(Boolean);

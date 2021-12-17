@@ -51,6 +51,12 @@ const Logo = styled(Wrapper)`
   margin-left: 10px;
 `;
 
+/**
+ * Provide component "Footer"
+ *
+ * @param identity
+ *   Strapi custom content type "Identite".
+ */
 const Footer = ({ identity }: Props) => {
   return (
     <StyledFooter>
