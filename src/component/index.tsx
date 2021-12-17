@@ -16,4 +16,5 @@ export { EventsList } from './EventsList';
 export { Footer } from './Footer';
 export { Header } from './Header';
 export { Pagination } from './Pagination';
+export { Slider } from './Slider';
 export { TaxonomiesList } from './TaxonomiesList';

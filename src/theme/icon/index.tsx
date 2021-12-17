@@ -3,6 +3,7 @@ export { AvailableEvent } from './AvailableEvent';
 export { BurgerMenu } from './BurgerMenu';
 export { Calendar } from './Calendar';
 export { CloseEvent } from './CloseEvent';
+export { Dot } from './Dot';
 export { ExternalLink } from './ExternalLink';
 export { Facebook } from './Facebook';
 export { Instagram } from './Instagram';
