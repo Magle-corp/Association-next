@@ -30,6 +30,10 @@ const PaginationWrapper = styled(Wrapper)`
 `;
 
 const StyledButton = styled(Button)`
+  border: ${({ theme, disabled }) =>
+    disabled
+      ? `2px solid ${theme.colors.grey}`
+      : `2px solid ${theme.colors.primary}`};
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'cursor')};
 `;
 

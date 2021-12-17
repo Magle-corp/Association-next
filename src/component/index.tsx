@@ -15,6 +15,7 @@ export { EventsFilters } from './EventsFilters';
 export { EventsList } from './EventsList';
 export { Footer } from './Footer';
 export { Header } from './Header';
+export { HeroBanner } from './HeroBanner';
 export { Pagination } from './Pagination';
 export { Slider } from './Slider';
 export { TaxonomiesList } from './TaxonomiesList';

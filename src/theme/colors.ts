@@ -1,6 +1,6 @@
 const colors: object = {
-  primary: '#de3e53',
-  secondary: '#0b79f9',
+  primary: '#00995a',
+  secondary: '#b2e0cd',
   black: '#000000',
   white: '#ffffff',
   grey: '#bfbfbf',

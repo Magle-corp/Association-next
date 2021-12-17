@@ -1,7 +1,13 @@
 const titleFontFamily = `font-family: FjallaOne, Arial, sans-serif;`;
 const fontFamily = `font-family: Roboto, Arial, sans-serif;`;
 
-const grey = '#bfbfbf';
+const colors = {
+  primary: '#00995a',
+  secondary: '#b2e0cd',
+  black: '#000000',
+  white: '#ffffff',
+  grey: '#bfbfbf',
+};
 
 const variant: object = {
   h1: `
@@ -46,10 +52,17 @@ const variant: object = {
     line-height: 2.4rem;
     font-weight: 700;
     text-decoration: none;
-    background-color: #ffffff;
-    border: 2px solid #000000;
+    background-color: ${colors.white};
+    border: 2px solid ${colors.primary};
     border-radius: 3px;
+    color: ${colors.black};
     cursor: pointer;
+    transition: 250ms ease-in-out;
+    
+    &:hover {
+      background-color: ${colors.primary};
+      color: ${colors.white};
+    }
 `,
   inline_link: `
     ${fontFamily}
@@ -67,7 +80,8 @@ const variant: object = {
     font-weight: 400;
     text-decoration: none;
     border-radius: 3px;
-    background-color: ${grey};
+    background-color: ${colors.primary};
+    color: ${colors.white};
   `,
 };
 

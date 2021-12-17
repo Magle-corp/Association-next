@@ -52,7 +52,6 @@ const StyledButton = styled(Button)`
  *
  * @param slides
  *   Array of custom Strapi component "Slider".
- *
  */
 const Slider = ({ slider }: Props) => {
   return (
