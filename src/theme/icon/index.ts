@@ -2,6 +2,7 @@ export { ArrowDown } from './ArrowDown';
 export { AvailableEvent } from './AvailableEvent';
 export { BurgerMenu } from './BurgerMenu';
 export { Calendar } from './Calendar';
+export { Circle } from './Circle';
 export { CloseEvent } from './CloseEvent';
 export { Dot } from './Dot';
 export { ExternalLink } from './ExternalLink';
