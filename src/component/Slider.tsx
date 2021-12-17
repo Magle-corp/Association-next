@@ -3,7 +3,8 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Wrapper, Text, Button } from '@magle-corp/design-system';
-import { Slider as SliderType } from '../type';
+import { Slider as SliderType, Slide as SlideType } from '../type';
+import { Link } from '../ui';
 import { Dot, Circle } from '../theme/icon';
 
 interface Props {
@@ -16,7 +17,7 @@ const Container = styled(Wrapper)`
   height: 100%;
 `;
 
-const SlidesWrapper = styled.div<{ slide: number }>`
+const SlidesWrapper = styled.div<{ slide: string }>`
   position: relative;
   display: flex;
   flex-direction: row;
@@ -41,12 +42,12 @@ const ImageWrapper = styled(Wrapper)`
   height: 350px;
 `;
 
-const SlideTitle = styled(Text)`
+const TitleWrapper = styled(Wrapper)`
   z-index: 40;
   position: absolute;
   bottom: 0;
-  box-sizing: border-box;
   width: 100%;
+  box-sizing: border-box;
   padding: 20px;
   background-color: rgba(255, 255, 255, 70%);
 `;
@@ -83,32 +84,36 @@ const StyledButton = styled(Button)`
  *   Array of custom Strapi component "Slider".
  */
 const Slider = ({ slider }: Props) => {
-  const [currentSlide, setCurrentSlide] = useState(1);
+  const [currentSlide, setCurrentSlide] = useState(slider.slides[0]);
   let sliderAuto: any;
 
   const slideMove = () => {
+    const currentSlideIndex = slider.slides.indexOf(currentSlide);
     const nextSlide =
-      currentSlide > slider.slides.length - 1 ? 1 : currentSlide + 1;
+      currentSlideIndex >= slider.slides.length - 1
+        ? slider.slides[0]
+        : slider.slides[currentSlideIndex + 1];
     setCurrentSlide(nextSlide);
   };
 
   useEffect(() => {
-    sliderAuto = setTimeout(slideMove, 10000);
+    if (slider && slider.slides.length > 1)
+      sliderAuto = setTimeout(slideMove, 9000);
   }, [currentSlide]);
 
-  const handleManualSlide = (slideIndex: number) => {
-    setCurrentSlide(slideIndex);
+  const handleManualSlide = (slide: SlideType) => {
+    setCurrentSlide(slide);
     window.clearTimeout(sliderAuto);
   };
 
   return (
     <>
-      {slider.slides && (
+      {slider && slider.slides && (
         <Container>
-          <SlidesWrapper slide={currentSlide}>
+          <SlidesWrapper slide={currentSlide.id}>
             {slider.slides.map((slide) => (
-              <Slide id={`slide_${slide.id}`}>
-                <ImageWrapper key={`slide_${slide.id}`}>
+              <Slide key={`slide_${slide.id}`} id={`slide_${slide.id}`}>
+                <ImageWrapper>
                   <Image
                     src={`${process.env.BASE_URL}${slide.image.url}`}
                     layout="fill"
@@ -116,7 +121,13 @@ const Slider = ({ slider }: Props) => {
                     alt={slide.image.alternativeText}
                   />
                 </ImageWrapper>
-                <SlideTitle>{slide.title}</SlideTitle>
+                <TitleWrapper>
+                  <Link href="#" variant="internal">
+                    <Text as="span" variant="p">
+                      {slide.title}
+                    </Text>
+                  </Link>
+                </TitleWrapper>
               </Slide>
             ))}
           </SlidesWrapper>
@@ -124,9 +135,9 @@ const Slider = ({ slider }: Props) => {
             {slider.slides.map((slide) => (
               <StyledButton
                 key={`slide_${slide.id}`}
-                onClick={() => handleManualSlide(parseInt(slide.id))}
+                onClick={() => handleManualSlide(slide)}
               >
-                {currentSlide === parseInt(slide.id) ? (
+                {currentSlide.id === slide.id ? (
                   <Dot width={12} height={12} />
                 ) : (
                   <Circle width={12} height={12} />

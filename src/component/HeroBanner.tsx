@@ -1,14 +1,15 @@
 // Use.
 import styled from 'styled-components';
-import { Main, Wrapper, Text, Button } from '@magle-corp/design-system';
+import { Wrapper, Text } from '@magle-corp/design-system';
 import { Homepage } from '../type';
+import { Link } from '../ui';
 import { Slider } from './index';
 
 interface Props {
   homepage: Homepage;
 }
 
-const Container = styled(Main)`
+const Container = styled.div`
   display: grid;
   grid-template-columns: 50% 10% 5% 30% 5%;
   grid-template-rows: 20% 6% 64% 10%;
@@ -30,10 +31,16 @@ const TitleContainer = styled.div`
     grid-column: 2/6;
     grid-row: 1/3;
     box-sizing: border-box;
-    padding: 15px;
+    padding: 15px 15px 15px 30px;
     color: ${({ theme }) => `${theme.colors.white}`};
     background-color: ${({ theme }) => `${theme.colors.primary}`};
   }
+`;
+
+const Title = styled.h1`
+  ${({ theme }) => theme.typography.h1};
+  letter-spacing: 0.5rem;
+  text-shadow: 3.5px 3.5px ${({ theme }) => theme.colors.black};
 `;
 
 const PresentationContainer = styled(Wrapper)`
@@ -42,17 +49,31 @@ const PresentationContainer = styled(Wrapper)`
     grid-column: 3/5;
     grid-row: 2/5;
     box-sizing: border-box;
-    padding: 45px 25px 20px 80px;
+    padding: 45px 25px 50px 80px;
     background-color: ${({ theme }) => `${theme.colors.secondary}`};
   }
 
   > *:first-child {
     line-height: 3.2rem;
   }
+`;
 
-  > *:not(:first-child) {
-    margin-top: 30px;
-    margin-left: auto;
+const LinkWrapper = styled(Wrapper)`
+  margin-top: auto;
+  margin-left: auto;
+  transition: 250ms ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+`;
+
+const StyledLink = styled.span`
+  ${({ theme }) => theme.typography.button}
+  border: 2px solid ${({ theme }) => theme.colors.white};
+
+  &:hover {
+    border: 2px solid ${({ theme }) => theme.colors.primary};
   }
 `;
 
@@ -66,21 +87,18 @@ const HeroBanner = ({ homepage }: Props) => {
   return (
     <Container>
       <SliderContainer>
-        <Slider slider={homepage.Banniere} />
+        <Slider slider={homepage.slider} />
       </SliderContainer>
       <TitleContainer>
-        <Text as="h1" variant="h1">
-          Lorem ipsum dolor sit amet, consectetur
-        </Text>
+        <Title>{homepage.title}</Title>
       </TitleContainer>
       <PresentationContainer>
-        <Text variant="h4">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-          convallis sem urna, eu ultrices sem tincidunt sit amet. Integer
-          aliquam libero eleifend neque tristique finibus. Lorem ipsum dolor
-          biam.
-        </Text>
-        <Button>Click me</Button>
+        <Text variant="h4">{homepage.content}</Text>
+        <LinkWrapper>
+          <Link href="/a-propos">
+            <StyledLink>Découvrir l'association</StyledLink>
+          </Link>
+        </LinkWrapper>
       </PresentationContainer>
     </Container>
   );

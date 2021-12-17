@@ -24,7 +24,7 @@ const StyledLink = styled.a`
 
 const StyledInlineLink = styled(StyledLink)`
   > *:first-child {
-    border-bottom: 1px solid ${({ theme }) => theme.colors.white};
+    border-bottom: 1px solid rgba(255, 255, 255, 0%);
     transition: 150ms ease-in-out;
 
     &:hover {

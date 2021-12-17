@@ -5,7 +5,9 @@ import { Image } from './index';
 
 interface Homepage {
   id: string;
-  Banniere: Slider;
+  title: string;
+  content: string;
+  slider: Slider;
 }
 
 interface Slider {
@@ -19,4 +21,4 @@ interface Slide {
   title: string;
 }
 
-export type { Homepage, Slider };
+export type { Homepage, Slider, Slide };
