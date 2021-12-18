@@ -115,18 +115,6 @@ const LinkWrapper = styled(Wrapper)`
   }
 `;
 
-const StyledLink = styled.span`
-  ${({ theme }) => theme.typography.button};
-  display: flex;
-  flex-wrap: wrap;
-  text-align: center;
-  border: 2px solid ${({ theme }) => theme.colors.white};
-
-  &:hover {
-    border: 2px solid ${({ theme }) => theme.colors.primary};
-  }
-`;
-
 /**
  * Provide component "HeroBanner".
  *
@@ -146,7 +134,9 @@ const HeroBanner = ({ homepage }: Props) => {
         <Text variant="h4">{homepage.content}</Text>
         <LinkWrapper>
           <Link href="/a-propos">
-            <StyledLink>Découvrir l'association</StyledLink>
+            <Text as="span" variant="call_action">
+              Découvrir l'association
+            </Text>
           </Link>
         </LinkWrapper>
       </PresentationContainer>

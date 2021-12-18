@@ -35,7 +35,7 @@ const StyledAside = styled(Aside)`
   margin-top: 50px;
 
   > *:not(:first-child) {
-    margin-top: 40px;
+    margin-top: 60px;
   }
 
   @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
@@ -51,14 +51,9 @@ const Title = styled.h1`
 `;
 
 const EventWrapper = styled(Wrapper)`
-  > *:first-child {
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-    border-bottom: 2px solid ${({ theme }) => theme.colors.grey};
-  }
-
   > *:not(:first-child) {
     text-align: center;
+    margin-top: 35px;
   }
 `;
 
@@ -82,8 +77,10 @@ const Home = ({ articles, events, identity }: Props) => {
             <EventWrapper>
               <EventHighlight event={events[0]} />
               <Wrapper data-cy="link">
-                <Link href="/publications/evenements" variant="internal">
-                  <Text as="span">Voir tous les évènements</Text>
+                <Link href="/publications/evenements">
+                  <Text as="span" variant="call_action">
+                    Voir tous les évènements
+                  </Text>
                 </Link>
               </Wrapper>
             </EventWrapper>

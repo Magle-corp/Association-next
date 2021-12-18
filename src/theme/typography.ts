@@ -83,6 +83,29 @@ const variant: object = {
     background-color: ${colors.primary};
     color: ${colors.white};
   `,
+  call_action: `
+    ${fontFamily}
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    padding: 7px 9px;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    font-weight: 700;
+    text-decoration: none;
+    background-color: ${colors.white};
+    border: 2px solid ${colors.primary};
+    border-radius: 3px;
+    color: ${colors.black};
+    cursor: pointer;
+    transition: 250ms ease-in-out;
+    
+    &:hover {
+      background-color: ${colors.primary};
+      color: ${colors.white};
+    }
+  `,
 };
 
 export default variant;
