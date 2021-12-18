@@ -139,7 +139,7 @@ const Slider = ({ slider }: Props) => {
                     variant="internal"
                   >
                     <Text as="span" variant="p">
-                      {slide.title}
+                      {slide.link_title}
                     </Text>
                   </Link>
                 </TitleWrapper>
