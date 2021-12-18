@@ -137,7 +137,13 @@ const HeroBanner = ({ homepage }: Props) => {
       <PresentationContainer>
         <Text variant="h4">{homepage.content}</Text>
         <LinkWrapper>
-          <SlideLink href={`${homepage.main_link.link.slug}`}>
+          <SlideLink
+            href={`${
+              homepage.main_link.link.slug
+                ? homepage.main_link.link.slug
+                : '/404'
+            }`}
+          >
             <Text as="span">{homepage.main_link.link_title}</Text>
           </SlideLink>
         </LinkWrapper>

@@ -112,7 +112,9 @@ const ArticleCartes = ({ block }: Props) => {
               </TitleWrapper>
               <ContentWrapper>
                 <Text>{carte.content}</Text>
-                <CardLink href={`${carte.link.slug}`}>
+                <CardLink
+                  href={`${carte.link.slug ? carte.link.slug : '/404'}`}
+                >
                   <Text as="span">{carte.link_title}</Text>
                 </CardLink>
               </ContentWrapper>

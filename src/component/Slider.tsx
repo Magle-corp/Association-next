@@ -134,7 +134,10 @@ const Slider = ({ slider }: Props) => {
                   />
                 </ImageWrapper>
                 <TitleWrapper>
-                  <Link href={`${slide.link.slug}`} variant="internal">
+                  <Link
+                    href={`${slide.link.slug ? slide.link.slug : '/404'}`}
+                    variant="internal"
+                  >
                     <Text as="span" variant="p">
                       {slide.title}
                     </Text>
