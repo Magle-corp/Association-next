@@ -39,7 +39,15 @@ const Slide = styled(Wrapper)`
 
 const ImageWrapper = styled(Wrapper)`
   position: relative;
-  height: 350px;
+  height: 250px;
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
+    height: 450px;
+  }
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
+    height: 350px;
+  }
 `;
 
 const TitleWrapper = styled(Wrapper)`
@@ -53,14 +61,18 @@ const TitleWrapper = styled(Wrapper)`
 `;
 
 const DotesWrapper = styled(Wrapper)`
-  position: absolute;
-  bottom: -30px;
-  display: flex;
-  justify-content: center;
-  width: 100%;
+  display: none;
 
-  > *:not(:first-child) {
-    margin-left: 10px;
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
+    position: absolute;
+    bottom: -30px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    > *:not(:first-child) {
+      margin-left: 10px;
+    }
   }
 `;
 

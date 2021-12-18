@@ -11,29 +11,61 @@ interface Props {
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: 50% 10% 5% 30% 5%;
-  grid-template-rows: 20% 6% 64% 10%;
-  height: 500px;
+  grid-template-columns: 1fr;
+  grid-template-rows: max-content max-content max-content;
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
+    grid-template-columns: 50% 10% 5% 30% 5%;
+    grid-template-rows: max-content max-content max-content;
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
+    grid-template-columns: 50% 10% 5% 30% 5%;
+    grid-template-rows: 20% 6% 64% 10%;
+    height: 500px;
+  }
 `;
 
 const SliderContainer = styled.div`
-  @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
-    z-index: 20;
+  z-index: 20;
+  grid-column: 1/2;
+  grid-row: 2/3;
+  background-color: ${({ theme }) => `${theme.colors.grey}`};
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
     grid-column: 1/4;
     grid-row: 2/4;
-    background-color: ${({ theme }) => `${theme.colors.grey}`};
+    height: auto;
+  }
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
+    grid-column: 1/4;
+    grid-row: 2/4;
   }
 `;
 
 const TitleContainer = styled.div`
+  z-index: 30;
+  box-sizing: border-box;
+  grid-column: 1/2;
+  grid-row: 1/2;
+  padding: 15px 30px 20px 15px;
+  color: ${({ theme }) => `${theme.colors.white}`};
+  background-color: ${({ theme }) => `${theme.colors.primary}`};
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
+    grid-column: 1/6;
+    grid-row: 1/2;
+    height: max-content;
+    padding: 15px 30px 20px 15px;
+    text-align: right;
+  }
+
   @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
-    z-index: 30;
     grid-column: 2/6;
     grid-row: 1/3;
-    box-sizing: border-box;
+    height: unset;
     padding: 15px 15px 15px 30px;
-    color: ${({ theme }) => `${theme.colors.white}`};
-    background-color: ${({ theme }) => `${theme.colors.primary}`};
+    text-align: left;
   }
 `;
 
@@ -44,13 +76,23 @@ const Title = styled.h1`
 `;
 
 const PresentationContainer = styled(Wrapper)`
+  z-index: 10;
+  box-sizing: border-box;
+  grid-column: 1/2;
+  grid-row: 3/4;
+  padding: 25px;
+  background-color: ${({ theme }) => `${theme.colors.secondary}`};
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
+    grid-column: 4/6;
+    grid-row: 2/4;
+    padding: 25px;
+  }
+
   @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
-    z-index: 10;
     grid-column: 3/5;
-    grid-row: 2/5;
-    box-sizing: border-box;
-    padding: 45px 25px 50px 80px;
-    background-color: ${({ theme }) => `${theme.colors.secondary}`};
+    grid-row: 3/5;
+    padding: 25px 25px 50px 80px;
   }
 
   > *:first-child {
@@ -59,12 +101,17 @@ const PresentationContainer = styled(Wrapper)`
 `;
 
 const LinkWrapper = styled(Wrapper)`
-  margin-top: auto;
+  margin-top: 60px;
   margin-left: auto;
   transition: 250ms ease-in-out;
 
   &:hover {
     transform: scale(1.05);
+  }
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
+    margin-top: auto;
+    margin-left: auto;
   }
 `;
 
