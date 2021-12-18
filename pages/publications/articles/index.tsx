@@ -56,6 +56,7 @@ const Title = styled.h2`
 
 const Wrapper = styled.div`
   display: flex;
+  flex-direction: row;
 
   > *:not(:first-child) {
     margin-left: 25px;
