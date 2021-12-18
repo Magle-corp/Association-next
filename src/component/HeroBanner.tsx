@@ -115,6 +115,10 @@ const LinkWrapper = styled(Wrapper)`
   }
 `;
 
+const SlideLink = styled(Link)`
+  ${({ theme }) => theme.typography.call_action}
+`;
+
 /**
  * Provide component "HeroBanner".
  *
@@ -133,11 +137,9 @@ const HeroBanner = ({ homepage }: Props) => {
       <PresentationContainer>
         <Text variant="h4">{homepage.content}</Text>
         <LinkWrapper>
-          <Link href="/a-propos">
-            <Text as="span" variant="call_action">
-              Découvrir l'association
-            </Text>
-          </Link>
+          <SlideLink href={`${homepage.main_link.link.slug}`}>
+            <Text as="span">{homepage.main_link.link_title}</Text>
+          </SlideLink>
         </LinkWrapper>
       </PresentationContainer>
     </Container>

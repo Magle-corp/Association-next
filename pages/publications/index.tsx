@@ -57,6 +57,10 @@ const EventWrapper = styled(Wrapper)`
   }
 `;
 
+const EventsLink = styled(Link)`
+  ${({ theme }) => theme.typography.call_action}
+`;
+
 const Home = ({ articles, events, identity }: Props) => {
   return (
     <Wrapper data-cy="page">
@@ -77,11 +81,9 @@ const Home = ({ articles, events, identity }: Props) => {
             <EventWrapper>
               <EventHighlight event={events[0]} />
               <Wrapper data-cy="link">
-                <Link href="/publications/evenements">
-                  <Text as="span" variant="call_action">
-                    Voir tous les évènements
-                  </Text>
-                </Link>
+                <EventsLink href="/publications/evenements">
+                  <Text as="span">Voir tous les évènements</Text>
+                </EventsLink>
               </Wrapper>
             </EventWrapper>
           )}

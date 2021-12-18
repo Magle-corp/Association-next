@@ -35,6 +35,7 @@ const Description = styled(Text)`
 `;
 
 const ArticleLink = styled(Link)`
+  ${({ theme }) => theme.typography.call_action}
   margin-left: auto;
 `;
 
@@ -64,9 +65,7 @@ const ArticleHighlight = ({ article }: Props) => {
       </Wrapper>
       <Description>{article.description}</Description>
       <ArticleLink href={`/publications/articles/${article.slug}`}>
-        <Text as="span" variant="call_action">
-          Consulter l'article
-        </Text>
+        <Text as="span">Consulter l'article</Text>
       </ArticleLink>
     </ArticleWrapper>
   );

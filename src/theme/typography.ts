@@ -86,13 +86,11 @@ const variant: object = {
   call_action: `
     ${fontFamily}
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     text-align: center;
     padding: 7px 9px;
-    font-size: 1.6rem;
-    line-height: 2.4rem;
-    font-weight: 700;
     text-decoration: none;
     background-color: ${colors.white};
     border: 2px solid ${colors.primary};
@@ -104,6 +102,12 @@ const variant: object = {
     &:hover {
       background-color: ${colors.primary};
       color: ${colors.white};
+    }
+    
+    span {
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    font-weight: 700;
     }
   `,
 };

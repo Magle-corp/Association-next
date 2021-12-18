@@ -5,4 +5,5 @@ export type { Homepage, Slider, Slide } from './Homepage';
 export type { Identity } from './Identity';
 export type { Image } from './Image';
 export type { Propos } from './Propos';
+export type { Slug } from './Slug';
 export type { Taxonomy } from './Taxonomy';
