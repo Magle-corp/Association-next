@@ -116,7 +116,10 @@ const LinkWrapper = styled(Wrapper)`
 `;
 
 const StyledLink = styled.span`
-  ${({ theme }) => theme.typography.button}
+  ${({ theme }) => theme.typography.button};
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
   border: 2px solid ${({ theme }) => theme.colors.white};
 
   &:hover {
