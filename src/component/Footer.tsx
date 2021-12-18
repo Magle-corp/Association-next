@@ -78,7 +78,7 @@ const Footer = ({ identity }: Props) => {
           />
         </Logo>
       </Wrapper>
-      <SocialWrapper direction="row">
+      <SocialWrapper direction="row" data-cy="link">
         {identity.facebook && (
           <Link href={identity.facebook}>
             <Facebook width={30} height={30} />

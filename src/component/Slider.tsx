@@ -133,7 +133,7 @@ const Slider = ({ slider }: Props) => {
                     alt={slide.image.alternativeText}
                   />
                 </ImageWrapper>
-                <TitleWrapper>
+                <TitleWrapper data-cy="link">
                   <Link
                     href={`${slide.link.slug ? slide.link.slug : '/404'}`}
                     variant="internal"

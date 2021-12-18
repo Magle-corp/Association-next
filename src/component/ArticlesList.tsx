@@ -25,7 +25,7 @@ const ArticlesList = ({ articles, variant = 'default', spacing }: Props) => {
     <>
       <List spacing={spacing}>
         {articles.map((article) => (
-          <li key={article.id}>
+          <li key={article.id} data-cy="link">
             {variant === 'default' && (
               <Link
                 href={`/publications/articles/${article.slug}`}

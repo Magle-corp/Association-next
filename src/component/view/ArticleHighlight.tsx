@@ -64,9 +64,11 @@ const ArticleHighlight = ({ article }: Props) => {
         <TaxonomiesList taxonomies={article.taxonomies} variant="link" />
       </Wrapper>
       <Description>{article.description}</Description>
-      <ArticleLink href={`/publications/articles/${article.slug}`}>
-        <Text as="span">Consulter l'article</Text>
-      </ArticleLink>
+      <Wrapper data-cy="link">
+        <ArticleLink href={`/publications/articles/${article.slug}`}>
+          <Text as="span">Consulter l'article</Text>
+        </ArticleLink>
+      </Wrapper>
     </ArticleWrapper>
   );
 };

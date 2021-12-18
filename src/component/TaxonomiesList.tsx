@@ -58,7 +58,7 @@ const TaxonomiesList = ({
             ))}
           {variant == 'link' &&
             taxonomies.map((taxonomy) => (
-              <li key={taxonomy.id}>
+              <li key={taxonomy.id} data-cy="link">
                 <StyledLink
                   href={`/publications/articles?taxonomy=${taxonomy.title}`}
                 >
