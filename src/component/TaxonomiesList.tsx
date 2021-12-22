@@ -26,9 +26,7 @@ const StyledList = styled.ul`
 `;
 
 const StyledLink = styled(Link)`
-  > * {
-    display: block;
-  }
+  ${({ theme }) => theme.typography.call_action}
 `;
 
 /**

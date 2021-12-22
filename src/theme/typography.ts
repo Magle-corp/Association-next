@@ -52,16 +52,16 @@ const variant: object = {
     line-height: 2.4rem;
     font-weight: 700;
     text-decoration: none;
-    background-color: ${colors.white};
+    background-color: ${colors.primary};
     border: 2px solid ${colors.primary};
     border-radius: 3px;
-    color: ${colors.black};
+    color: ${colors.white};
     cursor: pointer;
     transition: 250ms ease-in-out;
     
     &:hover {
-      background-color: ${colors.primary};
-      color: ${colors.white};
+      background-color: ${colors.white};
+      color: ${colors.black};
     }
 `,
   inline_link: `
@@ -80,8 +80,8 @@ const variant: object = {
     font-weight: 400;
     text-decoration: none;
     border-radius: 3px;
-    background-color: ${colors.primary};
-    color: ${colors.white};
+    background-color: ${colors.white};
+    border: 2px solid ${colors.primary};
   `,
   call_action: `
     ${fontFamily}
@@ -92,16 +92,16 @@ const variant: object = {
     text-align: center;
     padding: 7px 9px;
     text-decoration: none;
-    background-color: ${colors.white};
+    background-color: ${colors.primary};
     border: 2px solid ${colors.primary};
     border-radius: 3px;
-    color: ${colors.black};
+    color: ${colors.white};
     cursor: pointer;
     transition: 250ms ease-in-out;
     
     &:hover {
-      background-color: ${colors.primary};
-      color: ${colors.white};
+      background-color: ${colors.white};
+      color: ${colors.black};
     }
     
     span {
