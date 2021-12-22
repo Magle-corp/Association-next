@@ -60,9 +60,7 @@ const TaxonomiesList = ({
                 <StyledLink
                   href={`/publications/articles?taxonomy=${taxonomy.title}`}
                 >
-                  <Text as="span" variant="tag">
-                    {taxonomy.title}
-                  </Text>
+                  <Text as="span">{taxonomy.title}</Text>
                 </StyledLink>
               </li>
             ))}
