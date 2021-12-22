@@ -15,8 +15,8 @@ const StyledButton = styled(Button)`
 `;
 
 const SelectedButton = styled(StyledButton)`
-  background-color: ${({ theme }) => theme.colors.primary};
-  color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.black};
 `;
 
 /**
