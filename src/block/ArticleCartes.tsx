@@ -51,8 +51,8 @@ const CardsWrapper = styled(Wrapper)<{ cardinality: number }>`
 
 const Card = styled(Wrapper)`
   display: grid;
-  grid-template-columns: 10px 10px 1fr 10px;
-  grid-template-rows: 10px max-content 10px max-content;
+  grid-template-columns: 10px 1fr 10px;
+  grid-template-rows: 10px max-content 10px max-content max-content;
   width: 220px;
   min-width: 200px;
   min-height: 150px;
@@ -72,9 +72,9 @@ const TitleWrapper = styled(Wrapper)`
 `;
 
 const ContentWrapper = styled(Wrapper)`
-  grid-column: 2/5;
+  grid-column: 2/3;
   grid-row: 3/5;
-  padding: 30px 10px 10px 10px;
+  padding: 20px 10px 10px 10px;
   background-color: ${({ theme }) => theme.colors.secondary};
 
   > *:not(:first-child) {
@@ -84,7 +84,10 @@ const ContentWrapper = styled(Wrapper)`
 
 const CardLink = styled(Link)`
   ${({ theme }) => theme.typography.call_action};
+  grid-column: 2/3;
+  grid-row: 5/6;
   padding: 5px 7px;
+  margin-top: 20px;
 `;
 
 /**
@@ -112,12 +115,10 @@ const ArticleCartes = ({ block }: Props) => {
               </TitleWrapper>
               <ContentWrapper>
                 <Text>{carte.content}</Text>
-                <CardLink
-                  href={`${carte.link.slug ? carte.link.slug : '/404'}`}
-                >
-                  <Text as="span">{carte.link_title}</Text>
-                </CardLink>
               </ContentWrapper>
+              <CardLink href={`${carte.link.slug ? carte.link.slug : '/404'}`}>
+                <Text as="span">{carte.link_title}</Text>
+              </CardLink>
             </Card>
           ))}
         </CardsWrapper>
