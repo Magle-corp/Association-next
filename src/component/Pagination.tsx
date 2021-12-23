@@ -34,7 +34,16 @@ const StyledButton = styled(Button)`
     disabled
       ? `2px solid ${theme.colors.grey}`
       : `2px solid ${theme.colors.primary}`};
+  background-color: ${({ theme, disabled }) =>
+    disabled ? theme.colors.grey : theme.colors.primary};
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'cursor')};
+
+  &:hover {
+    background-color: ${({ theme, disabled }) =>
+      disabled ? theme.colors.grey : theme.colors.white};
+    color: ${({ theme, disabled }) =>
+      disabled ? theme.colors.white : theme.colors.black};
+  }
 `;
 
 /**
