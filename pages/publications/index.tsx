@@ -57,6 +57,12 @@ const EventWrapper = styled(Wrapper)`
   }
 `;
 
+const ArticlesWrapper = styled(Wrapper)`
+  > *:not(:first-child) {
+    margin-top: 35px;
+  }
+`;
+
 const EventsLink = styled(Link)`
   ${({ theme }) => theme.typography.call_action}
 `;
@@ -82,18 +88,25 @@ const Home = ({ articles, events, identity }: Props) => {
               <EventHighlight event={events[0]} />
               <Wrapper data-cy="link">
                 <EventsLink href="/publications/evenements">
-                  <Text as="span">Voir tous les évènements</Text>
+                  <Text as="span">Tous les évènements</Text>
                 </EventsLink>
               </Wrapper>
             </EventWrapper>
           )}
           <Wrapper>
             <Title>Derniers articles</Title>
-            {articles.length > 0 ? (
-              <ArticlesList articles={articles} spacing={15} />
-            ) : (
-              <EmptyResult />
-            )}
+            <ArticlesWrapper>
+              {articles.length > 0 ? (
+                <ArticlesList articles={articles} spacing={15} />
+              ) : (
+                <EmptyResult />
+              )}
+              <Wrapper data-cy="link">
+                <EventsLink href="/publications/articles">
+                  <Text as="span">Tous les articles</Text>
+                </EventsLink>
+              </Wrapper>
+            </ArticlesWrapper>
           </Wrapper>
         </StyledAside>
       </Layout>
