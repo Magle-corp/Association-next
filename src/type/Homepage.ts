@@ -1,5 +1,5 @@
 // Use.
-import { Image, Slug } from './index';
+import { Image, Button } from './index';
 
 // Type for page d'accueil content type.
 
@@ -8,12 +8,7 @@ interface Homepage {
   title: string;
   content: string;
   slider: Slider;
-  main_link: {
-    id: number;
-    link_title: string;
-    link_seo: string;
-    link: Slug;
-  };
+  button: Button;
 }
 
 interface Slider {
@@ -25,9 +20,7 @@ interface Slide {
   id: string;
   image: Image;
   title: string;
-  link_title: string;
-  link_seo: string;
-  link: Slug;
+  button: Button;
 }
 
 export type { Homepage, Slider, Slide };
