@@ -1,5 +1,5 @@
 // Use.
-import { Image, Slug } from './index';
+import { Image, Button } from './index';
 
 // Type for article components.
 
@@ -13,11 +13,9 @@ interface Cartes {
 interface Carte {
   __component: string;
   id: number;
-  title?: string;
+  title: string;
   content: string;
-  link_title: string;
-  link_seo: string;
-  link: Slug;
+  button: Button;
 }
 
 interface TexteImage {

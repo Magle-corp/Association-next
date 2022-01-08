@@ -116,9 +116,17 @@ const ArticleCartes = ({ block }: Props) => {
               <ContentWrapper>
                 <Text>{carte.content}</Text>
               </ContentWrapper>
-              <CardLink href={`${carte.link.slug ? carte.link.slug : '/404'}`}>
-                <Text as="span">{carte.link_title}</Text>
-              </CardLink>
+              {carte.button && (
+                <CardLink
+                  href={`${
+                    carte.button.slug && carte.button.slug.slug !== undefined
+                      ? carte.button.slug.slug
+                      : '/404'
+                  }`}
+                >
+                  <Text as="span">{carte.button.title}</Text>
+                </CardLink>
+              )}
             </Card>
           ))}
         </CardsWrapper>

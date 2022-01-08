@@ -133,16 +133,23 @@ const Slider = ({ slider }: Props) => {
                     alt={slide.image.alternativeText}
                   />
                 </ImageWrapper>
-                <TitleWrapper data-cy="link">
-                  <Link
-                    href={`${slide.link.slug ? slide.link.slug : '/404'}`}
-                    variant="internal"
-                  >
-                    <Text as="span" variant="p">
-                      {slide.link_title}
-                    </Text>
-                  </Link>
-                </TitleWrapper>
+                {slide.button && (
+                  <TitleWrapper data-cy="link">
+                    <Link
+                      href={`${
+                        slide.button.slug &&
+                        slide.button.slug.slug !== undefined
+                          ? slide.button.slug.slug
+                          : '/404'
+                      }`}
+                      variant="internal"
+                    >
+                      <Text as="span" variant="p">
+                        {slide.button.title}
+                      </Text>
+                    </Link>
+                  </TitleWrapper>
+                )}
               </Slide>
             ))}
           </SlidesWrapper>

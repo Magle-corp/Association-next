@@ -115,7 +115,7 @@ const LinkWrapper = styled(Wrapper)`
   }
 `;
 
-const SlideLink = styled(Link)`
+const MainLink = styled(Link)`
   ${({ theme }) => theme.typography.call_action}
 `;
 
@@ -137,15 +137,15 @@ const HeroBanner = ({ homepage }: Props) => {
       <PresentationContainer>
         <Text variant="h4">{homepage.content}</Text>
         <LinkWrapper data-cy="link">
-          <SlideLink
+          <MainLink
             href={`${
-              homepage.main_link.link.slug
-                ? homepage.main_link.link.slug
+              homepage.button.slug && homepage.button.slug.slug !== undefined
+                ? homepage.button.slug.slug
                 : '/404'
             }`}
           >
-            <Text as="span">{homepage.main_link.link_title}</Text>
-          </SlideLink>
+            <Text as="span">{homepage.button.title}</Text>
+          </MainLink>
         </LinkWrapper>
       </PresentationContainer>
     </Container>
