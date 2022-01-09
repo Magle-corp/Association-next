@@ -71,8 +71,11 @@ const Wrapper = styled.div`
   }
 `;
 
-const ArrowIcon = styled(ArrowDown)`
+const ArrowIcon = styled(ArrowDown)<{ filtersViewState: boolean }>`
   display: block;
+  transition: 200ms ease-in-out;
+  ${({ filtersViewState }) =>
+    filtersViewState ? `transform: rotate(0deg)` : `transform: rotate(180deg)`};
 
   @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
     display: none;
@@ -113,7 +116,7 @@ const Articles = ({ articles, taxonomies, identity }: Props) => {
             }}
           >
             <FiltersTitle>Filtres</FiltersTitle>
-            <ArrowIcon />
+            <ArrowIcon filtersViewState={filtersViewState} />
           </Wrapper>
           <ArticlesFilters
             taxonomies={taxonomies}
