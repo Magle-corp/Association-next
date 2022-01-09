@@ -90,7 +90,7 @@ const variant: object = {
     flex-wrap: wrap;
     justify-content: center;
     text-align: center;
-    padding: 7px 9px;
+    padding: 5px 7px;
     text-decoration: none;
     background-color: ${colors.primary};
     border: 2px solid ${colors.primary};
