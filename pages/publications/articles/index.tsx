@@ -97,6 +97,7 @@ const Articles = ({ articles, taxonomies, identity }: Props) => {
     <>
       <Header identity={identity} />
       <StyledLayout>
+        <Breadcrumb />
         <StyledMain>
           <Title>Articles</Title>
           {stackedArticles.length > 0 ? (
