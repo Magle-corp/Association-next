@@ -6,6 +6,7 @@ import { Main, Aside, Wrapper } from '@magle-corp/design-system';
 import { Event, Taxonomy, Identity } from '../../../src/type';
 import {
   Header,
+  Breadcrumb,
   EmptyResult,
   EventsFilters,
   EventsList,
@@ -27,7 +28,7 @@ const StyledLayout = styled(Layout)`
 
   @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
     grid-template-columns: 250px 1fr;
-    grid-template-rows: 1fr;
+    grid-template-rows: 80px 1fr;
   }
 `;
 
@@ -38,7 +39,7 @@ const StyledMain = styled(Main)`
 
   @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
     grid-column: 2/3;
-    grid-row: 1/2;
+    grid-row: 2/3;
     margin-left: 35px;
     margin-top: 0;
   }
@@ -46,7 +47,7 @@ const StyledMain = styled(Main)`
 
 const StyledAside = styled(Aside)`
   grid-column: 1/2;
-  grid-row: 1/2;
+  grid-row: 2/3;
 `;
 
 const Title = styled.h2`
@@ -96,6 +97,7 @@ const Articles = ({ events, taxonomies, identity }: Props) => {
     <>
       <Header identity={identity} />
       <StyledLayout>
+        <Breadcrumb />
         <StyledMain gridColumn="2/3">
           <Title>Evenements</Title>
           {stackedEvents.length > 0 ? (

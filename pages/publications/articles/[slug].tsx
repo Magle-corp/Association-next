@@ -3,7 +3,12 @@ import qs from 'qs';
 import styled from 'styled-components';
 import { Main } from '@magle-corp/design-system';
 import { Article, Identity } from '../../../src/type';
-import { Header, ArticleDetail, Footer } from '../../../src/component';
+import {
+  Header,
+  Breadcrumb,
+  ArticleDetail,
+  Footer,
+} from '../../../src/component';
 import { Layout } from '../../../src/ui';
 
 interface StaticParams {
@@ -19,7 +24,12 @@ interface Props {
 
 const StyledLayout = styled(Layout)`
   grid-template-columns: 1fr;
-  grid-template-rows: max-content max-content;
+  grid-template-rows: 80px max-content;
+`;
+
+const StyledMain = styled(Main)`
+  grid-column: 1/2;
+  grid-row: 2/3;
 `;
 
 const Post = ({ article, identity }: Props) => {
@@ -27,9 +37,10 @@ const Post = ({ article, identity }: Props) => {
     <>
       <Header identity={identity} />
       <StyledLayout>
-        <Main>
+        <Breadcrumb />
+        <StyledMain>
           <ArticleDetail article={article[0]} />
-        </Main>
+        </StyledMain>
       </StyledLayout>
       <Footer identity={identity} />
     </>

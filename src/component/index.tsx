@@ -10,6 +10,7 @@ export { EventTeaser } from './view/EventTeaser';
 // Components.
 export { ArticlesFilters } from './ArticlesFilters';
 export { ArticlesList } from './ArticlesList';
+export { Breadcrumb } from './Breadcrumb';
 export { EmptyResult } from './EmptyResult';
 export { EventsFilters } from './EventsFilters';
 export { EventsList } from './EventsList';
