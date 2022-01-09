@@ -24,7 +24,7 @@ interface Props {
 
 const StyledLayout = styled(Layout)`
   grid-template-columns: 1fr;
-  grid-template-rows: max-content 1fr;
+  grid-template-rows: 60px max-content 1fr;
 
   @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
     grid-template-columns: 250px 1fr;
@@ -34,7 +34,7 @@ const StyledLayout = styled(Layout)`
 
 const StyledMain = styled(Main)`
   grid-column: 1/2;
-  grid-row: 2/3;
+  grid-row: 3/4;
   margin-top: 50px;
 
   @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
