@@ -51,8 +51,8 @@ const CardsWrapper = styled(Wrapper)<{ cardinality: number }>`
 
 const Card = styled(Wrapper)`
   display: grid;
-  grid-template-columns: 10px 1fr 10px;
-  grid-template-rows: 10px max-content 10px max-content max-content;
+  grid-template-columns: 5px 1fr 5px;
+  grid-template-rows: max-content max-content max-content;
   width: 220px;
   min-width: 200px;
   min-height: 150px;
@@ -65,7 +65,7 @@ const Card = styled(Wrapper)`
 const TitleWrapper = styled(Wrapper)`
   z-index: 10;
   grid-column: 1/4;
-  grid-row: 1/4;
+  grid-row: 1/2;
   padding: 10px;
   background-color: ${({ theme }) => theme.colors.primary};
   color: ${({ theme }) => theme.colors.white};
@@ -73,8 +73,8 @@ const TitleWrapper = styled(Wrapper)`
 
 const ContentWrapper = styled(Wrapper)`
   grid-column: 2/3;
-  grid-row: 3/5;
-  padding: 20px 10px 10px 10px;
+  grid-row: 2/3;
+  padding: 10px;
   background-color: ${({ theme }) => theme.colors.secondary};
 
   > *:not(:first-child) {

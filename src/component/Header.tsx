@@ -115,12 +115,8 @@ const Menu = styled.ul`
   }
 `;
 
-const StyledArrowIcon = styled(ArrowDown)`
-  margin-left: 5px;
-`;
-
 const SubMenu = styled.ul`
-  margin: 10px 0 0 15px;
+  margin: 15px 0 0 15px;
   list-style: none;
 
   > *:not(:first-child) {
@@ -130,9 +126,15 @@ const SubMenu = styled.ul`
   @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
     display: none;
     position: absolute;
-    width: 150px;
-    padding-top: 10px;
+    left: -8px;
+    width: 100px;
+    padding: 10px;
     margin: 0;
+    background-color: ${({ theme }) => theme.colors.primary};
+
+    span {
+      color: ${({ theme }) => theme.colors.white};
+    }
   }
 `;
 
@@ -176,7 +178,6 @@ const Header = ({ identity }: Props) => {
             <Link href="/publications">
               <Text as="span" variant="h4">
                 Publications
-                <StyledArrowIcon width={20} height={20} />
               </Text>
             </Link>
             <SubMenu>

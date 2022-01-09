@@ -54,6 +54,14 @@ const Title = styled.h2`
   margin-bottom: 70px;
 `;
 
+const FiltersTitle = styled(Title)`
+  margin-bottom: 20px;
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
+    margin-bottom: 70px;
+  }
+`;
+
 const StyledWrapper = styled(Wrapper)`
   display: flex;
   flex-direction: row;
@@ -63,8 +71,11 @@ const StyledWrapper = styled(Wrapper)`
   }
 `;
 
-const ArrowIcon = styled(ArrowDown)`
+const ArrowIcon = styled(ArrowDown)<{ filtersViewState: boolean }>`
   display: block;
+  transition: 200ms ease-in-out;
+  ${({ filtersViewState }) =>
+    filtersViewState ? `transform: rotate(0deg)` : `transform: rotate(180deg)`};
 
   @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
     display: none;
@@ -100,8 +111,8 @@ const Articles = ({ events, taxonomies, identity }: Props) => {
               setFiltersViewState(!filtersViewState);
             }}
           >
-            <Title>Filtres</Title>
-            <ArrowIcon />
+            <FiltersTitle>Filtres</FiltersTitle>
+            <ArrowIcon filtersViewState={filtersViewState} />
           </StyledWrapper>
           <EventsFilters
             taxonomies={taxonomies}

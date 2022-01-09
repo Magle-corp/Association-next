@@ -19,7 +19,7 @@ const StyledLayout = styled(UiLayout)`
   margin: 0 auto;
 
   @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
-    padding: 100px 20px 120px 20px;
+    padding: 120px 20px 120px 20px;
   }
 
   @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
