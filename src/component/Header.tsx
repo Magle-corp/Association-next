@@ -5,13 +5,13 @@ import styled from 'styled-components';
 import { Text, Wrapper } from '@magle-corp/design-system';
 import { Identity } from '../type';
 import { Link } from '../ui';
-import { BurgerMenu, ArrowDown } from '../theme/icon';
+import { BurgerMenu, Cross } from '../theme/icon';
 
 interface Props {
   identity: Identity;
 }
 
-const StyledHeader = styled.header`
+const StyledHeader = styled.header<{ view: boolean }>`
   position: fixed;
   z-index: 100;
   display: flex;
@@ -21,7 +21,8 @@ const StyledHeader = styled.header`
   width: 100%;
   min-height: 70px;
   padding-bottom: 10px;
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme, view }) =>
+    view ? theme.colors.grey : theme.colors.white};
 
   > *:not(:last-child) {
     margin: 0 20px;
@@ -33,6 +34,7 @@ const StyledHeader = styled.header`
     max-width: ${({ theme }) => theme.breakpoints.maximumWidth};
     padding: 0 20px;
     margin: 0 auto;
+    background-color: ${({ theme }) => theme.colors.white};
 
     > *:not(:last-child) {
       margin: 0;
@@ -75,7 +77,7 @@ const Navbar = styled.nav<{ view: boolean }>`
   top: 100%;
   width: 100%;
   padding: 20px;
-  background-color: ${theme.colors.white}
+  background-color: ${theme.colors.grey}
   `
       : ``};
 
@@ -85,6 +87,7 @@ const Navbar = styled.nav<{ view: boolean }>`
     top: 0;
     width: max-content;
     padding: 0;
+    background-color: ${({ theme }) => theme.colors.white};
   }
 `;
 
@@ -149,7 +152,7 @@ const Header = ({ identity }: Props) => {
   const [navbarView, setNavbarView] = useState(Boolean);
 
   return (
-    <StyledHeader data-cy="header">
+    <StyledHeader data-cy="header" view={navbarView}>
       <Brand direction="row">
         <Logo>
           <Image
@@ -167,11 +170,19 @@ const Header = ({ identity }: Props) => {
           </Link>
         </Wrapper>
       </Brand>
-      <StyledBurgerMenu
-        width={45}
-        height={45}
-        onClick={() => setNavbarView(!navbarView)}
-      />
+      {navbarView ? (
+        <Cross
+          width={45}
+          height={45}
+          onClick={() => setNavbarView(!navbarView)}
+        />
+      ) : (
+        <StyledBurgerMenu
+          width={45}
+          height={45}
+          onClick={() => setNavbarView(!navbarView)}
+        />
+      )}
       <Navbar view={navbarView}>
         <Menu>
           <li data-cy="link">

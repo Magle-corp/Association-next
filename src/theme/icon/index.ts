@@ -4,6 +4,7 @@ export { BurgerMenu } from './BurgerMenu';
 export { Calendar } from './Calendar';
 export { Circle } from './Circle';
 export { CloseEvent } from './CloseEvent';
+export { Cross } from './Cross';
 export { Dot } from './Dot';
 export { ExternalLink } from './ExternalLink';
 export { Facebook } from './Facebook';
