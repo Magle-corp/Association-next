@@ -54,6 +54,14 @@ const Title = styled.h2`
   margin-bottom: 70px;
 `;
 
+const FiltersTitle = styled(Title)`
+  margin-bottom: 20px;
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
+    margin-bottom: 70px;
+  }
+`;
+
 const StyledWrapper = styled(Wrapper)`
   display: flex;
   flex-direction: row;
@@ -100,7 +108,7 @@ const Articles = ({ events, taxonomies, identity }: Props) => {
               setFiltersViewState(!filtersViewState);
             }}
           >
-            <Title>Filtres</Title>
+            <FiltersTitle>Filtres</FiltersTitle>
             <ArrowIcon />
           </StyledWrapper>
           <EventsFilters
