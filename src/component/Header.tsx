@@ -54,12 +54,17 @@ const Logo = styled(Wrapper)`
   margin-right: 10px;
 `;
 
-const StyledBurgerMenu = styled(BurgerMenu)`
+const BurgerMenuIcon = styled(BurgerMenu)`
   display: block;
-  width: 40px;
-  min-width: 40px;
-  height: 40px;
-  min-height: 40px;
+  animation: ${({ theme }) => theme.animations.fadeIn} 500ms linear;
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
+    display: none;
+  }
+`;
+
+const CrossIcon = styled(Cross)`
+  animation: ${({ theme }) => theme.animations.fadeIn} 500ms linear;
 
   @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
     display: none;

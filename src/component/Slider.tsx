@@ -35,6 +35,7 @@ const SlidesWrapper = styled.div<{ slide: string }>`
 const Slide = styled(Wrapper)`
   display: none;
   width: 100%;
+  animation: ${({ theme }) => theme.animations.fadeIn} 500ms linear;
 `;
 
 const ImageWrapper = styled(Wrapper)`

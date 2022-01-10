@@ -40,6 +40,12 @@ const ArrowIcon = styled(ArrowDown)`
   transform: rotate(270deg);
 `;
 
+/**
+ * Provide component "Breadcrumb".
+ *
+ * @param className
+ *   String for override Styled component style.
+ */
 const Breadcrumb = ({ className }: Props) => {
   const router = useRouter();
   const isThereQuery = !!(router.query && router.query.slug);
