@@ -38,6 +38,10 @@ const DateWrapper = styled(Wrapper)`
     margin-right: 10px;
   }
 
+  p {
+    color: ${({ theme }) => theme.colors.white};
+  }
+
   > *:not(:first-child) {
     margin-top: 10px;
   }
@@ -45,6 +49,7 @@ const DateWrapper = styled(Wrapper)`
 
 const StyledDate = styled(Text)`
   ${({ theme }) => theme.typography.h4}
+  color: ${({ theme }) => theme.colors.white};
   line-height: 3.7rem;
 `;
 

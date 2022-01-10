@@ -22,7 +22,7 @@ const StyledHeader = styled.header<{ view: boolean }>`
   min-height: 70px;
   padding-bottom: 10px;
   background-color: ${({ theme, view }) =>
-    view ? theme.colors.grey : theme.colors.white};
+    view ? theme.colors.secondary : theme.colors.white};
 
   > *:not(:last-child) {
     margin: 0 20px;
@@ -56,7 +56,7 @@ const Logo = styled(Wrapper)`
 
 const BurgerMenuIcon = styled(BurgerMenu)`
   display: block;
-  animation: ${({ theme }) => theme.animations.fadeIn} 500ms linear;
+  animation: ${({ theme }) => theme.animations.fadeIn} 300ms linear;
 
   @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
     display: none;
@@ -64,7 +64,7 @@ const BurgerMenuIcon = styled(BurgerMenu)`
 `;
 
 const CrossIcon = styled(Cross)`
-  animation: ${({ theme }) => theme.animations.fadeIn} 500ms linear;
+  animation: ${({ theme }) => theme.animations.fadeInRotate} 300ms linear;
 
   @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
     display: none;
@@ -80,9 +80,10 @@ const Navbar = styled.nav<{ view: boolean }>`
   position: absolute;
   display: flex;
   top: 100%;
-  width: 100%;
+  width: 100vh;
+  height: 100vh;
   padding: 20px;
-  background-color: ${theme.colors.grey}
+  background-color: ${theme.colors.secondary};
   `
       : ``};
 
@@ -134,16 +135,12 @@ const SubMenu = styled.ul`
   @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
     display: none;
     position: absolute;
-    left: -8px;
+    left: -15px;
     width: 100px;
-    padding: 10px;
+    padding: 15px;
     margin: 0;
-    background-color: ${({ theme }) => theme.colors.primary};
-    animation: ${({ theme }) => theme.animations.appearTop} 200ms linear;
-
-    span {
-      color: ${({ theme }) => theme.colors.white};
-    }
+    background-color: ${({ theme }) => theme.colors.secondary};
+    animation: ${({ theme }) => theme.animations.appearTopFadeIn} 200ms linear;
   }
 `;
 

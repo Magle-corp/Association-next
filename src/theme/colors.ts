@@ -1,7 +1,7 @@
 const colors: object = {
   primary: '#00995a',
-  secondary: '#b2e0cd',
-  black: '#000000',
+  secondary: '#cceade',
+  black: '#222222',
   white: '#ffffff',
   grey: '#bfbfbf',
 };

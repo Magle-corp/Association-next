@@ -11,6 +11,22 @@ const animations: object = {
   appearTop: keyframes`
     from {
       transform: translateY(-10px);
+      to {
+        transform: translateY(0px);
+      }
+  `,
+  fadeInRotate: keyframes`
+    from {
+      opacity: 0;
+      transform: rotate(180deg);
+      to {
+        opacity: 100%;
+        transform: rotate(0deg);
+      }
+  `,
+  appearTopFadeIn: keyframes`
+    from {
+      transform: translateY(-10px);
       opacity: 0;
       to {
         transform: translateY(0px);

@@ -68,7 +68,10 @@ const TitleWrapper = styled(Wrapper)`
   grid-row: 1/2;
   padding: 10px;
   background-color: ${({ theme }) => theme.colors.primary};
-  color: ${({ theme }) => theme.colors.white};
+
+  h4 {
+    color: ${({ theme }) => theme.colors.white};
+  }
 `;
 
 const ContentWrapper = styled(Wrapper)`

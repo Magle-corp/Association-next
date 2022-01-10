@@ -77,13 +77,23 @@ const DotesWrapper = styled(Wrapper)`
   }
 `;
 
-const StyledButton = styled(Button)`
+const StyledButton = styled(Button)<{ slide: string }>`
   width: max-content;
   height: max-content;
   padding: 0;
   color: unset;
   background-color: unset;
   border: unset;
+
+  ${({ theme, slide }) => `
+    > #dot_${slide} {
+      fill: ${theme.colors.black};
+    } 
+  `}
+
+  > svg {
+    stroke: ${({ theme }) => theme.colors.black};
+  }
 
   &:hover {
     background-color: unset;
@@ -157,11 +167,12 @@ const Slider = ({ slider }: Props) => {
           <DotesWrapper direction="row">
             {slider.slides.map((slide) => (
               <StyledButton
+                slide={currentSlide.id}
                 key={`slide_${slide.id}`}
                 onClick={() => handleManualSlide(slide)}
               >
                 {currentSlide.id === slide.id ? (
-                  <Dot width={12} height={12} />
+                  <Dot width={12} height={12} id={`dot_${slide.id}`} />
                 ) : (
                   <Circle width={12} height={12} />
                 )}

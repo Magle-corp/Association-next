@@ -71,6 +71,7 @@ const TitleContainer = styled.div`
 
 const Title = styled.h1`
   ${({ theme }) => theme.typography.h1};
+  color: ${({ theme }) => theme.colors.white};
   letter-spacing: 0.5rem;
   text-shadow: 3.5px 3.5px ${({ theme }) => theme.colors.black};
 `;
