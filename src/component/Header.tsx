@@ -139,6 +139,7 @@ const SubMenu = styled.ul`
     padding: 10px;
     margin: 0;
     background-color: ${({ theme }) => theme.colors.primary};
+    animation: ${({ theme }) => theme.animations.appearTop} 200ms linear;
 
     span {
       color: ${({ theme }) => theme.colors.white};
@@ -176,15 +177,15 @@ const Header = ({ identity }: Props) => {
         </Wrapper>
       </Brand>
       {navbarView ? (
-        <Cross
-          width={45}
-          height={45}
+        <CrossIcon
+          width={40}
+          height={40}
           onClick={() => setNavbarView(!navbarView)}
         />
       ) : (
-        <StyledBurgerMenu
-          width={45}
-          height={45}
+        <BurgerMenuIcon
+          width={40}
+          height={40}
           onClick={() => setNavbarView(!navbarView)}
         />
       )}
