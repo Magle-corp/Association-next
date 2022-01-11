@@ -13,6 +13,7 @@ interface Props {
 const Container = styled(Wrapper)`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   margin-bottom: 80px;
 
@@ -48,8 +49,7 @@ const ArrowIcon = styled(ArrowDown)`
  */
 const Breadcrumb = ({ className }: Props) => {
   const router = useRouter();
-  const routerQuery = router.query ? router.query : false;
-  const routes = BreadcrumbBuilder(router.route, routerQuery);
+  const routes = BreadcrumbBuilder(router.route, router.query);
 
   return (
     <Container className={className}>
