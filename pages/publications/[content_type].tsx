@@ -211,7 +211,6 @@ export async function getStaticPaths() {
     paths: [
       { params: { content_type: 'articles' } },
       { params: { content_type: 'evenements' } },
-      { params: { content_type: 'prout' } },
     ],
     fallback: false,
   };
