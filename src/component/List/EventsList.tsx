@@ -1,7 +1,7 @@
 // Use.
 import { List } from '@magle-corp/design-system';
-import { Event } from '../type';
-import { EventTeaser } from './index';
+import { Event } from '../../type';
+import { EventTeaser } from '../index';
 
 interface Props {
   events: Event[];

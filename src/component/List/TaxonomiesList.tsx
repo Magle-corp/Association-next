@@ -1,8 +1,8 @@
 // Use.
 import styled from 'styled-components';
 import { Text } from '@magle-corp/design-system';
-import { Taxonomy } from '../type';
-import { Link } from '../ui';
+import { Taxonomy } from '../../type';
+import { Link } from '../../ui';
 
 interface Props {
   className?: string;

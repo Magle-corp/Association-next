@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { format } from 'date-fns';
 import { Wrapper, Text } from '@magle-corp/design-system';
 import { Article } from '../../type';
-import { TaxonomiesList } from '../TaxonomiesList';
+import { TaxonomiesList } from '../List/TaxonomiesList';
 import { Link } from '../../ui';
 
 interface Props {

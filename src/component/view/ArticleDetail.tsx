@@ -5,7 +5,7 @@ import { format } from 'date-fns';
 import { Wrapper, Text } from '@magle-corp/design-system';
 import { Article } from '../../type';
 import { BlockBuilder } from '../../util';
-import { TaxonomiesList } from '../TaxonomiesList';
+import { TaxonomiesList } from '../List/TaxonomiesList';
 
 interface Props {
   article: Article;

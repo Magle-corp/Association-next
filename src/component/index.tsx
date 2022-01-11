@@ -1,5 +1,4 @@
 // Filter components.
-export { FiltersArchive } from './filter/FiltersArchive';
 export { FiltersTaxo } from './filter/FiltersTaxo';
 // Views components.
 export { ArticleDetail } from './view/ArticleDetail';
@@ -8,14 +7,14 @@ export { ArticleTeaser } from './view/ArticleTeaser';
 export { EventHighlight } from './view/EventHighlight';
 export { EventTeaser } from './view/EventTeaser';
 // Components.
-export { ArticlesList } from './ArticlesList';
+export { ArticlesList } from './List/ArticlesList';
 export { Breadcrumb } from './Breadcrumb';
 export { EmptyResult } from './EmptyResult';
-export { EventsList } from './EventsList';
-export { Filters } from './Filters';
+export { EventsList } from './List/EventsList';
+export { Filters } from './filter/Filters';
 export { Footer } from './Footer';
 export { Header } from './Header';
 export { HeroBanner } from './HeroBanner';
 export { Pagination } from './Pagination';
 export { Slider } from './Slider';
-export { TaxonomiesList } from './TaxonomiesList';
+export { TaxonomiesList } from './List/TaxonomiesList';

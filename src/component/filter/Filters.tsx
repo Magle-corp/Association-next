@@ -1,9 +1,9 @@
 // Use.
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
-import { Article, Event, Taxonomy } from '../type';
-import { ItemsStacker, ItemsTaxoFilter } from '../util';
-import { FiltersTaxo } from './index';
+import { Article, Event, Taxonomy } from '../../type';
+import { ItemsStacker, ItemsTaxoFilter } from '../../util';
+import { FiltersTaxo } from '../index';
 import styled from 'styled-components';
 import { Wrapper } from '@magle-corp/design-system';
 
