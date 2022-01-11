@@ -10,10 +10,9 @@ interface Props {
   items: Article[] | Event[] | Taxonomy[];
   variant:
     | 'article_default'
-    | 'article_teaser'
-    | 'event_teaser'
     | 'taxo_default'
-    | 'taxo_link';
+    | 'taxo_link'
+    | `${string}_teaser`;
   spacing: number;
 }
 

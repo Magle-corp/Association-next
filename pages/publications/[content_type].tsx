@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import qs from 'qs';
 import styled from 'styled-components';
 import { Main, Aside } from '@magle-corp/design-system';
-import { Article, Taxonomy, Identity } from '../../../src/type';
+import { Article, Event, Taxonomy, Identity } from '../../src/type';
 import {
   Header,
   Breadcrumb,
@@ -12,12 +12,13 @@ import {
   ItemsList,
   Pagination,
   Footer,
-} from '../../../src/component';
-import { Layout } from '../../../src/ui';
-import { ArrowDown } from '../../../src/theme/icon';
+} from '../../src/component';
+import { Layout } from '../../src/ui';
+import { ArrowDown } from '../../src/theme/icon';
 
 interface Props {
-  articles: Article[];
+  contentItems: Article[] | Event[];
+  contentType: string;
   taxonomies: Taxonomy[];
   identity: Identity;
 }
@@ -87,27 +88,32 @@ const ArrowIcon = styled(ArrowDown)<{ filtersViewState: boolean }>`
   }
 `;
 
-const Articles = ({ articles, taxonomies, identity }: Props) => {
-  const [stackedArticles, setStackedArticles] = useState<Array<Article[]>>([]);
+const ContentTypeListPage = ({
+  contentItems,
+  contentType,
+  taxonomies,
+  identity,
+}: Props) => {
+  const [stackedItems, setStackedItems] = useState<Array<Event[]>>([]);
   const [page, setPage] = useState<number>(0);
   const [lastPage, setLastPage] = useState<number>(0);
   const [filtersViewState, setFiltersViewState] = useState<boolean>(false);
 
   useEffect(() => {
-    setLastPage(stackedArticles.length - 1);
-  }, [stackedArticles]);
+    setLastPage(stackedItems.length - 1);
+  }, [stackedItems]);
 
   return (
     <>
       <Header identity={identity} />
       <StyledLayout>
         <StyledBreadcrumb />
-        <StyledMain>
-          <Title>Articles</Title>
-          {stackedArticles.length > 0 ? (
+        <StyledMain gridColumn="2/3">
+          <Title>{contentType == 'article' ? 'Articles' : 'Evenements'}</Title>
+          {stackedItems.length > 0 ? (
             <ItemsList
-              items={stackedArticles[page]}
-              variant="article_teaser"
+              items={stackedItems[page]}
+              variant={`${contentType}_teaser`}
               spacing={60}
             />
           ) : (
@@ -115,7 +121,7 @@ const Articles = ({ articles, taxonomies, identity }: Props) => {
           )}
           <Pagination page={page} lastPage={lastPage} setPage={setPage} />
         </StyledMain>
-        <StyledAside>
+        <StyledAside gridColumn="1/2">
           <Wrapper
             onClick={() => {
               setFiltersViewState(!filtersViewState);
@@ -126,8 +132,8 @@ const Articles = ({ articles, taxonomies, identity }: Props) => {
           </Wrapper>
           <ItemsFilters
             taxonomies={taxonomies}
-            items={articles}
-            setStackedItems={setStackedArticles}
+            items={contentItems}
+            setStackedItems={setStackedItems}
             setPage={setPage}
             filtersViewState={filtersViewState}
             setFiltersViewState={setFiltersViewState}
@@ -139,18 +145,41 @@ const Articles = ({ articles, taxonomies, identity }: Props) => {
   );
 };
 
-export default Articles;
+export default ContentTypeListPage;
 
-export async function getStaticProps() {
-  const articlesQuery = `/articles?${qs.stringify({
-    _sort: 'created_at:DESC',
-  })}`;
-  const articlesResult = await fetch(`${process.env.BASE_URL}${articlesQuery}`);
-  const articles = await articlesResult.json();
+type Params = {
+  params: {
+    content_type: string;
+  };
+};
+
+export async function getStaticProps(context: Params) {
+  let contentItems: object = {};
+  let contentType: string = '';
+
+  if (context.params.content_type == 'articles') {
+    const articlesQuery = `/articles?${qs.stringify({
+      _sort: 'created_at:DESC',
+    })}`;
+    const articlesResult = await fetch(
+      `${process.env.BASE_URL}${articlesQuery}`
+    );
+    contentItems = await articlesResult.json();
+    contentType = 'article';
+  }
+
+  if (context.params.content_type == 'evenements') {
+    const eventsQuery = `/evenements?${qs.stringify({
+      _sort: 'date:DESC',
+    })}`;
+    const eventsResult = await fetch(`${process.env.BASE_URL}${eventsQuery}`);
+    contentItems = await eventsResult.json();
+    contentType = 'event';
+  }
 
   const taxonomiesQuery = `/taxonomies?${qs.stringify({
     _sort: 'title:ASC',
-    _where: [{ articles_ne: null }],
+    _where: [{ evenements_ne: null }],
   })}`;
   const taxonomiesResult = await fetch(
     `${process.env.BASE_URL}${taxonomiesQuery}`
@@ -162,7 +191,18 @@ export async function getStaticProps() {
   const identity = await identityResult.json();
 
   return {
-    props: { articles, taxonomies, identity },
+    props: { contentItems, contentType, taxonomies, identity },
     revalidate: 60 * 60,
+  };
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [
+      { params: { content_type: 'articles' } },
+      { params: { content_type: 'evenements' } },
+      { params: { content_type: 'prout' } },
+    ],
+    fallback: false,
   };
 }
