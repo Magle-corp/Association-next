@@ -20,10 +20,15 @@ const BreadcrumbBuilder = (rawRoute: string, rawQuery: ParsedUrlQuery) => {
   routes.shift();
   const builtRoutes: Array<Route> = [];
 
-  if (rawQuery && rawQuery.slug) {
-    routes.pop();
-    routes.push(rawQuery.slug as string);
-  }
+  routes.forEach((route, index) => {
+    if (rawQuery.slug && route == '[slug]') {
+      routes[index] = rawQuery.slug as string;
+    }
+
+    if (rawQuery.content_type && route == '[content_type]') {
+      routes[index] = rawQuery.content_type as string;
+    }
+  });
 
   routes.forEach((route) => {
     const requiredRoutes = routes.slice(0, routes.indexOf(route) + 1);
