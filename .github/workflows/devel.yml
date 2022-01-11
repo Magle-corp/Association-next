@@ -18,3 +18,9 @@ jobs:
         run: yarn install --frozen-lockfile
       - name: Run test
         run: yarn jest --coverage
+      - name: Dicord notification
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: Ilshidur/action-discord@master
+        with:
+          args: 'La pull request {{ EVENT_PAYLOAD.pull_request.id }} a passé les tests avec succès ! PR mergé sur devel.'
