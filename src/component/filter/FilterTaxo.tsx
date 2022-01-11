@@ -29,7 +29,7 @@ const SelectedButton = styled(StyledButton)`
  * @param setFilters
  *   Function for set "filters" state.
  */
-const FiltersTaxo = ({ taxonomies, filters, setFilters }: Props) => {
+const FilterTaxo = ({ taxonomies, filters, setFilters }: Props) => {
   return (
     <Wrapper direction="row">
       {taxonomies.map((taxonomy) => (
@@ -57,4 +57,4 @@ const FiltersTaxo = ({ taxonomies, filters, setFilters }: Props) => {
   );
 };
 
-export { FiltersTaxo };
+export { FilterTaxo };

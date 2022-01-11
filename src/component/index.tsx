@@ -1,6 +1,6 @@
 // Filter components.
-export { FiltersArchive } from './filter/FiltersArchive';
-export { FiltersTaxo } from './filter/FiltersTaxo';
+export { FilterTaxo } from './filter/FilterTaxo';
+export { ItemsFilters } from './filter/ItemsFilters';
 // Views components.
 export { ArticleDetail } from './view/ArticleDetail';
 export { ArticleHighlight } from './view/ArticleHighlight';
@@ -8,15 +8,11 @@ export { ArticleTeaser } from './view/ArticleTeaser';
 export { EventHighlight } from './view/EventHighlight';
 export { EventTeaser } from './view/EventTeaser';
 // Components.
-export { ArticlesFilters } from './ArticlesFilters';
-export { ArticlesList } from './ArticlesList';
 export { Breadcrumb } from './Breadcrumb';
 export { EmptyResult } from './EmptyResult';
-export { EventsFilters } from './EventsFilters';
-export { EventsList } from './EventsList';
 export { Footer } from './Footer';
 export { Header } from './Header';
 export { HeroBanner } from './HeroBanner';
+export { ItemsList } from './ItemsList';
 export { Pagination } from './Pagination';
 export { Slider } from './Slider';
-export { TaxonomiesList } from './TaxonomiesList';

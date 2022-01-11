@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { format, formatDistance, isBefore } from 'date-fns';
 import { Wrapper, Text } from '@magle-corp/design-system';
 import { Event } from '../../type';
-import { TaxonomiesList } from '../TaxonomiesList';
+import { ItemsList } from '../ItemsList';
 import { AvailableEvent, CloseEvent } from '../../theme/icon';
 
 interface Props {
@@ -107,7 +107,13 @@ const EventTeaser = ({ event }: Props) => {
           <Text as="h4" variant="h3">
             {event.title}
           </Text>
-          <TaxonomiesList taxonomies={event.taxonomies} />
+          {event.taxonomies && (
+            <ItemsList
+              spacing={0}
+              items={event.taxonomies}
+              variant="taxo_default"
+            />
+          )}
         </Wrapper>
         <Text>{event.content}</Text>
       </ContentWrapper>
