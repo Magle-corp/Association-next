@@ -1,3 +1,6 @@
+// Use.
+import { ParsedUrlQuery } from 'querystring';
+
 interface Route {
   route: string;
   url: string;
@@ -7,29 +10,41 @@ interface Route {
  * Return an array of custom Route object for build a breadcrumb
  * depending on the current routes.
  *
- * @param raw_routes
+ * @param rawRoutes
  *   The route strings.
- * @param query
- *   True if there is a query, otherwise false.
+ * @param rawQuery
+ *   The ParsedUrlQuery if there is a query, otherwise false.
  */
-const BreadcrumbBuilder = (raw_routes: string, query: boolean) => {
-  const routes = raw_routes.replace(/\/\[slug]/gm, '').split('/');
+const BreadcrumbBuilder = (
+  rawRoutes: string,
+  rawQuery: ParsedUrlQuery | boolean
+) => {
+  const routes = rawRoutes.replace(/\/\[slug]/gm, '').split('/');
   routes.shift();
-  if (!query) routes.pop();
-  const built_routes: Array<Route> = [];
 
-  routes.forEach((route) => {
-    const required_routes = routes.slice(0, routes.indexOf(route) + 1);
-    let built_route = '';
+  if (rawQuery) {
+    console.log(rawQuery);
+    // const query = rawQuery.replace(/\/\[slug]/gm, '').split('/');
+  }
+  routes.shift();
 
-    required_routes.forEach((required_route) => {
-      built_route = built_route + `/${required_route}`;
+  const builtRoutes: Array<Route> = [];
+
+  routes.forEach((route, index) => {
+    const requiredRoutes = routes.slice(0, routes.indexOf(route) + 1);
+    let builtRoute = '';
+
+    requiredRoutes.forEach((requiredRoute) => {
+      builtRoute = builtRoute + `/${requiredRoute}`;
     });
 
-    built_routes.push({ route: route, url: built_route });
+    if (index === routes.length - 1) {
+    }
+
+    builtRoutes.push({ route: route, url: builtRoute });
   });
 
-  return built_routes;
+  return builtRoutes;
 };
 
 export { BreadcrumbBuilder };

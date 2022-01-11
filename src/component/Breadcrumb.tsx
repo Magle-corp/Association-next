@@ -48,8 +48,8 @@ const ArrowIcon = styled(ArrowDown)`
  */
 const Breadcrumb = ({ className }: Props) => {
   const router = useRouter();
-  const isThereQuery = !!(router.query && router.query.slug);
-  const routes = BreadcrumbBuilder(router.route, isThereQuery);
+  const routerQuery = router.query ? router.query : false;
+  const routes = BreadcrumbBuilder(router.route, routerQuery);
 
   return (
     <Container className={className}>
