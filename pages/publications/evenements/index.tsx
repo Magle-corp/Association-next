@@ -8,7 +8,7 @@ import {
   Header,
   Breadcrumb,
   EmptyResult,
-  EventsFilters,
+  Filters,
   EventsList,
   Pagination,
   Footer,
@@ -120,12 +120,13 @@ const Articles = ({ events, taxonomies, identity }: Props) => {
             <FiltersTitle>Filtres</FiltersTitle>
             <ArrowIcon filtersViewState={filtersViewState} />
           </StyledWrapper>
-          <EventsFilters
+          <Filters
             taxonomies={taxonomies}
-            events={events}
-            setStackedEvents={setStackedEvents}
+            items={events}
+            setStackedItems={setStackedEvents}
             setPage={setPage}
             filtersViewState={filtersViewState}
+            setFiltersViewState={setFiltersViewState}
           />
         </StyledAside>
       </StyledLayout>

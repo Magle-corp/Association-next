@@ -8,7 +8,7 @@ import {
   Header,
   Breadcrumb,
   EmptyResult,
-  ArticlesFilters,
+  Filters,
   ArticlesList,
   Pagination,
   Footer,
@@ -124,10 +124,10 @@ const Articles = ({ articles, taxonomies, identity }: Props) => {
             <FiltersTitle>Filtres</FiltersTitle>
             <ArrowIcon filtersViewState={filtersViewState} />
           </Wrapper>
-          <ArticlesFilters
+          <Filters
             taxonomies={taxonomies}
-            articles={articles}
-            setStackedArticles={setStackedArticles}
+            items={articles}
+            setStackedItems={setStackedArticles}
             setPage={setPage}
             filtersViewState={filtersViewState}
             setFiltersViewState={setFiltersViewState}
