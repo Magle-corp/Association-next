@@ -8,8 +8,8 @@ import {
   Header,
   Breadcrumb,
   EmptyResult,
-  Filters,
-  ArticlesList,
+  ItemsFilters,
+  ItemsList,
   Pagination,
   Footer,
 } from '../../../src/component';
@@ -105,9 +105,9 @@ const Articles = ({ articles, taxonomies, identity }: Props) => {
         <StyledMain>
           <Title>Articles</Title>
           {stackedArticles.length > 0 ? (
-            <ArticlesList
-              articles={stackedArticles[page]}
-              variant="teaser"
+            <ItemsList
+              items={stackedArticles[page]}
+              variant="article_teaser"
               spacing={60}
             />
           ) : (
@@ -124,7 +124,7 @@ const Articles = ({ articles, taxonomies, identity }: Props) => {
             <FiltersTitle>Filtres</FiltersTitle>
             <ArrowIcon filtersViewState={filtersViewState} />
           </Wrapper>
-          <Filters
+          <ItemsFilters
             taxonomies={taxonomies}
             items={articles}
             setStackedItems={setStackedArticles}

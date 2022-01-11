@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { format } from 'date-fns';
 import { Wrapper, Text } from '@magle-corp/design-system';
 import { Article } from '../../type';
-import { TaxonomiesList } from '../List/TaxonomiesList';
+import { ItemsList } from '../ItemsList';
 import { Link } from '../../ui';
 
 interface Props {
@@ -61,7 +61,13 @@ const ArticleHighlight = ({ article }: Props) => {
           <StyledTitle variant="h3">{article.title}</StyledTitle>
           <Text>{format(new Date(article.created_at), 'd MMM y')}</Text>
         </Wrapper>
-        <TaxonomiesList taxonomies={article.taxonomies} variant="link" />
+        {article.taxonomies && (
+          <ItemsList
+            spacing={0}
+            items={article.taxonomies}
+            variant="taxo_link"
+          />
+        )}
       </Wrapper>
       <Description>{article.description}</Description>
       <Wrapper data-cy="link">

@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { Article, Event, Taxonomy } from '../../type';
 import { ItemsStacker, ItemsTaxoFilter } from '../../util';
-import { FiltersTaxo } from '../index';
+import { FilterTaxo } from '../index';
 import styled from 'styled-components';
 import { Wrapper } from '@magle-corp/design-system';
 
@@ -44,7 +44,7 @@ const Container = styled(Wrapper)<{ viewState: boolean }>`
  * @param filtersViewState
  *   State "viewState".
  */
-const Filters = ({
+const ItemsFilters = ({
   taxonomies,
   items,
   setStackedItems,
@@ -81,7 +81,7 @@ const Filters = ({
 
   return (
     <Container viewState={filtersViewState}>
-      <FiltersTaxo
+      <FilterTaxo
         taxonomies={taxonomies}
         filters={filters}
         setFilters={setFilters}
@@ -90,4 +90,4 @@ const Filters = ({
   );
 };
 
-export { Filters };
+export { ItemsFilters };

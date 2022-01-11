@@ -5,7 +5,7 @@ import { format } from 'date-fns';
 import { Wrapper, Text } from '@magle-corp/design-system';
 import { Article } from '../../type';
 import { BlockBuilder } from '../../util';
-import { TaxonomiesList } from '../List/TaxonomiesList';
+import { ItemsList } from '../ItemsList';
 
 interface Props {
   article: Article;
@@ -65,7 +65,7 @@ const StyledDate = styled(Text)`
   font-family: Roboto, Arial, sans-serif;
 `;
 
-const StyledTaxonomies = styled(TaxonomiesList)`
+const TaxonomiesList = styled(ItemsList)`
   justify-content: center;
 `;
 
@@ -93,7 +93,13 @@ const ArticleDetail = ({ article }: Props) => {
           <StyledDate variant="h4">
             {format(new Date(article.created_at), 'd LLLL y')}
           </StyledDate>
-          <StyledTaxonomies taxonomies={article.taxonomies} variant="link" />
+          {article.taxonomies && (
+            <TaxonomiesList
+              spacing={0}
+              items={article.taxonomies}
+              variant="taxo_link"
+            />
+          )}
         </Wrapper>
         <BlockBuilder blocks={article.dynamic_zone} />
       </ContentWrapper>

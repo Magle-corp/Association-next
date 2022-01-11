@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { format } from 'date-fns';
 import { Wrapper, Text } from '@magle-corp/design-system';
 import { Article } from '../../type';
-import { TaxonomiesList } from '../List/TaxonomiesList';
+import { ItemsList } from '../ItemsList';
 
 interface Props {
   article: Article;
@@ -82,7 +82,13 @@ const ArticleTeaser = ({ article }: Props) => {
         </Text>
         <Wrapper>
           <Text>{format(new Date(article.created_at), 'd MMM y')}</Text>
-          <TaxonomiesList taxonomies={article.taxonomies} />
+          {article.taxonomies && (
+            <ItemsList
+              spacing={0}
+              items={article.taxonomies}
+              variant="taxo_default"
+            />
+          )}
         </Wrapper>
         <Description>{article.description}</Description>
       </ContentWrapper>
