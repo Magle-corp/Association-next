@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Wrapper, Text } from '@magle-corp/design-system';
 import { BreadcrumbBuilder } from '../util';
 import { Link } from '../ui';
-import { Home, ArrowDown } from '../theme/icon';
+import { Home as HomeIcon, ArrowDown } from '../theme/icon';
 
 interface Props {
   className?: string;
@@ -36,17 +36,16 @@ const StyledLink = styled(Link)`
   align-items: center;
 `;
 
-const HomeIcon = styled(Home)`
-  width: 20px;
-  height: 20px;
-`;
-
 const ArrowIcon = styled(ArrowDown)`
-  width: 20px;
-  height: 20px;
   transform: rotate(270deg);
 `;
 
+/**
+ * Provide component "Breadcrumb".
+ *
+ * @param className
+ *   String for override Styled component style.
+ */
 const Breadcrumb = ({ className }: Props) => {
   const router = useRouter();
   const isThereQuery = !!(router.query && router.query.slug);
@@ -55,13 +54,13 @@ const Breadcrumb = ({ className }: Props) => {
   return (
     <Container className={className}>
       <StyledLink href="/">
-        <HomeIcon />
-        <ArrowIcon />
+        <HomeIcon width={20} height={20} />
+        <ArrowIcon width={20} height={20} />
       </StyledLink>
       {routes.map((route) => (
         <StyledLink href={route.url} key={`${route.route}`}>
           <Text as="span">{route.route}</Text>
-          <ArrowIcon />
+          <ArrowIcon width={20} height={20} />
         </StyledLink>
       ))}
     </Container>

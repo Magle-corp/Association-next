@@ -3,6 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 import colors from './colors';
 import breakpoints from './breakpoints';
 import typography from './typography';
+import animations from './animations';
 import FjallaOneWoff from './font/FjallaOneWoff.woff';
 import FjallaOneWoff2 from './font/FjallaOneWoff2.woff2';
 import RobotoWoff from './font/RobotoWoff.woff';
@@ -12,6 +13,7 @@ const theme: object = {
   colors,
   breakpoints,
   typography,
+  animations,
 };
 
 export { theme };

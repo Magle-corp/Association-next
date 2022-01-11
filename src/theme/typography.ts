@@ -4,7 +4,7 @@ const fontFamily = `font-family: Roboto, Arial, sans-serif;`;
 const colors = {
   primary: '#00995a',
   secondary: '#b2e0cd',
-  black: '#000000',
+  black: '#222222',
   white: '#ffffff',
   grey: '#bfbfbf',
 };
@@ -15,7 +15,8 @@ const variant: object = {
     font-size: 4rem;
     line-height: 4.8rem;
     font-weight: 900;
-    text-decoration: none;
+    text-decoration: none;    
+    color: ${colors.black};
     `,
   h2: `
     ${titleFontFamily}
@@ -23,6 +24,7 @@ const variant: object = {
     line-height: 4rem;
     font-weight: 800;
     text-decoration: none;
+    color: ${colors.black};
 `,
   h3: `
     ${titleFontFamily}
@@ -30,6 +32,7 @@ const variant: object = {
     line-height: 3.2rem;
     font-weight: 700;
     text-decoration: none;
+    color: ${colors.black};
 `,
   h4: `
     ${titleFontFamily}
@@ -37,6 +40,7 @@ const variant: object = {
     line-height: 2.8rem;
     font-weight: 600;
     text-decoration: none;
+    color: ${colors.black};
 `,
   p: `
     ${fontFamily}
@@ -44,6 +48,7 @@ const variant: object = {
     line-height: 2.4rem;
     font-weight: 400;
     text-decoration: none;
+    color: ${colors.black};
 `,
   button: `
     ${fontFamily}
@@ -64,12 +69,6 @@ const variant: object = {
       color: ${colors.black};
     }
 `,
-  inline_link: `
-    ${fontFamily}
-    font-size: 1.6rem;
-    line-height: 2.4rem;
-    font-weight: 400;
-`,
   tag: `
     ${fontFamily}
     display: block;
@@ -79,6 +78,7 @@ const variant: object = {
     line-height: 2.4rem;
     font-weight: 400;
     text-decoration: none;
+    color: ${colors.black};
     border-radius: 3px;
     background-color: ${colors.white};
     border: 2px solid ${colors.primary};
@@ -102,12 +102,18 @@ const variant: object = {
     &:hover {
       background-color: ${colors.white};
       color: ${colors.black};
+    
+      span {
+        color: ${colors.black};
+      }
     }
     
     span {
-    font-size: 1.6rem;
-    line-height: 2.4rem;
-    font-weight: 700;
+      font-size: 1.6rem;
+      line-height: 2.4rem;
+      font-weight: 700;
+      color: ${colors.white};
+      transition: 250ms ease-in-out;
     }
   `,
 };

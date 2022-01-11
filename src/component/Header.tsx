@@ -5,13 +5,13 @@ import styled from 'styled-components';
 import { Text, Wrapper } from '@magle-corp/design-system';
 import { Identity } from '../type';
 import { Link } from '../ui';
-import { BurgerMenu, ArrowDown } from '../theme/icon';
+import { BurgerMenu, Cross } from '../theme/icon';
 
 interface Props {
   identity: Identity;
 }
 
-const StyledHeader = styled.header`
+const StyledHeader = styled.header<{ view: boolean }>`
   position: fixed;
   z-index: 100;
   display: flex;
@@ -21,7 +21,8 @@ const StyledHeader = styled.header`
   width: 100%;
   min-height: 70px;
   padding-bottom: 10px;
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme, view }) =>
+    view ? theme.colors.secondary : theme.colors.white};
 
   > *:not(:last-child) {
     margin: 0 20px;
@@ -33,6 +34,7 @@ const StyledHeader = styled.header`
     max-width: ${({ theme }) => theme.breakpoints.maximumWidth};
     padding: 0 20px;
     margin: 0 auto;
+    background-color: ${({ theme }) => theme.colors.white};
 
     > *:not(:last-child) {
       margin: 0;
@@ -52,12 +54,17 @@ const Logo = styled(Wrapper)`
   margin-right: 10px;
 `;
 
-const StyledBurgerMenu = styled(BurgerMenu)`
+const BurgerMenuIcon = styled(BurgerMenu)`
   display: block;
-  width: 40px;
-  min-width: 40px;
-  height: 40px;
-  min-height: 40px;
+  animation: ${({ theme }) => theme.animations.fadeIn} 300ms linear;
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
+    display: none;
+  }
+`;
+
+const CrossIcon = styled(Cross)`
+  animation: ${({ theme }) => theme.animations.fadeInRotate} 300ms linear;
 
   @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
     display: none;
@@ -73,9 +80,10 @@ const Navbar = styled.nav<{ view: boolean }>`
   position: absolute;
   display: flex;
   top: 100%;
-  width: 100%;
+  width: 100vh;
+  height: 100vh;
   padding: 20px;
-  background-color: ${theme.colors.white}
+  background-color: ${theme.colors.secondary};
   `
       : ``};
 
@@ -85,6 +93,7 @@ const Navbar = styled.nav<{ view: boolean }>`
     top: 0;
     width: max-content;
     padding: 0;
+    background-color: ${({ theme }) => theme.colors.white};
   }
 `;
 
@@ -126,15 +135,12 @@ const SubMenu = styled.ul`
   @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
     display: none;
     position: absolute;
-    left: -8px;
+    left: -15px;
     width: 100px;
-    padding: 10px;
+    padding: 15px;
     margin: 0;
-    background-color: ${({ theme }) => theme.colors.primary};
-
-    span {
-      color: ${({ theme }) => theme.colors.white};
-    }
+    background-color: ${({ theme }) => theme.colors.secondary};
+    animation: ${({ theme }) => theme.animations.appearTopFadeIn} 200ms linear;
   }
 `;
 
@@ -149,7 +155,7 @@ const Header = ({ identity }: Props) => {
   const [navbarView, setNavbarView] = useState(Boolean);
 
   return (
-    <StyledHeader data-cy="header">
+    <StyledHeader data-cy="header" view={navbarView}>
       <Brand direction="row">
         <Logo>
           <Image
@@ -167,11 +173,19 @@ const Header = ({ identity }: Props) => {
           </Link>
         </Wrapper>
       </Brand>
-      <StyledBurgerMenu
-        width={45}
-        height={45}
-        onClick={() => setNavbarView(!navbarView)}
-      />
+      {navbarView ? (
+        <CrossIcon
+          width={40}
+          height={40}
+          onClick={() => setNavbarView(!navbarView)}
+        />
+      ) : (
+        <BurgerMenuIcon
+          width={40}
+          height={40}
+          onClick={() => setNavbarView(!navbarView)}
+        />
+      )}
       <Navbar view={navbarView}>
         <Menu>
           <li data-cy="link">
