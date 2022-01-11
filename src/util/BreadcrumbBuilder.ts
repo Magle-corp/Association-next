@@ -23,7 +23,6 @@ const BreadcrumbBuilder = (
   routes.shift();
 
   if (rawQuery) {
-    console.log(rawQuery);
     // const query = rawQuery.replace(/\/\[slug]/gm, '').split('/');
   }
   routes.shift();
