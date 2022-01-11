@@ -108,7 +108,7 @@ const ContentTypeListPage = ({
       <Header identity={identity} />
       <StyledLayout>
         <StyledBreadcrumb />
-        <StyledMain gridColumn="2/3">
+        <StyledMain>
           <Title>{contentType == 'article' ? 'Articles' : 'Evenements'}</Title>
           {stackedItems.length > 0 ? (
             <ItemsList
@@ -121,7 +121,7 @@ const ContentTypeListPage = ({
           )}
           <Pagination page={page} lastPage={lastPage} setPage={setPage} />
         </StyledMain>
-        <StyledAside gridColumn="1/2">
+        <StyledAside>
           <Wrapper
             onClick={() => {
               setFiltersViewState(!filtersViewState);
@@ -156,6 +156,7 @@ type Params = {
 export async function getStaticProps(context: Params) {
   let contentItems: object = {};
   let contentType: string = '';
+  let taxonomies: Array<Taxonomy> = [];
 
   if (context.params.content_type == 'articles') {
     const articlesQuery = `/articles?${qs.stringify({
@@ -166,6 +167,15 @@ export async function getStaticProps(context: Params) {
     );
     contentItems = await articlesResult.json();
     contentType = 'article';
+
+    const taxonomiesQuery = `/taxonomies?${qs.stringify({
+      _sort: 'title:ASC',
+      _where: [{ articles_ne: null }],
+    })}`;
+    const taxonomiesResult = await fetch(
+      `${process.env.BASE_URL}${taxonomiesQuery}`
+    );
+    taxonomies = await taxonomiesResult.json();
   }
 
   if (context.params.content_type == 'evenements') {
@@ -175,16 +185,16 @@ export async function getStaticProps(context: Params) {
     const eventsResult = await fetch(`${process.env.BASE_URL}${eventsQuery}`);
     contentItems = await eventsResult.json();
     contentType = 'event';
-  }
 
-  const taxonomiesQuery = `/taxonomies?${qs.stringify({
-    _sort: 'title:ASC',
-    _where: [{ evenements_ne: null }],
-  })}`;
-  const taxonomiesResult = await fetch(
-    `${process.env.BASE_URL}${taxonomiesQuery}`
-  );
-  const taxonomies = await taxonomiesResult.json();
+    const taxonomiesQuery = `/taxonomies?${qs.stringify({
+      _sort: 'title:ASC',
+      _where: [{ evenements_ne: null }],
+    })}`;
+    const taxonomiesResult = await fetch(
+      `${process.env.BASE_URL}${taxonomiesQuery}`
+    );
+    taxonomies = await taxonomiesResult.json();
+  }
 
   const identityQuery = `/identite`;
   const identityResult = await fetch(`${process.env.BASE_URL}${identityQuery}`);
