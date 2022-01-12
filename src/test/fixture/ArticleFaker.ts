@@ -5,7 +5,7 @@ import { Article, Taxonomy } from '../../type';
 import { ImageFaker, TaxonomyFaker } from './index';
 
 /**
- Returns a fake Article.
+ * Returns a fake Article.
  */
 const ArticleFaker = () => {
   const fakeTaxonomies: Array<Taxonomy> = [];

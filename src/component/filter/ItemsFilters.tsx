@@ -75,7 +75,14 @@ const ItemsFilters = ({
     } else {
       setStackedItems(ItemsStacker(items) as Array<Article[] | Event[]>);
     }
-  }, [items, routerQuery]);
+  }, [
+    items,
+    routerQuery,
+    filters,
+    setFilters,
+    setFiltersViewState,
+    setStackedItems,
+  ]);
 
   // Set stackedArticles according to the filters.
   useEffect(() => {
@@ -88,7 +95,7 @@ const ItemsFilters = ({
     } else {
       setStackedItems(ItemsStacker(items) as Array<Article[] | Event[]>);
     }
-  }, [filters, items]);
+  }, [filters, items, setPage, setStackedItems]);
 
   return (
     <Container viewState={filtersViewState}>

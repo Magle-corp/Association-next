@@ -72,7 +72,7 @@ const ArticleHighlight = ({ article }: Props) => {
       <Description>{article.description}</Description>
       <Wrapper data-cy="link">
         <ArticleLink href={`/publications/articles/${article.slug}`}>
-          <Text as="span">Consulter l'article</Text>
+          <Text as="span">Consulter l&apos;article</Text>
         </ArticleLink>
       </Wrapper>
     </ArticleWrapper>

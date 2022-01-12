@@ -2,7 +2,7 @@
 const Faker = require('faker');
 
 /**
- * Returns a random integer.
+ * Returns a random text.
  *
  * @param maxLength
  *   The maximum length expected value.
