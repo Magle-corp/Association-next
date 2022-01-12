@@ -18,6 +18,11 @@ jobs:
         run: yarn install --frozen-lockfile
       - name: Build project
         run: NODE_ENV=production yarn build
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: build-artifact
+          path: output
 
   test:
     needs: build
