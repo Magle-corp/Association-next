@@ -25,7 +25,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Run test
-        run: yarn jest --coverage
+        run: yarn testcov
 
   deploy:
     needs: test

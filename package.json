@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
+    "testcov": "jest --coverage",
     "prepare": "husky install"
   },
   "dependencies": {
