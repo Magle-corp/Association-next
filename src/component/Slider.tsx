@@ -108,21 +108,21 @@ const StyledButton = styled(Button)<{ slide: string }>`
  */
 const Slider = ({ slider }: Props) => {
   const [currentSlide, setCurrentSlide] = useState(slider.slides[0]);
-  let sliderAuto: any;
-
-  const slideMove = () => {
-    const currentSlideIndex = slider.slides.indexOf(currentSlide);
-    const nextSlide =
-      currentSlideIndex >= slider.slides.length - 1
-        ? slider.slides[0]
-        : slider.slides[currentSlideIndex + 1];
-    setCurrentSlide(nextSlide);
-  };
+  const [sliderAuto, setSliderAuto] = useState<any>();
 
   useEffect(() => {
+    const slideMove = () => {
+      const currentSlideIndex = slider.slides.indexOf(currentSlide);
+      const nextSlide =
+        currentSlideIndex >= slider.slides.length - 1
+          ? slider.slides[0]
+          : slider.slides[currentSlideIndex + 1];
+      setCurrentSlide(nextSlide);
+    };
+
     if (slider && slider.slides.length > 1)
-      sliderAuto = setTimeout(slideMove, 9000);
-  }, [currentSlide]);
+      setSliderAuto(setTimeout(slideMove, 9000));
+  }, [slider, currentSlide]);
 
   const handleManualSlide = (slide: SlideType) => {
     setCurrentSlide(slide);
