@@ -4,6 +4,7 @@ import qs from 'qs';
 import styled from 'styled-components';
 import { Main, Aside } from '@magle-corp/design-system';
 import { Article, Event, Taxonomy, Identity } from '../../src/type';
+import { ItemsStacker } from '../../src/util';
 import {
   Header,
   Breadcrumb,
@@ -94,10 +95,18 @@ const ContentTypeListPage = ({
   taxonomies,
   identity,
 }: Props) => {
-  const [stackedItems, setStackedItems] = useState<Array<Event[]>>([]);
+  const [stackedItems, setStackedItems] = useState<Array<Article[] | Event[]>>(
+    []
+  );
   const [page, setPage] = useState<number>(0);
   const [lastPage, setLastPage] = useState<number>(0);
+  const [filters, setFilters] = useState<Array<string | Array<string>>>([]);
   const [filtersViewState, setFiltersViewState] = useState<boolean>(false);
+
+  useEffect(() => {
+    setFilters([]);
+    setStackedItems(ItemsStacker(contentItems) as Array<Article[] | Event[]>);
+  }, [contentItems]);
 
   useEffect(() => {
     setLastPage(stackedItems.length - 1);
@@ -113,7 +122,9 @@ const ContentTypeListPage = ({
           {stackedItems.length > 0 ? (
             <ItemsList
               items={stackedItems[page]}
-              variant={`${contentType}_teaser`}
+              variant={`${
+                'date' in stackedItems[page][0] ? 'event' : 'article'
+              }_teaser`}
               spacing={60}
             />
           ) : (
@@ -135,6 +146,8 @@ const ContentTypeListPage = ({
             items={contentItems}
             setStackedItems={setStackedItems}
             setPage={setPage}
+            filters={filters}
+            setFilters={setFilters}
             filtersViewState={filtersViewState}
             setFiltersViewState={setFiltersViewState}
           />

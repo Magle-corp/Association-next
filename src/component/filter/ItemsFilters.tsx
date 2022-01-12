@@ -1,6 +1,6 @@
 // Use.
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Article, Event, Taxonomy } from '../../type';
 import { ItemsStacker, ItemsTaxoFilter } from '../../util';
 import { FilterTaxo } from '../index';
@@ -12,6 +12,8 @@ interface Props {
   items: Article[] | Event[];
   setStackedItems: Function;
   setPage: Function;
+  filters: Array<string | Array<string>>;
+  setFilters: Function;
   filtersViewState: boolean;
   setFiltersViewState: Function;
 }
@@ -39,6 +41,10 @@ const Container = styled(Wrapper)<{ viewState: boolean }>`
  *   Function for set "stackedArticles" state.
  * @param setPage
  *   Function for set "page" state.
+ * @param filters
+ *   State "filters".
+ * @param setFilters
+ *   Function for set "filters" state.
  * @param setFiltersViewState
  *   Function for set "viewState" state.
  * @param filtersViewState
@@ -49,10 +55,11 @@ const ItemsFilters = ({
   items,
   setStackedItems,
   setPage,
+  setFilters,
+  filters,
   setFiltersViewState,
   filtersViewState,
 }: Props) => {
-  const [filters, setFilters] = useState<Array<string | Array<string>>>([]);
   const router = useRouter();
   const routerQuery = router.query.taxonomy;
 
@@ -62,9 +69,11 @@ const ItemsFilters = ({
       setFiltersViewState(true);
       setFilters([...filters, routerQuery]);
       const filteredItems = ItemsTaxoFilter(items, filters);
-      setStackedItems(ItemsStacker(filteredItems) as Array<Article[]>);
+      setStackedItems(
+        ItemsStacker(filteredItems) as Array<Article[] | Event[]>
+      );
     } else {
-      setStackedItems(ItemsStacker(items) as Array<Article[]>);
+      setStackedItems(ItemsStacker(items) as Array<Article[] | Event[]>);
     }
   }, [items, routerQuery]);
 
@@ -73,9 +82,11 @@ const ItemsFilters = ({
     if (filters.length > 0) {
       setPage(0);
       const filteredItems = ItemsTaxoFilter(items, filters);
-      setStackedItems(ItemsStacker(filteredItems) as Array<Article[]>);
+      setStackedItems(
+        ItemsStacker(filteredItems) as Array<Article[] | Event[]>
+      );
     } else {
-      setStackedItems(ItemsStacker(items) as Array<Article[]>);
+      setStackedItems(ItemsStacker(items) as Array<Article[] | Event[]>);
     }
   }, [filters, items]);
 
