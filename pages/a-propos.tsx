@@ -101,7 +101,7 @@ const About = ({ propos, identity }: Props) => {
             />
           </ImageWrapper>
           <TitleWrapper>
-            <Title>A propos de l'{identity.name}</Title>
+            <Title>A propos de l&apos;{identity.name}</Title>
             <SubTitleWrapper>
               {identity.facebook && (
                 <Link href={identity.facebook} variant="social">
