@@ -24,7 +24,7 @@ interface Props {
 
 const StyledLayout = styled(Layout)`
   grid-template-columns: 1fr;
-  grid-template-rows: 80px max-content;
+  grid-template-rows: max-content max-content;
 `;
 
 const StyledMain = styled(Main)`

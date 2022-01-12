@@ -8,7 +8,7 @@ interface Props {
   href: string;
   className?: string;
   children: ReactNode;
-  variant?: 'default' | 'internal' | 'external';
+  variant?: 'default' | 'internal' | 'external' | 'social';
 }
 
 const StyledLink = styled.a`
@@ -32,6 +32,14 @@ const StyledInlineLink = styled(StyledLink)`
     }
   }
 }
+`;
+
+const StyledSocialLink = styled(StyledLink)`
+  transition: 150ms ease-in-out;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
 `;
 
 const StyledInternalLink = styled(InternalLink)`
@@ -74,7 +82,12 @@ const Link = ({ href, className, children, variant = 'default' }: Props) => (
         </StyledLink>
       </NextLink>
     )}
-    {variant !== 'internal' && variant !== 'external' && (
+    {variant === 'social' && (
+      <NextLink href={href} passHref>
+        <StyledSocialLink className={className}>{children}</StyledSocialLink>
+      </NextLink>
+    )}
+    {variant === 'default' && (
       <NextLink href={href} passHref>
         <StyledLink className={className}>{children}</StyledLink>
       </NextLink>

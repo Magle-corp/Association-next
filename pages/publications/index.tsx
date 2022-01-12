@@ -7,7 +7,7 @@ import {
   Header,
   EmptyResult,
   ArticleHighlight,
-  ArticlesList,
+  ItemsList,
   EventHighlight,
   Footer,
 } from '../../src/component';
@@ -97,7 +97,11 @@ const Home = ({ articles, events, identity }: Props) => {
             <Title>Derniers articles</Title>
             <ArticlesWrapper>
               {articles.length > 0 ? (
-                <ArticlesList articles={articles} spacing={15} />
+                <ItemsList
+                  items={articles}
+                  variant="article_default"
+                  spacing={15}
+                />
               ) : (
                 <EmptyResult />
               )}

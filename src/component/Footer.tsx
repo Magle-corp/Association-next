@@ -80,17 +80,17 @@ const Footer = ({ identity }: Props) => {
       </Wrapper>
       <SocialWrapper direction="row" data-cy="link">
         {identity.facebook && (
-          <Link href={identity.facebook}>
+          <Link href={identity.facebook} variant="social">
             <Facebook width={30} height={30} />
           </Link>
         )}
         {identity.instagram && (
-          <Link href={identity.instagram}>
+          <Link href={identity.instagram} variant="social">
             <Instagram width={30} height={30} />
           </Link>
         )}
         {identity.twitter && (
-          <Link href={identity.twitter}>
+          <Link href={identity.twitter} variant="social">
             <Twitter width={30} height={30} />
           </Link>
         )}

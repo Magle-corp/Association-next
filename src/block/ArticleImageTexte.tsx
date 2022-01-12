@@ -50,7 +50,7 @@ const ContentWrapper = styled(Wrapper)<{ reverse: boolean }>`
   @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
     grid-column: ${({ reverse }) => (reverse ? '1/2' : '2/3')};
     grid-row: 1/2;
-    margin: ${({ reverse }) => (reverse ? '0 20px 0 0' : '0 0 0 20px')};
+    margin: ${({ reverse }) => (reverse ? '0 30px 0 0' : '0 0 0 30px')};
   }
 `;
 
