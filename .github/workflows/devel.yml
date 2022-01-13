@@ -1,8 +1,8 @@
-name: Devel
+name: CI test
 
 on:
   push:
-    branches: [devel]
+    branches: [master, devel]
 
 jobs:
   test:
