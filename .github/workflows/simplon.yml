@@ -31,7 +31,7 @@ jobs:
             ${{ runner.os }}-node-${{ matrix.node }}
 
   test:
-    if: steps.build.outputs.cache-hit = 'true'
+    if: steps.build.outputs.cache-hit == 'true'
     runs-on: ubuntu-latest
     name: Run tests
     needs: build
