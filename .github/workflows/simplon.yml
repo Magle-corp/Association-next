@@ -7,16 +7,18 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node: [ '12', '14', '16' ]
-    name: Build project with Node v.${{ matrix.node }}
+#    strategy:
+#      matrix:
+#        node: [ '12', '14', '16' ]
+#    name: Build project with Node v.${{ matrix.node }}
     steps:
       - uses: actions/checkout@v2
       - name: Setup node
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node }}
+#          node-version: ${{ matrix.node }}
+          node-version: '14'
+          cache: 'yarn'
       - name: Yarn install
         run: yarn install --frozen-lockfile
       - name: Cache build
@@ -27,20 +29,20 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-${{ matrix.node }}
 
-#  test:
-#    runs-on: ubuntu-latest
-#    name: Run tests
-#    needs: build
-#    steps:
-#      - uses: actions/checkout@v2
-#      - name: test
-#        if: steps.build.outputs.cache-hit = 'true'
-#      - name: ESLint
-#        run: yarn lint
-#      - name: Typescript
-#        run: yarn tsc
-#      - name: Run test
-#        run: yarn jest --coverage
+  test:
+    runs-on: ubuntu-latest
+    name: Run tests
+    needs: build
+    steps:
+      - uses: actions/checkout@v2
+      - name: test
+        if: steps.build.outputs.cache-hit = 'true'
+      - name: ESLint
+        run: yarn lint
+      - name: Typescript
+        run: yarn tsc
+      - name: Run test
+        run: yarn jest --coverage
 
 #  notify:
 #    runs-on: ubuntu-latest
