@@ -26,42 +26,63 @@ jobs:
       - name: Run Typescript
         run: yarn tsc
       - name: Run Jest tests
-        if: ${{ matrix.node }} == "14"
-        run: yarn jest --coverage
-#        run: |
-#          echo "${{ matrix.node }}"
-#      - name: Install SSH key
-#        uses: shimataro/ssh-key-action@v2
-#        with:
-#          key: ${{ secrets.SSH_PRIVATE_KEY }}
-#          known_hosts: 'just_a_placeholder_to_avoid_errors'
-#      - name: Adding know hosts
-#        run: ssh-keyscan -H ${{ secrets.STAGING_HOST }} >> ~/.ssh/known_hosts
+        run: yarn jest
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          known_hosts: 'just_a_placeholder_to_avoid_errors'
+      - name: Adding know hosts
+        run: ssh-keyscan -H ${{ secrets.STAGING_HOST }} >> ~/.ssh/known_hosts
 #      - name: Rsync tests report with server one
 #        run: rsync -r ./coverage/lcov-report/ ${{ secrets.STAGING_SERVER }}:Association-next-tests
 
-#  build:
-#    name: Build and deploy project
-#    needs: test
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Checkout repository
-#        uses: actions/checkout@v2
-#      - name: Use Node.js 14
-#        uses: actions/setup-node@v2
-#        with:
-#          node-version: '14'
-#          cache: 'yarn'
-#      - name: Install SSH key
-#        uses: shimataro/ssh-key-action@v2
-#        with:
-#          key: ${{ secrets.SSH_PRIVATE_KEY }}
-#          known_hosts: 'just_a_placeholder_to_avoid_errors'
-#      - name: Adding know hosts
-#        run: ssh-keyscan -H ${{ secrets.STAGING_HOST }} >> ~/.ssh/known_hosts
-#      - name: Build project
-#        run: NODE_ENV=production yarn build
-#      - name: Rsync project with server one
-#        run: rsync -r . ${{ secrets.STAGING_SERVER }}:Association-next
-#      - name: Restart server
-#        run: ssh ${{ secrets.STAGING_SERVER }} pm2 reload association-next
+  deploy_project:
+    name: Build and deploy project
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Use Node.js 14
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+          cache: 'yarn'
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          known_hosts: 'just_a_placeholder_to_avoid_errors'
+      - name: Adding know hosts
+        run: ssh-keyscan -H ${{ secrets.STAGING_HOST }} >> ~/.ssh/known_hosts
+      - name: Build project
+        run: NODE_ENV=production yarn build
+      - name: Rsync project with server one
+        run: rsync -r . ${{ secrets.STAGING_SERVER }}:Association-next
+      - name: Restart server
+        run: ssh ${{ secrets.STAGING_SERVER }} pm2 reload association-next
+
+  publish_coverage:
+    name: Build and deploy project
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Use Node.js 14
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+          cache: 'yarn'
+      - name: Run Jest tests
+        run: yarn jest --coverage
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          known_hosts: 'just_a_placeholder_to_avoid_errors'
+      - name: Adding know hosts
+        run: ssh-keyscan -H ${{ secrets.STAGING_HOST }} >> ~/.ssh/known_hosts
+#      - name: Rsync tests report with server one
+#        run: rsync -r ./coverage/lcov-report/ ${{ secrets.STAGING_SERVER }}:Association-next-tests

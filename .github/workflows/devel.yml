@@ -17,9 +17,9 @@ jobs:
           cache: 'yarn'
       - name: Yarn install
         run: yarn install --frozen-lockfile
-      - name: ESLint
+      - name: Run ESLint
         run: yarn lint
-      - name: Typescript
+      - name: Run Typescript
         run: yarn tsc
-      - name: Run test
-        run: yarn jest
+      - name: Run Jest tests
+        run: yarn jest coverage
