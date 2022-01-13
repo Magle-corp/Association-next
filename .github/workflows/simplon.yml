@@ -36,7 +36,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: test
-#        if: steps.build.outputs.cache-hit = 'true'
       - name: ESLint
         run: yarn lint
       - name: Typescript
@@ -44,6 +43,7 @@ jobs:
       - name: Run test
         run: yarn jest --coverage
 
+        #        if: steps.build.outputs.cache-hit = 'true'
 #  notify:
 #    runs-on: ubuntu-latest
 #    needs:
