@@ -36,7 +36,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: test
-        if: steps.build.outputs.cache-hit = 'true'
+#        if: steps.build.outputs.cache-hit = 'true'
       - name: ESLint
         run: yarn lint
       - name: Typescript
