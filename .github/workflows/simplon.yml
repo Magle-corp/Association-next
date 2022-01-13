@@ -36,7 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Run tests
     needs: build
-    if: needs.build.outputs.cache-hit == 'true'
+    if: needs.build.outputs.build == 'true'
     steps:
       - uses: actions/checkout@v2
       - name: ESLint
