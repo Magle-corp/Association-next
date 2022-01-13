@@ -28,7 +28,7 @@ jobs:
       - name: Run Jest tests
         if: ${{ matrix.node }} == '14'
 #        run: yarn jest --coverage
-        echo "${{ matrix.node }}"
+        echo "$matrix.node"
 #      - name: Install SSH key
 #        uses: shimataro/ssh-key-action@v2
 #        with:
