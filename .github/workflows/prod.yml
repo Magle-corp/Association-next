@@ -6,11 +6,11 @@ on:
 
 jobs:
   test:
-    name: Node 12, 14, 16
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node: [ '12', '14', '16' ]
+    name: Test env Node v.${{ matrix.node }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -49,6 +49,8 @@ jobs:
         with:
           node-version: '14'
           cache: 'yarn'
+      - name: Yarn install
+        run: yarn install --frozen-lockfile
       - name: Install SSH key
         uses: shimataro/ssh-key-action@v2
         with:
@@ -64,8 +66,8 @@ jobs:
         run: ssh ${{ secrets.STAGING_SERVER }} pm2 reload association-next
 
   publish_coverage:
-    name: Build and deploy project
-    needs: test
+    name: Publish code coverage
+    needs: deploy_project
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -75,6 +77,8 @@ jobs:
         with:
           node-version: '14'
           cache: 'yarn'
+      - name: Yarn install
+        run: yarn install --frozen-lockfile
       - name: Run Jest tests
         run: yarn jest --coverage
       - name: Install SSH key
