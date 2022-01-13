@@ -2,7 +2,7 @@ name: Devel
 
 on:
   push:
-    branches: [simplon_ci]
+    branches: [ simplon_ci ]
 
 jobs:
   build:
