@@ -6,14 +6,18 @@ on:
 
 jobs:
   test:
-    name: Run tests
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [ '12', '14', '16' ]
+    name: Test env Node v.${{ matrix.node }}
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
       - name: Use Node.js 14
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: ${{ matrix.node }}
           cache: 'yarn'
       - name: Yarn install
         run: yarn install --frozen-lockfile
@@ -22,4 +26,4 @@ jobs:
       - name: Run Typescript
         run: yarn tsc
       - name: Run Jest tests
-        run: yarn jest coverage
+        run: yarn jest
