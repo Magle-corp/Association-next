@@ -22,7 +22,6 @@ jobs:
       - name: Yarn install
         run: yarn install --frozen-lockfile
       - name: Cache build
-        id: build
         uses: actions/cache@v2
         with:
           path: .
@@ -31,10 +30,10 @@ jobs:
             ${{ runner.os }}-node-${{ matrix.node }}
 
   test:
-    if: steps.build.outputs.cache-hit == 'true'
     runs-on: ubuntu-latest
     name: Run tests
     needs: build
+    if: needs.build.outputs.cache-hit == 'true'
     steps:
       - uses: actions/checkout@v2
       - name: ESLint
