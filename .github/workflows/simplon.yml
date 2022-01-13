@@ -2,33 +2,30 @@ name: Devel Simplon
 
 on:
   push:
-    branches: [ simplon_ci ]
+    branches: [ master ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    outputs:
-      build: ${{ steps.cache-build.outputs.cache-hit }}
-    #    strategy:
-    #      matrix:
-    #        node: [ '12', '14', '16' ]
-    #    name: Build project with Node v.${{ matrix.node }}
+    strategy:
+      matrix:
+        node: [ '12', '14', '16' ]
+    name: Build project with Node v.${{ matrix.node }}
     steps:
       - uses: actions/checkout@v2
       - name: Setup node
         uses: actions/setup-node@v2
         with:
-          #          node-version: ${{ matrix.node }}
-          node-version: '14'
+          node-version: ${{ matrix.node }}
           cache: 'yarn'
       - name: Yarn install
         run: yarn install --frozen-lockfile
-      - name: Cache build
-        id: cache-build
+      - name: Cache dependencies
+        id: cache-dependencies
         uses: actions/cache@v2
         with:
-          path: .
-          key: ${{ runner.os }}-node-${{ matrix.node }}-cache-build
+          path: ~/node_modules
+          key: ${{ runner.os }}-node-${{ matrix.node }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-${{ matrix.node }}
 
@@ -38,21 +35,20 @@ jobs:
     needs: build
     if: needs.build.outputs.build == 'true'
     steps:
-      - - run: echo ${{needs.build.outputs.build}}
-#      - uses: actions/checkout@v2
-#      - name: Setup node
-#        uses: actions/setup-node@v2
-#        with:
-#          node-version: '14'
-#          cache: 'yarn'
-#      - name: Yarn install
-#        run: yarn install --frozen-lockfile
-#      - name: ESLint
-#        run: yarn lint
-#      - name: Typescript
-#        run: yarn tsc
-#      - name: Run test
-#        run: yarn jest --coverage
+      - uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+          cache: 'yarn'
+      - name: Yarn install
+        run: yarn install --frozen-lockfile
+      - name: ESLint
+        run: yarn lint
+      - name: Typescript
+        run: yarn tsc
+      - name: Run test
+        run: yarn jest --coverage
 
 #  notify:
 #    runs-on: ubuntu-latest
