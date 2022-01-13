@@ -27,19 +27,19 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-${{ matrix.node }}
 
-    test:
-      runs-on: ubuntu-latest
-      name: Run tests
-      needs: build
-      steps:
-        - name: test
-          if: steps.build.outputs.cache-hit = 'true'
-        - name: ESLint
-          run: yarn lint
-        - name: Typescript
-          run: yarn tsc
-        - name: Run test
-          run: yarn jest --coverage
+  test:
+    runs-on: ubuntu-latest
+    name: Run tests
+    needs: build
+    steps:
+      - name: test
+        if: steps.build.outputs.cache-hit = 'true'
+      - name: ESLint
+        run: yarn lint
+      - name: Typescript
+        run: yarn tsc
+      - name: Run test
+        run: yarn jest --coverage
 
 #  notify:
 #    runs-on: ubuntu-latest
