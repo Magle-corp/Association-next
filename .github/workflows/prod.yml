@@ -6,7 +6,7 @@ on:
 
 jobs:
   test:
-    name: Run and publish tests
+    name: Node 12, 14, 16
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -26,10 +26,10 @@ jobs:
       - name: Run Typescript
         run: yarn tsc
       - name: Run Jest tests
-        if: ${{ matrix.node }} == '14'
-#        run: yarn jest --coverage
-        run: |
-          echo "${{ matrix.node }}"
+        if: ${{ matrix.node }} == "14"
+        run: yarn jest --coverage
+#        run: |
+#          echo "${{ matrix.node }}"
 #      - name: Install SSH key
 #        uses: shimataro/ssh-key-action@v2
 #        with:
