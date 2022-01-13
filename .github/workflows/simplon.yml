@@ -32,6 +32,7 @@ jobs:
     name: Run tests
     needs: build
     steps:
+      - uses: actions/checkout@v2
       - name: test
         if: steps.build.outputs.cache-hit = 'true'
       - name: ESLint
