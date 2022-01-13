@@ -22,6 +22,8 @@ jobs:
         run: yarn tsc
       - name: Run test
         run: yarn jest --coverage
+      - name casser la CI !
+        run: npm casse_la_ci
   notify:
     runs-on: ubuntu-latest
     needs:
