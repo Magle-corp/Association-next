@@ -22,6 +22,7 @@ jobs:
       - name: Yarn install
         run: yarn install --frozen-lockfile
       - name: Cache build
+        id: build
         uses: actions/cache@v2
         with:
           path: .
@@ -30,6 +31,7 @@ jobs:
             ${{ runner.os }}-node-${{ matrix.node }}
 
   test:
+    if: steps.build.outputs.cache-hit = 'true'
     runs-on: ubuntu-latest
     name: Run tests
     needs: build
@@ -42,7 +44,6 @@ jobs:
       - name: Run test
         run: yarn jest --coverage
 
-        #        if: steps.build.outputs.cache-hit = 'true'
 #  notify:
 #    runs-on: ubuntu-latest
 #    needs:
