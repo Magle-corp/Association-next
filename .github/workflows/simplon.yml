@@ -38,20 +38,21 @@ jobs:
     needs: build
     if: needs.build.outputs.build == 'true'
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup node
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-          cache: 'yarn'
-      - name: Yarn install
-        run: yarn install --frozen-lockfile
-      - name: ESLint
-        run: yarn lint
-      - name: Typescript
-        run: yarn tsc
-      - name: Run test
-        run: yarn jest --coverage
+      - - run: echo ${{needs.build.outputs.build}}
+#      - uses: actions/checkout@v2
+#      - name: Setup node
+#        uses: actions/setup-node@v2
+#        with:
+#          node-version: '14'
+#          cache: 'yarn'
+#      - name: Yarn install
+#        run: yarn install --frozen-lockfile
+#      - name: ESLint
+#        run: yarn lint
+#      - name: Typescript
+#        run: yarn tsc
+#      - name: Run test
+#        run: yarn jest --coverage
 
 #  notify:
 #    runs-on: ubuntu-latest
