@@ -5,6 +5,7 @@ on:
     branches: [devel]
 
 jobs:
+  name: Run tests
   test:
     runs-on: ubuntu-latest
     steps:
@@ -21,4 +22,4 @@ jobs:
       - name: Typescript
         run: yarn tsc
       - name: Run test
-        run: yarn jest --coverage
+        run: yarn jest
