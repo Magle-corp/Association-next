@@ -1,8 +1,7 @@
 // Use.
 import styled from 'styled-components';
-import { Wrapper, Text } from '@magle-corp/design-system';
 import { Homepage } from '../type';
-import { Link } from '../ui';
+import { Link, Text } from '../ui';
 import { Slider } from './index';
 
 interface Props {
@@ -25,7 +24,7 @@ const Container = styled.div`
   }
 `;
 
-const SliderContainer = styled.div`
+const SliderWrapper = styled.div`
   z-index: 20;
   grid-column: 1/2;
   grid-row: 2/3;
@@ -43,7 +42,7 @@ const SliderContainer = styled.div`
   }
 `;
 
-const TitleContainer = styled.div`
+const TitleWrapper = styled.div`
   z-index: 30;
   box-sizing: border-box;
   grid-column: 1/2;
@@ -76,7 +75,7 @@ const Title = styled.h1`
   text-shadow: 3.5px 3.5px ${({ theme }) => theme.colors.black};
 `;
 
-const PresentationContainer = styled(Wrapper)`
+const PresentationWrapper = styled.div`
   z-index: 10;
   box-sizing: border-box;
   grid-column: 1/2;
@@ -101,10 +100,14 @@ const PresentationContainer = styled(Wrapper)`
   }
 `;
 
-const LinkWrapper = styled(Wrapper)`
+const LinkWrapper = styled.div`
   margin-top: 60px;
   margin-left: auto;
   transition: 250ms ease-in-out;
+
+  > *:first-child {
+    margin: 50px auto 0 auto;
+  }
 
   &:hover {
     transform: scale(1.05);
@@ -116,10 +119,6 @@ const LinkWrapper = styled(Wrapper)`
   }
 `;
 
-const MainLink = styled(Link)`
-  ${({ theme }) => theme.typography.call_action}
-`;
-
 /**
  * Provide component "HeroBanner".
  *
@@ -129,26 +128,27 @@ const MainLink = styled(Link)`
 const HeroBanner = ({ homepage }: Props) => {
   return (
     <Container>
-      <SliderContainer>
+      <SliderWrapper>
         <Slider slider={homepage.slider} />
-      </SliderContainer>
-      <TitleContainer>
+      </SliderWrapper>
+      <TitleWrapper>
         <Title>{homepage.title}</Title>
-      </TitleContainer>
-      <PresentationContainer>
+      </TitleWrapper>
+      <PresentationWrapper>
         <Text variant="h4">{homepage.content}</Text>
-        <LinkWrapper data-cy="link">
-          <MainLink
+        <LinkWrapper>
+          <Link
             href={`${
               homepage.button.slug && homepage.button.slug.slug !== undefined
                 ? homepage.button.slug.slug
                 : '/404'
             }`}
+            variant="call_action"
           >
             <Text as="span">{homepage.button.title}</Text>
-          </MainLink>
+          </Link>
         </LinkWrapper>
-      </PresentationContainer>
+      </PresentationWrapper>
     </Container>
   );
 };
