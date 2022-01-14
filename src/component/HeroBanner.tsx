@@ -143,7 +143,7 @@ const HeroBanner = ({ homepage }: Props) => {
                 ? homepage.button.slug.slug
                 : '/404'
             }`}
-            variant="call_action"
+            variant="link_action"
           >
             <Text as="span">{homepage.button.title}</Text>
           </Link>

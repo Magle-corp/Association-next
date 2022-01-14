@@ -5,7 +5,6 @@ import { Article, Event, Taxonomy } from '../../type';
 import { ItemsStacker, ItemsTaxoFilter } from '../../util';
 import { FilterTaxo } from '../index';
 import styled from 'styled-components';
-import { Wrapper } from '@magle-corp/design-system';
 
 interface Props {
   taxonomies: Taxonomy[];
@@ -18,12 +17,8 @@ interface Props {
   setFiltersViewState: Function;
 }
 
-const Container = styled(Wrapper)<{ viewState: boolean }>`
+const Container = styled.div<{ viewState: boolean }>`
   display: ${({ viewState }) => (viewState ? 'block' : 'none')};
-
-  > *:not(:first-child) {
-    margin-top: 15px;
-  }
 
   @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
     display: block;
@@ -31,7 +26,7 @@ const Container = styled(Wrapper)<{ viewState: boolean }>`
 `;
 
 /**
- * Provide component "Filters".
+ * Provide component "ItemsFilter".
  *
  * @param taxonomies
  *   Array of Strapi custom content type "Taxonomy".
@@ -42,13 +37,13 @@ const Container = styled(Wrapper)<{ viewState: boolean }>`
  * @param setPage
  *   Function for set "page" state.
  * @param filters
- *   State "filters".
+ *   State "filters", array.
  * @param setFilters
  *   Function for set "filters" state.
  * @param setFiltersViewState
  *   Function for set "viewState" state.
  * @param filtersViewState
- *   State "viewState".
+ *   State "viewState", boolean.
  */
 const ItemsFilters = ({
   taxonomies,

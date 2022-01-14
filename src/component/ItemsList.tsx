@@ -93,7 +93,7 @@ const ItemsList = ({ className, items, variant, spacing = '0px' }: Props) => {
               )}
               {variant == 'taxo_link' && (
                 <Link
-                  variant="call_action"
+                  variant="link_action"
                   href={`/publications/articles?taxonomy=${taxonomy.title}`}
                 >
                   <Text as="span">{taxonomy.title}</Text>

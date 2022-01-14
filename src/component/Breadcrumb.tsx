@@ -1,16 +1,18 @@
 // Use.
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
-import { Wrapper, Text } from '@magle-corp/design-system';
 import { BreadcrumbBuilder } from '../util';
-import { Link } from '../ui';
-import { Home as HomeIcon, ArrowDown } from '../theme/icon';
+import { Link, Text } from '../ui';
+import { Home as HomeIcon, Arrow as ArrowIcon } from '../theme/icon';
 
 interface Props {
   className?: string;
+  variant: 'mono_breadcrumb' | 'duo_breadcrumb';
 }
 
-const Container = styled(Wrapper)`
+const Container = styled.div<{ variant: string }>`
+  grid-column: ${({ variant }) =>
+    variant == 'mono_breadcrumb' ? '1/2' : '1/3'};
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -37,30 +39,28 @@ const StyledLink = styled(Link)`
   align-items: center;
 `;
 
-const ArrowIcon = styled(ArrowDown)`
-  transform: rotate(270deg);
-`;
-
 /**
  * Provide component "Breadcrumb".
  *
  * @param className
  *   String for override Styled component style.
+ * @param variant
+ *   String for define behaviour of the component.
  */
-const Breadcrumb = ({ className }: Props) => {
+const Breadcrumb = ({ className, variant }: Props) => {
   const router = useRouter();
   const routes = BreadcrumbBuilder(router.route, router.query);
 
   return (
-    <Container className={className}>
+    <Container className={className} variant={variant}>
       <StyledLink href="/">
-        <HomeIcon width={20} height={20} />
-        <ArrowIcon width={20} height={20} />
+        <HomeIcon size={20} />
+        <ArrowIcon size={20} variant="right" />
       </StyledLink>
       {routes.map((route) => (
         <StyledLink href={route.url} key={`${route.route}`}>
           <Text as="span">{route.route}</Text>
-          <ArrowIcon width={20} height={20} />
+          <ArrowIcon size={20} variant="right" />
         </StyledLink>
       ))}
     </Container>
