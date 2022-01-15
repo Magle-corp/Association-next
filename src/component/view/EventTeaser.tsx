@@ -1,16 +1,16 @@
 // Use.
 import styled from 'styled-components';
 import { format, formatDistance, isBefore } from 'date-fns';
-import { Wrapper, Text } from '@magle-corp/design-system';
 import { Event } from '../../type';
 import { ItemsList } from '../ItemsList';
 import { AvailableEvent, CloseEvent } from '../../theme/icon';
+import { Wrapper, Text } from '../../ui';
 
 interface Props {
   event: Event;
 }
 
-const EventWrapper = styled(Wrapper)`
+const EventWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: max-content 1fr;
@@ -21,7 +21,7 @@ const EventWrapper = styled(Wrapper)`
   }
 `;
 
-const DateWrapper = styled(Wrapper)`
+const DateWrapper = styled.div`
   z-index: 10;
   grid-column: 1/2;
   grid-row: 1/2;
@@ -53,7 +53,7 @@ const StyledDate = styled(Text)`
   line-height: 3.7rem;
 `;
 
-const ContentWrapper = styled(Wrapper)`
+const ContentWrapper = styled.div`
   grid-column: 1/2;
   grid-row: 2/3;
   padding: 20px 15px;
@@ -68,7 +68,7 @@ const ContentWrapper = styled(Wrapper)`
   }
 
   > *:not(:first-child) {
-    margin-top: 15px;
+    margin-top: 20px;
   }
 `;
 
@@ -86,7 +86,7 @@ const EventTeaser = ({ event }: Props) => {
   const isPastDate = isBefore(new Date(event.date), new Date());
 
   return (
-    <EventWrapper direction="row">
+    <EventWrapper>
       <DateWrapper>
         <>
           <StyledDate as="h3" suppressHydrationWarning>
@@ -103,16 +103,12 @@ const EventTeaser = ({ event }: Props) => {
         <Text>{startDateInterval}</Text>
       </DateWrapper>
       <ContentWrapper>
-        <Wrapper>
+        <Wrapper variant="vertical" spacing="10px 0 0 0">
           <Text as="h4" variant="h3">
             {event.title}
           </Text>
           {event.taxonomies && (
-            <ItemsList
-              spacing={0}
-              items={event.taxonomies}
-              variant="taxo_default"
-            />
+            <ItemsList items={event.taxonomies} variant="taxo_default" />
           )}
         </Wrapper>
         <Text>{event.content}</Text>
