@@ -1,42 +1,25 @@
 // Use.
+import Image from 'next/image';
 import styled from 'styled-components';
-import { Main, Wrapper } from '@magle-corp/design-system';
 import { Propos, Identity } from '../src/type';
 import { BlockBuilder } from '../src/util';
 import { Header, Footer } from '../src/component';
-import { Layout, Link } from '../src/ui';
+import { Layout, Main, Link, ImageWrapper } from '../src/ui';
 import { Facebook, Instagram, Twitter } from '../src/theme/icon';
-import Image from 'next/image';
 
 interface Props {
   propos: Propos;
   identity: Identity;
 }
 
-const StyledLayout = styled(Layout)`
-  grid-template-columns: 1fr;
-  grid-template-rows: max-content max-content;
-`;
-
-const StyledMain = styled(Main)`
-  grid-row: 2/3;
-  margin-top: 80px;
-`;
-
-const Banner = styled(Wrapper)`
+const Banner = styled.div`
   position: relative;
   grid-column: 1/2;
   grid-row: 1/2;
+  margin-bottom: 180px;
 `;
 
-const ImageWrapper = styled(Wrapper)`
-  display: flex;
-  position: relative;
-  width: 100%;
-  height: 300px;
-`;
-
-const TitleWrapper = styled(Wrapper)`
+const TitleWrapper = styled.div`
   display: grid;
   grid-template-columns: auto;
   grid-template-rows: max-content 45px;
@@ -51,7 +34,7 @@ const TitleWrapper = styled(Wrapper)`
 `;
 
 const Title = styled.h1`
-  ${({ theme }) => theme.typography.h1};
+  ${({ theme }) => theme.typography.h1}
   grid-column: 1/2;
   grid-row: 1/2;
   padding: 15px 20px 15px 20px;
@@ -86,13 +69,21 @@ const SubTitleWrapper = styled.div`
   }
 `;
 
+/**
+ * Provide page "A propos".
+ *
+ * @param propos
+ *   Strapi custom content type "Propos".
+ * @param identity
+ *   Strapi custom content type "Identite".
+ */
 const About = ({ propos, identity }: Props) => {
   return (
     <>
       <Header identity={identity} />
-      <StyledLayout>
+      <Layout variant="mono_banner">
         <Banner>
-          <ImageWrapper>
+          <ImageWrapper width="100%" height="300px">
             <Image
               src={`${process.env.BASE_URL}${propos.background.url}`}
               layout="fill"
@@ -121,10 +112,10 @@ const About = ({ propos, identity }: Props) => {
             </SubTitleWrapper>
           </TitleWrapper>
         </Banner>
-        <StyledMain>
+        <Main variant="mono_banner">
           <BlockBuilder blocks={propos.dynamic_zone} />
-        </StyledMain>
-      </StyledLayout>
+        </Main>
+      </Layout>
       <Footer identity={identity} />
     </>
   );

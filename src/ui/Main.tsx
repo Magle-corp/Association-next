@@ -5,7 +5,12 @@ import styled, { css } from 'styled-components';
 interface Props {
   className?: string;
   children: ReactNode;
-  variant: 'mono' | 'mono_breadcrumb' | 'duo' | 'duo_breadcrumb';
+  variant:
+    | 'mono'
+    | 'mono_breadcrumb'
+    | 'mono_banner'
+    | 'duo'
+    | 'duo_breadcrumb';
   spacing?: string;
 }
 
@@ -28,7 +33,7 @@ const StyledMain = styled.main<{ variant: string; spacing: string }>`
     `};
 
   ${({ variant }) =>
-    variant == 'mono_breadcrumb' &&
+    (variant == 'mono_breadcrumb' || variant == 'mono_banner') &&
     css`
       grid-column: 1/2;
       grid-row: 2/3;
