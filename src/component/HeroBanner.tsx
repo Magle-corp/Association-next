@@ -114,6 +114,7 @@ const LinkWrapper = styled.div`
   }
 
   @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
+    width: max-content;
     margin-top: auto;
     margin-left: auto;
   }

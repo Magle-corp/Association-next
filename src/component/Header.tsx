@@ -16,11 +16,12 @@ const StyledHeader = styled.header<{ view: boolean }>`
   z-index: 100;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: flex-end;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
   min-height: 70px;
-  padding-bottom: 10px;
+  padding: 10px 0;
   background-color: ${({ theme, view }) =>
     view ? theme.colors.secondary : theme.colors.white};
 
@@ -31,15 +32,20 @@ const StyledHeader = styled.header<{ view: boolean }>`
   @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
     position: relative;
     box-sizing: border-box;
+    justify-content: space-between;
     max-width: ${({ theme }) => theme.breakpoints.maximumWidth};
     padding: 0 20px;
-    margin: 0 auto;
+    margin: 10px auto;
     background-color: ${({ theme }) => theme.colors.white};
 
     > *:not(:last-child) {
       margin: 0;
     }
   }
+`;
+
+const Brand = styled(Wrapper)`
+  flex-wrap: nowrap;
 `;
 
 const StyledImageWrapper = styled(ImageWrapper)`
@@ -74,7 +80,7 @@ const Header = ({ identity }: Props) => {
 
   return (
     <StyledHeader view={navbarView}>
-      <Wrapper variant="horizontal">
+      <Brand variant="horizontal">
         <StyledImageWrapper width="40px" height="40px">
           <Image
             src={`${process.env.BASE_URL}${identity.logo.formats.thumbnail.url}`}
@@ -90,7 +96,7 @@ const Header = ({ identity }: Props) => {
             </Text>
           </Link>
         </Wrapper>
-      </Wrapper>
+      </Brand>
       {navbarView ? (
         <CrossIcon size={40} onClick={() => setNavbarView(!navbarView)} />
       ) : (
