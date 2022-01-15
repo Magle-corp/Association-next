@@ -1426,11 +1426,6 @@
     "@types/yargs" "^16.0.0"
     chalk "^4.0.0"
 
-"@magle-corp/design-system@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@magle-corp/design-system/-/design-system-1.0.5.tgz#182baec7f4e399fab1270da4b3282dbfb775184f"
-  integrity sha512-kwooSknnDRwAFxNPAWNLRQ5AnTkVT32kA7cdRxJ10bs/B02L85724hfK4OPSB7dTwHEG2uvuwOoW4FPBtxcGeg==
-
 "@napi-rs/triples@^1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@napi-rs/triples/-/triples-1.0.3.tgz#76d6d0c3f4d16013c61e45dfca5ff1e6c31ae53c"
