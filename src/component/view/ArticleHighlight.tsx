@@ -2,28 +2,15 @@
 import Image from 'next/image';
 import styled from 'styled-components';
 import { format } from 'date-fns';
-import { Wrapper, Text } from '@magle-corp/design-system';
 import { Article } from '../../type';
 import { ItemsList } from '../ItemsList';
-import { Link } from '../../ui';
+import { Link, Wrapper, Text, ImageWrapper } from '../../ui';
 
 interface Props {
   article: Article;
 }
 
-const ArticleWrapper = styled(Wrapper)`
-  & > *:not(:first-child) {
-    margin-top: 20px;
-  }
-`;
-
-const ImageWrapper = styled(Wrapper)`
-  position: relative;
-  width: 100%;
-  height: 250px;
-`;
-
-const StyledTitle = styled(Text)`
+const Title = styled(Text)`
   margin-right: 10px;
 `;
 
@@ -35,7 +22,6 @@ const Description = styled(Text)`
 `;
 
 const ArticleLink = styled(Link)`
-  ${({ theme }) => theme.typography.call_action}
   margin-left: auto;
 `;
 
@@ -47,8 +33,8 @@ const ArticleLink = styled(Link)`
  */
 const ArticleHighlight = ({ article }: Props) => {
   return (
-    <ArticleWrapper>
-      <ImageWrapper>
+    <Wrapper variant="vertical" spacing="20px 0 0 0">
+      <ImageWrapper width="100%" height="250px">
         <Image
           src={`${process.env.BASE_URL}${article.background.url}`}
           layout="fill"
@@ -56,26 +42,25 @@ const ArticleHighlight = ({ article }: Props) => {
           alt={article.background.alternativeText}
         />
       </ImageWrapper>
-      <Wrapper>
-        <Wrapper direction="row" alignItem="flex-end">
-          <StyledTitle variant="h3">{article.title}</StyledTitle>
+      <Wrapper variant="vertical" spacing="10px 0 0 0">
+        <Wrapper variant="vertical" spacing="10px 0 0 0">
+          <Title variant="h3">{article.title}</Title>
           <Text>{format(new Date(article.created_at), 'd MMM y')}</Text>
         </Wrapper>
         {article.taxonomies && (
-          <ItemsList
-            spacing={0}
-            items={article.taxonomies}
-            variant="taxo_link"
-          />
+          <ItemsList items={article.taxonomies} variant="taxo_link" />
         )}
       </Wrapper>
       <Description>{article.description}</Description>
-      <Wrapper data-cy="link">
-        <ArticleLink href={`/publications/articles/${article.slug}`}>
+      <Wrapper variant="vertical">
+        <ArticleLink
+          href={`/publications/articles/${article.slug}`}
+          variant="link_action"
+        >
           <Text as="span">Consulter l&apos;article</Text>
         </ArticleLink>
       </Wrapper>
-    </ArticleWrapper>
+    </Wrapper>
   );
 };
 

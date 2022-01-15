@@ -2,9 +2,9 @@
 import Image from 'next/image';
 import styled from 'styled-components';
 import { format } from 'date-fns';
-import { Wrapper, Text } from '@magle-corp/design-system';
 import { Article } from '../../type';
 import { ItemsList } from '../ItemsList';
+import { Wrapper, Text, ImageWrapper } from '../../ui';
 
 interface Props {
   article: Article;
@@ -21,12 +21,9 @@ const ArticleWrapper = styled(Wrapper)`
   }
 `;
 
-const ImageWrapper = styled(Wrapper)`
+const StyledImageWrapper = styled(ImageWrapper)`
   grid-column: 1/2;
   grid-row: 1/2;
-  position: relative;
-  width: 100%;
-  height: 200px;
 
   @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
     width: 235px;
@@ -35,7 +32,7 @@ const ImageWrapper = styled(Wrapper)`
   }
 `;
 
-const ContentWrapper = styled(Wrapper)`
+const ContentWrapper = styled.div`
   grid-column: 1/2;
   grid-row: 2/3;
   margin-top: 25px;
@@ -67,27 +64,23 @@ const Description = styled(Text)`
  */
 const ArticleTeaser = ({ article }: Props) => {
   return (
-    <ArticleWrapper direction="row" alignItem="flex-start">
-      <ImageWrapper>
+    <ArticleWrapper variant="horizontal">
+      <StyledImageWrapper width="100%" height="200px">
         <Image
           src={`${process.env.BASE_URL}${article.background.formats.medium.url}`}
           layout="fill"
           objectFit="cover"
           alt={article.background.alternativeText}
         />
-      </ImageWrapper>
+      </StyledImageWrapper>
       <ContentWrapper>
         <Text as="h3" variant="h3">
           {article.title}
         </Text>
-        <Wrapper>
+        <Wrapper variant="vertical">
           <Text>{format(new Date(article.created_at), 'd MMM y')}</Text>
           {article.taxonomies && (
-            <ItemsList
-              spacing={0}
-              items={article.taxonomies}
-              variant="taxo_default"
-            />
+            <ItemsList items={article.taxonomies} variant="taxo_default" />
           )}
         </Wrapper>
         <Description>{article.description}</Description>
