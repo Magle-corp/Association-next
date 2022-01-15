@@ -18,7 +18,7 @@ interface Props {
 }
 
 /**
- * Provide page "Publication".
+ * Provide page "Publications".
  *
  * @param articles
  *   Strapi custom content type "Articles".
@@ -26,7 +26,6 @@ interface Props {
  *   Strapi custom content type "Events".
  * @param identity
  *   Strapi custom content type "Identity".
- * @constructor
  */
 const Home = ({ articles, events, identity }: Props) => {
   return (

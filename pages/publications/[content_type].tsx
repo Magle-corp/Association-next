@@ -50,7 +50,6 @@ const ArrowIcon = styled(Arrow)<{ filtersViewState: boolean }>`
  *   Array of Strapi custom content type "Taxonomy".
  * @param identity
  *   Strapi custom content type "Identite".
- * @constructor
  */
 const ContentTypeListPage = ({
   contentItems,

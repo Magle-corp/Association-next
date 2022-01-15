@@ -35,7 +35,7 @@ const Container = styled.div<{ viewState: boolean }>`
  * @param setStackedItems
  *   Function for set "stackedArticles" state.
  * @param setPage
- *   Function for set "page" state.
+ *   Function for set "page" state, number.
  * @param filters
  *   State "filters", array.
  * @param setFilters

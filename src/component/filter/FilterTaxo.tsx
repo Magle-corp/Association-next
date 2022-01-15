@@ -20,7 +20,7 @@ const SelectedButton = styled(Button)`
  * @param taxonomies
  *   Array of Strapi custom content type "Taxonomy".
  * @param filters
- *   State "filters".
+ *   State "filters", array.
  * @param setFilters
  *   Function for set "filters" state.
  */
