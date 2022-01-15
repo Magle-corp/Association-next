@@ -64,17 +64,17 @@ const Footer = ({ identity }: Props) => {
       <Wrapper variant="horizontal" spacing="0 0 0 15px">
         {identity.facebook && (
           <Link href={identity.facebook} variant="social">
-            <Facebook width={30} height={30} />
+            <Facebook size={30} />
           </Link>
         )}
         {identity.instagram && (
           <Link href={identity.instagram} variant="social">
-            <Instagram width={30} height={30} />
+            <Instagram size={30} />
           </Link>
         )}
         {identity.twitter && (
           <Link href={identity.twitter} variant="social">
-            <Twitter width={30} height={30} />
+            <Twitter size={30} />
           </Link>
         )}
       </Wrapper>

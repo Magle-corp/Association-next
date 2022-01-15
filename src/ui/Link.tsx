@@ -77,8 +77,8 @@ const Link = ({ href, className, children, variant = 'default' }: Props) => (
   <NextLink href={href} passHref>
     <StyledLink className={className} variant={variant}>
       {children}
-      {variant == 'internal' && <InternalLinkIcon width={15} height={15} />}
-      {variant == 'external' && <ExternalLinkIcon width={15} height={15} />}
+      {variant == 'internal' && <InternalLinkIcon size={15} />}
+      {variant == 'external' && <ExternalLinkIcon size={15} />}
     </StyledLink>
   </NextLink>
 );

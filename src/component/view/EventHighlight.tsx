@@ -28,7 +28,7 @@ const EventHighlight = ({ event }: Props) => {
   return (
     <Wrapper variant="vertical" spacing="10px 0 0 0">
       <StyledDate as="h2" suppressHydrationWarning>
-        <CalendarIcon width={40} height={40} />
+        <CalendarIcon size={40} />
         {format(new Date(event.date), 'EEEE')}{' '}
         {format(new Date(event.date), 'd')}{' '}
         {format(new Date(event.date), 'LLLL')}{' '}

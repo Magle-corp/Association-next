@@ -92,17 +92,9 @@ const Header = ({ identity }: Props) => {
         </Wrapper>
       </Wrapper>
       {navbarView ? (
-        <CrossIcon
-          width={40}
-          height={40}
-          onClick={() => setNavbarView(!navbarView)}
-        />
+        <CrossIcon size={40} onClick={() => setNavbarView(!navbarView)} />
       ) : (
-        <BurgerMenuIcon
-          width={40}
-          height={40}
-          onClick={() => setNavbarView(!navbarView)}
-        />
+        <BurgerMenuIcon size={40} onClick={() => setNavbarView(!navbarView)} />
       )}
       <Navbar navbarView={navbarView} />
     </StyledHeader>

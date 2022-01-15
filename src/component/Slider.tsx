@@ -168,9 +168,9 @@ const Slider = ({ slider }: Props) => {
                 onClick={() => handleManualSlide(slide)}
               >
                 {currentSlide.id === slide.id ? (
-                  <Dot width={12} height={12} id={`dot_${slide.id}`} />
+                  <Dot size={12} id={`dot_${slide.id}`} />
                 ) : (
-                  <Circle width={12} height={12} />
+                  <Circle size={12} />
                 )}
               </StyledButton>
             ))}

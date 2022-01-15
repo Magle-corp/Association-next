@@ -96,17 +96,17 @@ const About = ({ propos, identity }: Props) => {
             <SubTitleWrapper>
               {identity.facebook && (
                 <Link href={identity.facebook} variant="social">
-                  <Facebook width={25} height={25} />
+                  <Facebook size={25} />
                 </Link>
               )}
               {identity.instagram && (
                 <Link href={identity.instagram} variant="social">
-                  <Instagram width={25} height={25} />
+                  <Instagram size={25} />
                 </Link>
               )}
               {identity.twitter && (
                 <Link href={identity.twitter} variant="social">
-                  <Twitter width={25} height={25} />
+                  <Twitter size={25} />
                 </Link>
               )}
             </SubTitleWrapper>
