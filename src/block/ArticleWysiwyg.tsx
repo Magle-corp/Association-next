@@ -1,17 +1,10 @@
 // Use.
-import styled from 'styled-components';
-import { Wrapper, Text } from '@magle-corp/design-system';
 import { Wysiwyg } from '../type';
+import { Text, Wrapper } from '../ui';
 
 interface Props {
   block: Wysiwyg;
 }
-
-const Container = styled(Wrapper)`
-  > *:not(:first-child) {
-    margin-top: 20px;
-  }
-`;
 
 /**
  * Provide block "Wysiwyg" for block builder.
@@ -21,14 +14,14 @@ const Container = styled(Wrapper)`
  */
 const ArticleWysiwyg = ({ block }: Props) => {
   return (
-    <Container>
+    <Wrapper variant="vertical" spacing="35px 0 0 0">
       {block.title && (
         <Text as="h2" variant="h2">
           {block.title}
         </Text>
       )}
       <Text>{block.content}</Text>
-    </Container>
+    </Wrapper>
   );
 };
 
