@@ -14,5 +14,6 @@ export { Footer } from './Footer';
 export { Header } from './Header';
 export { HeroBanner } from './HeroBanner';
 export { ItemsList } from './ItemsList';
+export { Navbar } from './Navbar';
 export { Pagination } from './Pagination';
 export { Slider } from './Slider';

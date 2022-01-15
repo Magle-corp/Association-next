@@ -1,12 +1,12 @@
 // Use.
-import { Wrapper, Text } from '@magle-corp/design-system';
+import { Text, Wrapper } from '../ui';
 
 /**
  * Provide component "EmptyResult".
  */
 const EmptyResult = () => {
   return (
-    <Wrapper>
+    <Wrapper variant="vertical">
       <Text variant="h3">Aucun résultats</Text>
     </Wrapper>
   );
