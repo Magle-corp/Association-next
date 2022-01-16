@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react';
 import qs from 'qs';
 import styled from 'styled-components';
-import { Main, Aside } from '@magle-corp/design-system';
 import { Article, Event, Taxonomy, Identity } from '../../src/type';
 import { ItemsStacker } from '../../src/util';
 import {
@@ -14,8 +13,8 @@ import {
   Pagination,
   Footer,
 } from '../../src/component';
-import { Layout } from '../../src/ui';
-import { ArrowDown } from '../../src/theme/icon';
+import { Layout, Main, Aside, Wrapper, Text } from '../../src/ui';
+import { Arrow } from '../../src/theme/icon';
 
 interface Props {
   contentItems: Article[] | Event[];
@@ -24,62 +23,13 @@ interface Props {
   identity: Identity;
 }
 
-const StyledLayout = styled(Layout)`
-  grid-template-columns: 1fr;
-  grid-template-rows: max-content max-content 1fr;
-
+const TitleFilters = styled(Wrapper)`
   @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
-    grid-template-columns: 250px 1fr;
-    grid-template-rows: max-content 1fr;
+    flex-direction: column;
   }
 `;
 
-const StyledMain = styled(Main)`
-  grid-column: 1/2;
-  grid-row: 3/4;
-  margin-top: 50px;
-
-  @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
-    grid-column: 2/3;
-    grid-row: 2/3;
-    margin-left: 35px;
-    margin-top: 0;
-  }
-`;
-
-const StyledAside = styled(Aside)`
-  grid-column: 1/2;
-  grid-row: 2/3;
-`;
-
-const StyledBreadcrumb = styled(Breadcrumb)`
-  grid-column: 1/3;
-`;
-
-const Title = styled.h2`
-  ${({ theme }) => theme.typography.h2}
-  margin-bottom: 70px;
-`;
-
-const FiltersTitle = styled(Title)`
-  margin-bottom: 20px;
-
-  @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
-    margin-bottom: 70px;
-  }
-`;
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-
-  > *:not(:first-child) {
-    margin-left: 25px;
-  }
-`;
-
-const ArrowIcon = styled(ArrowDown)<{ filtersViewState: boolean }>`
-  display: block;
+const ArrowIcon = styled(Arrow)<{ filtersViewState: boolean }>`
   transition: 200ms ease-in-out;
   ${({ filtersViewState }) =>
     filtersViewState ? `transform: rotate(0deg)` : `transform: rotate(180deg)`};
@@ -89,6 +39,18 @@ const ArrowIcon = styled(ArrowDown)<{ filtersViewState: boolean }>`
   }
 `;
 
+/**
+ * Provide page "Articles" ou "Evenements".
+ *
+ * @param contentItems
+ *   Array of Strapi custom content type "Article" or "Event".
+ * @param contentType
+ *   The content type used, string.
+ * @param taxonomies
+ *   Array of Strapi custom content type "Taxonomy".
+ * @param identity
+ *   Strapi custom content type "Identite".
+ */
 const ContentTypeListPage = ({
   contentItems,
   contentType,
@@ -105,6 +67,7 @@ const ContentTypeListPage = ({
 
   useEffect(() => {
     setFilters([]);
+    setPage(0);
     setStackedItems(ItemsStacker(contentItems) as Array<Article[] | Event[]>);
   }, [contentItems]);
 
@@ -115,32 +78,38 @@ const ContentTypeListPage = ({
   return (
     <>
       <Header identity={identity} />
-      <StyledLayout>
-        <StyledBreadcrumb />
-        <StyledMain>
-          <Title>{contentType == 'article' ? 'Articles' : 'Evenements'}</Title>
+      <Layout variant="duo_breadcrumb">
+        <Breadcrumb variant="duo_breadcrumb" />
+        <Main variant="duo_breadcrumb" spacing="50px 0 0 0">
+          <Text as="h2" variant="h2">
+            {contentType == 'article' ? 'Articles' : 'Evenements'}
+          </Text>
           {stackedItems.length > 0 ? (
             <ItemsList
               items={stackedItems[page]}
               variant={`${
                 'date' in stackedItems[page][0] ? 'event' : 'article'
               }_teaser`}
-              spacing={60}
+              spacing="60px 0 0 0"
             />
           ) : (
             <EmptyResult />
           )}
           <Pagination page={page} lastPage={lastPage} setPage={setPage} />
-        </StyledMain>
-        <StyledAside>
-          <Wrapper
+        </Main>
+        <Aside variant="duo_breadcrumb" spacing="50px 0 0 0">
+          <TitleFilters
+            variant="horizontal"
+            spacing="0 0 0 20px"
             onClick={() => {
               setFiltersViewState(!filtersViewState);
             }}
           >
-            <FiltersTitle>Filtres</FiltersTitle>
+            <Text as="h2" variant="h2">
+              Filtres
+            </Text>
             <ArrowIcon filtersViewState={filtersViewState} />
-          </Wrapper>
+          </TitleFilters>
           <ItemsFilters
             taxonomies={taxonomies}
             items={contentItems}
@@ -149,10 +118,9 @@ const ContentTypeListPage = ({
             filters={filters}
             setFilters={setFilters}
             filtersViewState={filtersViewState}
-            setFiltersViewState={setFiltersViewState}
           />
-        </StyledAside>
-      </StyledLayout>
+        </Aside>
+      </Layout>
       <Footer identity={identity} />
     </>
   );

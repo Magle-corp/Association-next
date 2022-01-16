@@ -2,27 +2,27 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import styled from 'styled-components';
-import { Text, Wrapper } from '@magle-corp/design-system';
 import { Identity } from '../type';
-import { Link } from '../ui';
+import { Link, Text, Wrapper, ImageWrapper } from '../ui';
+import { Navbar } from './index';
 import { BurgerMenu, Cross } from '../theme/icon';
 
 interface Props {
   identity: Identity;
 }
 
-const StyledHeader = styled.header<{ view: boolean }>`
+const StyledHeader = styled.header`
   position: fixed;
   z-index: 100;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: flex-end;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
   min-height: 70px;
-  padding-bottom: 10px;
-  background-color: ${({ theme, view }) =>
-    view ? theme.colors.secondary : theme.colors.white};
+  padding: 10px 0;
+  background-color: ${({ theme }) => theme.colors.white};
 
   > *:not(:last-child) {
     margin: 0 20px;
@@ -31,9 +31,10 @@ const StyledHeader = styled.header<{ view: boolean }>`
   @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
     position: relative;
     box-sizing: border-box;
+    justify-content: space-between;
     max-width: ${({ theme }) => theme.breakpoints.maximumWidth};
     padding: 0 20px;
-    margin: 0 auto;
+    margin: 10px auto;
     background-color: ${({ theme }) => theme.colors.white};
 
     > *:not(:last-child) {
@@ -46,11 +47,7 @@ const Brand = styled(Wrapper)`
   flex-wrap: nowrap;
 `;
 
-const Logo = styled(Wrapper)`
-  display: flex;
-  position: relative;
-  width: 40px;
-  height: 40px;
+const StyledImageWrapper = styled(ImageWrapper)`
   margin-right: 10px;
 `;
 
@@ -71,101 +68,27 @@ const CrossIcon = styled(Cross)`
   }
 `;
 
-const Navbar = styled.nav<{ view: boolean }>`
-  display: none;
-
-  ${({ theme, view }) =>
-    view
-      ? `
-  position: absolute;
-  display: flex;
-  top: 100%;
-  width: 100vh;
-  height: 100vh;
-  padding: 20px;
-  background-color: ${theme.colors.secondary};
-  `
-      : ``};
-
-  @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
-    position: relative;
-    display: flex;
-    top: 0;
-    width: max-content;
-    padding: 0;
-    background-color: ${({ theme }) => theme.colors.white};
-  }
-`;
-
-const Menu = styled.ul`
-  display: flex;
-  flex-direction: column;
-  list-style: none;
-
-  > *:not(:first-child) {
-    margin-top: 15px;
-  }
-
-  @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
-    flex-direction: row;
-
-    > *:not(:first-child) {
-      margin-left: 30px;
-      margin-top: 0;
-    }
-
-    > li {
-      &:hover {
-        ul {
-          display: block;
-        }
-      }
-    }
-  }
-`;
-
-const SubMenu = styled.ul`
-  margin: 15px 0 0 15px;
-  list-style: none;
-
-  > *:not(:first-child) {
-    margin-top: 10px;
-  }
-
-  @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
-    display: none;
-    position: absolute;
-    left: -15px;
-    width: 100px;
-    padding: 15px;
-    margin: 0;
-    background-color: ${({ theme }) => theme.colors.secondary};
-    animation: ${({ theme }) => theme.animations.appearTopFadeIn} 200ms linear;
-  }
-`;
-
 /**
  * Provide component "Header".
  *
  * @param identity
  *   Strapi custom content type "Identite".
- *
  */
 const Header = ({ identity }: Props) => {
-  const [navbarView, setNavbarView] = useState(Boolean);
+  const [navbarView, setNavbarView] = useState<boolean>(Boolean);
 
   return (
-    <StyledHeader data-cy="header" view={navbarView}>
-      <Brand direction="row">
-        <Logo>
+    <StyledHeader>
+      <Brand variant="horizontal">
+        <StyledImageWrapper width="40px" height="40px">
           <Image
             src={`${process.env.BASE_URL}${identity.logo.formats.thumbnail.url}`}
             layout="fill"
             objectFit="cover"
             alt={identity.logo.alternativeText}
           />
-        </Logo>
-        <Wrapper data-cy="link">
+        </StyledImageWrapper>
+        <Wrapper variant="horizontal">
           <Link href="/">
             <Text as="h1" variant="h1">
               {identity.name}
@@ -174,59 +97,11 @@ const Header = ({ identity }: Props) => {
         </Wrapper>
       </Brand>
       {navbarView ? (
-        <CrossIcon
-          width={40}
-          height={40}
-          onClick={() => setNavbarView(!navbarView)}
-        />
+        <CrossIcon size={40} onClick={() => setNavbarView(!navbarView)} />
       ) : (
-        <BurgerMenuIcon
-          width={40}
-          height={40}
-          onClick={() => setNavbarView(!navbarView)}
-        />
+        <BurgerMenuIcon size={40} onClick={() => setNavbarView(!navbarView)} />
       )}
-      <Navbar view={navbarView}>
-        <Menu>
-          <li data-cy="link">
-            <Link href="/publications">
-              <Text as="span" variant="h4">
-                Publications
-              </Text>
-            </Link>
-            <SubMenu>
-              <li data-cy="link">
-                <Link href="/publications/articles">
-                  <Text as="span" variant="h4">
-                    Articles
-                  </Text>
-                </Link>
-              </li>
-              <li data-cy="link">
-                <Link href="/publications/evenements">
-                  <Text as="span" variant="h4">
-                    Evenements
-                  </Text>
-                </Link>
-              </li>
-            </SubMenu>
-          </li>
-          <li data-cy="link">
-            <Link href="/a-propos">
-              <Text as="span" variant="h4">
-                A propos
-              </Text>
-            </Link>
-          </li>
-          <li>
-            <Link href="#">
-              <Text as="span" variant="h4">
-                Contact
-              </Text>
-            </Link>
-          </li>
-        </Menu>
-      </Navbar>
+      <Navbar navbarView={navbarView} />
     </StyledHeader>
   );
 };

@@ -1,7 +1,7 @@
 // Use.
 import { Image } from './index';
 
-// Type for identity content type.
+// Type for Identite content type.
 interface Identity {
   name: string;
   address?: string;

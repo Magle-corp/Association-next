@@ -1,8 +1,8 @@
-name: CI production
+name: CI staging
 
 on:
   push:
-    branches: [master]
+    branches: [staging]
 
 jobs:
   test:
@@ -52,9 +52,9 @@ jobs:
       - name: Build project
         run: NODE_ENV=production yarn build
       - name: Rsync project with server one
-        run: rsync -r . ${{ secrets.SERVER }}:${{ secrets.PROD_FOLDER }}
+        run: rsync -r . ${{ secrets.SERVER }}:${{ secrets.STAGING_FOLDER }}
       - name: Restart server
-        run: ssh ${{ secrets.SERVER }} pm2 ${{ secrets.PROD_PROCESS_NAME }}
+        run: ssh ${{ secrets.SERVER }} pm2 reload ${{ secrets.STAGING_PROCESS_NAME }}
 
   publish_coverage:
     name: Publish code coverage
@@ -80,4 +80,4 @@ jobs:
       - name: Adding know hosts
         run: ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
       - name: Rsync tests report with server one
-        run: rsync -r ./coverage/lcov-report/ ${{ secrets.SERVER }}:${{ secrets.PROD_TEST }}
+        run: rsync -r ./coverage/lcov-report/ ${{ secrets.SERVER }}:${{ secrets.STAGING_TEST }}

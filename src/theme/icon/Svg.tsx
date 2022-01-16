@@ -3,6 +3,7 @@ import React, { SVGAttributes } from 'react';
 
 interface Props extends SVGAttributes<SVGSVGElement> {
   size?: number;
+  variant?: string;
 }
 
 const Svg = styled.svg<Props>`

@@ -1,17 +1,11 @@
 // Use.
-import styled from 'styled-components';
 import { Cartes, TexteImage, Wysiwyg } from '../type';
+import { Wrapper } from '../ui';
 import { ArticleCartes, ArticleImageTexte, ArticleWysiwyg } from '../block';
 
 interface Props {
   blocks?: [Cartes | TexteImage | Wysiwyg];
 }
-
-const Container = styled.div`
-  > * {
-    margin-top: 80px;
-  }
-`;
 
 /**
  * Returns a block component according to the Strapi custom component type passed.
@@ -23,7 +17,7 @@ const BlockBuilder = ({ blocks }: Props) => {
   return (
     <>
       {blocks && (
-        <Container>
+        <Wrapper variant="vertical" spacing="80px 0 0 0">
           {blocks.map((block) => {
             switch (block.__component) {
               case 'global.cartes':
@@ -49,7 +43,7 @@ const BlockBuilder = ({ blocks }: Props) => {
                 );
             }
           })}
-        </Container>
+        </Wrapper>
       )}
     </>
   );

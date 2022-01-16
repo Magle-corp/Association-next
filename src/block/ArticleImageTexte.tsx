@@ -1,14 +1,14 @@
 // Use.
 import Image from 'next/image';
 import styled from 'styled-components';
-import { Wrapper, Text } from '@magle-corp/design-system';
 import { TexteImage } from '../type';
+import { Text } from '../ui';
 
 interface Props {
   block: TexteImage;
 }
 
-const Container = styled(Wrapper)<{ reverse: boolean }>`
+const Container = styled.div<{ reverse: boolean }>`
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: max-content 1fr;
@@ -20,7 +20,7 @@ const Container = styled(Wrapper)<{ reverse: boolean }>`
   }
 `;
 
-const ImageWrapper = styled(Wrapper)<{ reverse: boolean }>`
+const ImageWrapper = styled.div<{ reverse: boolean }>`
   grid-column: 1/2;
   grid-row: 1/2;
   position: relative;
@@ -38,19 +38,19 @@ const ImageWrapper = styled(Wrapper)<{ reverse: boolean }>`
   }
 `;
 
-const ContentWrapper = styled(Wrapper)<{ reverse: boolean }>`
+const ContentWrapper = styled.div<{ reverse: boolean }>`
   grid-column: 1/2;
   grid-row: 2/3;
-  margin-top: 15px;
+  margin-top: 35px;
 
   > *:not(:first-child) {
-    margin-top: 20px;
+    margin-top: 30px;
   }
 
   @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
     grid-column: ${({ reverse }) => (reverse ? '1/2' : '2/3')};
     grid-row: 1/2;
-    margin: ${({ reverse }) => (reverse ? '0 30px 0 0' : '0 0 0 30px')};
+    margin: ${({ reverse }) => (reverse ? '0 35px 0 0' : '0 0 0 35px')};
   }
 `;
 

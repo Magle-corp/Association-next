@@ -50,25 +50,6 @@ const variant: object = {
     text-decoration: none;
     color: ${colors.black};
 `,
-  button: `
-    ${fontFamily}
-    padding: 5px 7px;
-    font-size: 1.6rem;
-    line-height: 2.4rem;
-    font-weight: 700;
-    text-decoration: none;
-    background-color: ${colors.primary};
-    border: 2px solid ${colors.primary};
-    border-radius: 3px;
-    color: ${colors.white};
-    cursor: pointer;
-    transition: 250ms ease-in-out;
-    
-    &:hover {
-      background-color: ${colors.white};
-      color: ${colors.black};
-    }
-`,
   tag: `
     ${fontFamily}
     display: block;
@@ -83,18 +64,57 @@ const variant: object = {
     background-color: ${colors.white};
     border: 2px solid ${colors.primary};
   `,
-  call_action: `
+  button_action: `
     ${fontFamily}
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    text-align: center;
+    width: max-content;
     padding: 5px 7px;
-    text-decoration: none;
+    margin: 7px 7px 0 0;
     background-color: ${colors.primary};
     border: 2px solid ${colors.primary};
     border-radius: 3px;
+      font-size: 1.6rem;
+      line-height: 2.4rem;
+      font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    color: ${colors.white};
+    cursor: pointer;
+    transition: 250ms ease-in-out;
+    
+    &:hover {
+      background-color: ${colors.white};
+      color: ${colors.black};
+    
+      span {
+        color: ${colors.black};
+      }
+    }
+    
+    span {
+      font-size: 1.6rem;
+      line-height: 2.4rem;
+      font-weight: 700;
+      color: ${colors.white};
+      transition: 250ms ease-in-out;
+    }
+  `,
+  link_action: `
+    ${fontFamily}
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: max-content;
+    padding: 5px 7px;
+    background-color: ${colors.primary};
+    border: 2px solid ${colors.primary};
+    border-radius: 3px;
+    text-align: center;
+    text-decoration: none;
     color: ${colors.white};
     cursor: pointer;
     transition: 250ms ease-in-out;

@@ -1,9 +1,8 @@
 // Use.
-import styled from 'styled-components';
-import { Text } from '@magle-corp/design-system';
+import styled, { css } from 'styled-components';
 import { Article, Event, Taxonomy } from '../type';
 import { ArticleTeaser, EventTeaser } from './index';
-import { Link } from '../ui';
+import { Link, Text } from '../ui';
 
 interface Props {
   className?: string;
@@ -13,74 +12,70 @@ interface Props {
     | 'taxo_default'
     | 'taxo_link'
     | `${string}_teaser`;
-  spacing: number;
+  spacing?: string;
 }
 
-const StyledList = styled.ul<{ spacing: number; variant: string }>`
+const StyledList = styled.ul<{ spacing: string; variant: string }>`
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   list-style: none;
 
-  ${({ spacing, variant }) =>
-    variant == 'taxo_default' || variant == 'taxo_link'
-      ? `
-    > * {
-        margin-top: 10px;
-    }
-    > *:not(:last-child) {
-        margin-right: 5px;
-    }`
-      : `
-    > *:not(:first-child) {
-        margin-top: ${spacing}px;
-    }`}
-`;
+  ${({ variant, spacing }) =>
+    spacing != '0px' &&
+    variant != 'taxo_default' &&
+    variant != 'taxo_link' &&
+    css`
+      > *:not(:first-child) {
+        margin: ${spacing};
+      }
+    `};
 
-const StyledLink = styled(Link)`
-  ${({ theme }) => theme.typography.call_action}
+  ${({ variant }) =>
+    (variant == 'taxo_default' || variant == 'taxo_link') &&
+    css`
+      > * {
+        margin-top: 10px;
+      }
+      > *:not(:last-child) {
+        margin-right: 5px;
+      }
+    `};
 `;
 
 /**
- * Provide component "List".
+ * Provide component "ItemsList".
  *
  * @param className
- *   String for override Styled component style.
+ *   Styled component override.
  * @param items
  *   Array of Strapi custom content type "Article" or "Event".
  * @param variant
- *   String for define behaviour of the list.
+ *   String for define behaviour of the component, string.
  * @param spacing
- *   Number for define space between each list item.
+ *   The margin between each child, string.
  */
-const ItemsList = ({ className, items, variant, spacing }: Props) => {
+const ItemsList = ({ className, items, variant, spacing = '0px' }: Props) => {
   return (
     <>
       <StyledList className={className} spacing={spacing} variant={variant}>
-        {variant == 'article_default' &&
+        {(variant == 'article_default' || variant == 'article_teaser') &&
           items.map((article) => (
-            <li key={article.id} data-cy="link">
+            <li key={article.id}>
               <Link
                 href={`/publications/articles/${
                   'slug' in article ? article.slug : '404'
                 }`}
-                variant="internal"
+                variant={
+                  variant == 'article_default' ? 'internal_icon' : 'default'
+                }
               >
-                <Text as="span">{article.title}</Text>
-              </Link>
-            </li>
-          ))}
-        {variant == 'article_teaser' &&
-          items.map((article) => (
-            <li key={article.id} data-cy="link">
-              <Link
-                href={`/publications/articles/${
-                  'slug' in article ? article.slug : '404'
-                }`}
-              >
-                <article>
+                {variant == 'article_default' && (
+                  <Text as="span">{article.title}</Text>
+                )}
+                {variant == 'article_teaser' && (
                   <ArticleTeaser article={article as Article} />
-                </article>
+                )}
               </Link>
             </li>
           ))}
@@ -92,20 +87,17 @@ const ItemsList = ({ className, items, variant, spacing }: Props) => {
               </article>
             </li>
           ))}
-        {variant == 'taxo_default' &&
+        {(variant == 'taxo_link' || variant == 'taxo_default') &&
           items.map((taxonomy) => (
             <li key={taxonomy.id}>
-              <Text variant="tag">{taxonomy.title}</Text>
-            </li>
-          ))}
-        {variant == 'taxo_link' &&
-          items.map((taxonomy) => (
-            <li key={taxonomy.id} data-cy="link">
-              <StyledLink
-                href={`/publications/articles?taxonomy=${taxonomy.title}`}
-              >
-                <Text as="span">{taxonomy.title}</Text>
-              </StyledLink>
+              {variant == 'taxo_default' && (
+                <Text variant="tag">{taxonomy.title}</Text>
+              )}
+              {variant == 'taxo_link' && (
+                <Link variant="link_action" href={`/publications/articles`}>
+                  <Text as="span">{taxonomy.title}</Text>
+                </Link>
+              )}
             </li>
           ))}
       </StyledList>

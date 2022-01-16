@@ -2,16 +2,15 @@
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { Wrapper, Text, Button } from '@magle-corp/design-system';
 import { Slider as SliderType, Slide as SlideType } from '../type';
-import { Link } from '../ui';
+import { Link, Text, Button, ImageWrapper } from '../ui';
 import { Dot, Circle } from '../theme/icon';
 
 interface Props {
   slider: SliderType;
 }
 
-const Container = styled(Wrapper)`
+const Container = styled.div`
   background-color: ${({ theme }) => theme.colors.grey};
   position: relative;
   height: 100%;
@@ -32,16 +31,13 @@ const SlidesWrapper = styled.div<{ slide: string }>`
   `}
 `;
 
-const Slide = styled(Wrapper)`
+const Slide = styled.div`
   display: none;
   width: 100%;
   animation: ${({ theme }) => theme.animations.fadeIn} 500ms linear;
 `;
 
-const ImageWrapper = styled(Wrapper)`
-  position: relative;
-  height: 250px;
-
+const StyledImageWrapper = styled(ImageWrapper)`
   @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
     height: 450px;
   }
@@ -51,7 +47,7 @@ const ImageWrapper = styled(Wrapper)`
   }
 `;
 
-const TitleWrapper = styled(Wrapper)`
+const TitleWrapper = styled.div`
   z-index: 40;
   position: absolute;
   bottom: 0;
@@ -61,7 +57,7 @@ const TitleWrapper = styled(Wrapper)`
   background-color: rgba(255, 255, 255, 70%);
 `;
 
-const DotesWrapper = styled(Wrapper)`
+const DotesWrapper = styled.div`
   display: none;
 
   @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
@@ -107,7 +103,7 @@ const StyledButton = styled(Button)<{ slide: string }>`
  *   Array of custom Strapi component "Slider".
  */
 const Slider = ({ slider }: Props) => {
-  const [currentSlide, setCurrentSlide] = useState(slider.slides[0]);
+  const [currentSlide, setCurrentSlide] = useState<SlideType>(slider.slides[0]);
   const [sliderAuto, setSliderAuto] = useState<any>();
 
   useEffect(() => {
@@ -136,16 +132,16 @@ const Slider = ({ slider }: Props) => {
           <SlidesWrapper slide={currentSlide.id}>
             {slider.slides.map((slide) => (
               <Slide key={`slide_${slide.id}`} id={`slide_${slide.id}`}>
-                <ImageWrapper>
+                <StyledImageWrapper width="100%" height="250px">
                   <Image
                     src={`${process.env.BASE_URL}${slide.image.url}`}
                     layout="fill"
                     objectFit="cover"
                     alt={slide.image.alternativeText}
                   />
-                </ImageWrapper>
+                </StyledImageWrapper>
                 {slide.button && (
-                  <TitleWrapper data-cy="link">
+                  <TitleWrapper>
                     <Link
                       href={`${
                         slide.button.slug &&
@@ -153,7 +149,7 @@ const Slider = ({ slider }: Props) => {
                           ? slide.button.slug.slug
                           : '/404'
                       }`}
-                      variant="internal"
+                      variant="internal_icon"
                     >
                       <Text as="span" variant="p">
                         {slide.button.title}
@@ -164,7 +160,7 @@ const Slider = ({ slider }: Props) => {
               </Slide>
             ))}
           </SlidesWrapper>
-          <DotesWrapper direction="row">
+          <DotesWrapper>
             {slider.slides.map((slide) => (
               <StyledButton
                 slide={currentSlide.id}
@@ -172,9 +168,9 @@ const Slider = ({ slider }: Props) => {
                 onClick={() => handleManualSlide(slide)}
               >
                 {currentSlide.id === slide.id ? (
-                  <Dot width={12} height={12} id={`dot_${slide.id}`} />
+                  <Dot size={12} id={`dot_${slide.id}`} />
                 ) : (
-                  <Circle width={12} height={12} />
+                  <Circle size={12} />
                 )}
               </StyledButton>
             ))}

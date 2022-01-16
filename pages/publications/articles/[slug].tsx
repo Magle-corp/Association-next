@@ -1,7 +1,5 @@
 // Use.
 import qs from 'qs';
-import styled from 'styled-components';
-import { Main } from '@magle-corp/design-system';
 import { Article, Identity } from '../../../src/type';
 import {
   Header,
@@ -9,7 +7,7 @@ import {
   ArticleDetail,
   Footer,
 } from '../../../src/component';
-import { Layout } from '../../../src/ui';
+import { Layout, Main } from '../../../src/ui';
 
 interface StaticParams {
   params: {
@@ -22,26 +20,23 @@ interface Props {
   identity: Identity;
 }
 
-const StyledLayout = styled(Layout)`
-  grid-template-columns: 1fr;
-  grid-template-rows: max-content max-content;
-`;
-
-const StyledMain = styled(Main)`
-  grid-column: 1/2;
-  grid-row: 2/3;
-`;
-
+/**
+ *
+ * @param article
+ *   Strapi custom content type "Article".
+ * @param identity
+ *   Strapi custom content type "Identite".
+ */
 const Post = ({ article, identity }: Props) => {
   return (
     <>
       <Header identity={identity} />
-      <StyledLayout>
-        <Breadcrumb />
-        <StyledMain>
+      <Layout variant="mono_breadcrumb">
+        <Breadcrumb variant="mono_breadcrumb" />
+        <Main variant="mono_breadcrumb">
           <ArticleDetail article={article[0]} />
-        </StyledMain>
-      </StyledLayout>
+        </Main>
+      </Layout>
       <Footer identity={identity} />
     </>
   );

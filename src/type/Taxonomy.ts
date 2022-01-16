@@ -1,4 +1,4 @@
-// Type for taxonomy content type.
+// Type for Taxonomy content type.
 interface Taxonomy {
   id: number;
   title: string;

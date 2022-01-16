@@ -1,7 +1,5 @@
 // Use.
 import qs from 'qs';
-import styled from 'styled-components';
-import { Main, Aside, Wrapper, Text } from '@magle-corp/design-system';
 import { Article, Event, Identity } from '../../src/type';
 import {
   Header,
@@ -11,7 +9,7 @@ import {
   EventHighlight,
   Footer,
 } from '../../src/component';
-import { Layout, Link } from '../../src/ui';
+import { Layout, Main, Aside, Link, Text, Wrapper } from '../../src/ui';
 
 interface Props {
   articles: Article[];
@@ -19,103 +17,65 @@ interface Props {
   identity: Identity;
 }
 
-const StyledMain = styled(Main)`
-  grid-column: 1/2;
-  grid-row: 1/2;
-  margin-right: 0;
-
-  @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
-    margin-right: 120px;
-  }
-`;
-
-const StyledAside = styled(Aside)`
-  grid-column: 1/2;
-  grid-row: 2/3;
-  margin-top: 50px;
-
-  > *:not(:first-child) {
-    margin-top: 60px;
-  }
-
-  @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
-    grid-column: 2/3;
-    grid-row: 1/2;
-    margin-top: 0;
-  }
-`;
-
-const Title = styled.h1`
-  ${({ theme }) => theme.typography.h2}
-  margin-bottom: 25px;
-`;
-
-const EventWrapper = styled(Wrapper)`
-  > *:not(:first-child) {
-    text-align: center;
-    margin-top: 35px;
-  }
-`;
-
-const ArticlesWrapper = styled(Wrapper)`
-  > *:not(:first-child) {
-    margin-top: 35px;
-  }
-`;
-
-const EventsLink = styled(Link)`
-  ${({ theme }) => theme.typography.call_action}
-`;
-
+/**
+ * Provide page "Publications".
+ *
+ * @param articles
+ *   Strapi custom content type "Articles".
+ * @param events
+ *   Strapi custom content type "Events".
+ * @param identity
+ *   Strapi custom content type "Identity".
+ */
 const Home = ({ articles, events, identity }: Props) => {
   return (
-    <Wrapper data-cy="page">
+    <>
       <Header identity={identity} />
-      <Layout>
-        <StyledMain>
+      <Layout variant="duo">
+        <Main variant="duo" spacing="30px 0 0 0">
+          <Text as="h2" variant="h1">
+            A la une
+          </Text>
           <article>
-            <Title>A la une</Title>
             {articles.length > 0 ? (
               <ArticleHighlight article={articles[0]} />
             ) : (
               <EmptyResult />
             )}
           </article>
-        </StyledMain>
-        <StyledAside>
+        </Main>
+        <Aside variant="duo" spacing="50px 0 0 0">
           {events.length > 0 && (
-            <EventWrapper>
+            <Wrapper variant="vertical" spacing="30px 0 0 0">
               <EventHighlight event={events[0]} />
-              <Wrapper data-cy="link">
-                <EventsLink href="/publications/evenements">
-                  <Text as="span">Tous les évènements</Text>
-                </EventsLink>
-              </Wrapper>
-            </EventWrapper>
+              <Link href="/publications/evenements" variant="link_action">
+                <Text as="span">Tous les évènements</Text>
+              </Link>
+            </Wrapper>
           )}
-          <Wrapper>
-            <Title>Derniers articles</Title>
-            <ArticlesWrapper>
+          <Wrapper variant="vertical" spacing="30px 0 0 0">
+            <Text as="h2" variant="h1">
+              Derniers articles
+            </Text>
+            <Wrapper variant="vertical">
               {articles.length > 0 ? (
                 <ItemsList
                   items={articles}
                   variant="article_default"
-                  spacing={15}
+                  spacing="15px 0 0 0"
                 />
               ) : (
                 <EmptyResult />
               )}
-              <Wrapper data-cy="link">
-                <EventsLink href="/publications/articles">
-                  <Text as="span">Tous les articles</Text>
-                </EventsLink>
-              </Wrapper>
-            </ArticlesWrapper>
+            </Wrapper>
+            <Link href="/publications/articles" variant="link_action">
+              <Text as="span">Tous les articles</Text>
+            </Link>
           </Wrapper>
-        </StyledAside>
+        </Aside>
       </Layout>
       <Footer identity={identity} />
-    </Wrapper>
+    </>
   );
 };
 

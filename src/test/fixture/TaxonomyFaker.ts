@@ -14,7 +14,7 @@ const fakeTaxoTitle = [
 ];
 
 /**
- Returns a fake Taxonomy.
+ * Returns a fake Taxonomy.
  */
 const TaxonomyFaker = (title?: string) => {
   const randomIndex = randomInt(fakeTaxoTitle.length);

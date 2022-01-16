@@ -2,21 +2,14 @@
 import Image from 'next/image';
 import styled from 'styled-components';
 import { format } from 'date-fns';
-import { Wrapper, Text } from '@magle-corp/design-system';
 import { Article } from '../../type';
 import { BlockBuilder } from '../../util';
 import { ItemsList } from '../ItemsList';
+import { Wrapper, Text, ImageWrapper } from '../../ui';
 
 interface Props {
   article: Article;
 }
-
-const ImageWrapper = styled(Wrapper)`
-  display: flex;
-  position: relative;
-  width: 100%;
-  height: 350px;
-`;
 
 const AbsoluteTitle = styled.h1`
   display: none;
@@ -46,7 +39,7 @@ const Title = styled.h1`
   }
 `;
 
-const ContentWrapper = styled(Wrapper)`
+const ContentWrapper = styled.div`
   width: 85%;
   margin: 35px auto 0 auto;
 
@@ -54,8 +47,16 @@ const ContentWrapper = styled(Wrapper)`
     margin-top: 40px;
   }
 
+  > *:last-child {
+    margin-top: 80px;
+  }
+
   @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
     margin: 0 auto;
+
+    > *:last-child {
+      margin-top: 100px;
+    }
   }
 `;
 
@@ -70,7 +71,7 @@ const TaxonomiesList = styled(ItemsList)`
 `;
 
 /**
- * Provide component "ArticleDetail".
+ * Provide view "ArticleDetail".
  *
  * @param article
  *   Strapi custom content type "Article".
@@ -78,7 +79,7 @@ const TaxonomiesList = styled(ItemsList)`
 const ArticleDetail = ({ article }: Props) => {
   return (
     <>
-      <ImageWrapper>
+      <ImageWrapper width="100%" height="350px">
         <Image
           src={`${process.env.BASE_URL}${article.background.url}`}
           layout="fill"
@@ -89,16 +90,12 @@ const ArticleDetail = ({ article }: Props) => {
       </ImageWrapper>
       <ContentWrapper>
         <Title>{article.title}</Title>
-        <Wrapper>
+        <Wrapper variant="vertical">
           <StyledDate variant="h4">
             {format(new Date(article.created_at), 'd LLLL y')}
           </StyledDate>
           {article.taxonomies && (
-            <TaxonomiesList
-              spacing={0}
-              items={article.taxonomies}
-              variant="taxo_link"
-            />
+            <TaxonomiesList items={article.taxonomies} variant="taxo_link" />
           )}
         </Wrapper>
         <BlockBuilder blocks={article.dynamic_zone} />

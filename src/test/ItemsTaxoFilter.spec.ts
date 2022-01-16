@@ -8,6 +8,9 @@ import {
   fakeTaxoTitle,
 } from './fixture';
 
+/**
+ * Test for util ItemsTaxoFilter.
+ */
 describe('Test util ItemsTaxoFilter', function () {
   test('Empty parameter arrays', () => {
     expect(ItemsTaxoFilter([], [])).toStrictEqual([]);

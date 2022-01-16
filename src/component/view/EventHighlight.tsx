@@ -1,22 +1,16 @@
 // Use.
 import { format } from 'date-fns';
 import styled from 'styled-components';
-import { Wrapper, Text } from '@magle-corp/design-system';
 import { Event } from '../../type';
 import { Calendar } from '../../theme/icon';
+import { Wrapper, Text } from '../../ui';
 
 interface Props {
   event: Event;
 }
 
-const Container = styled(Wrapper)`
-  svg {
-    margin-right: 10px;
-  }
-
-  > *:not(:first-child) {
-    margin-top: 10px;
-  }
+const CalendarIcon = styled(Calendar)`
+  margin-right: 10px;
 `;
 
 const StyledDate = styled(Text)`
@@ -25,16 +19,16 @@ const StyledDate = styled(Text)`
 `;
 
 /**
- * Provide component "EventHighlight".
+ * Provide view "EventHighlight".
  *
  * @param event
  *   Strapi custom content type "Event".
  */
 const EventHighlight = ({ event }: Props) => {
   return (
-    <Container>
+    <Wrapper variant="vertical" spacing="10px 0 0 0">
       <StyledDate as="h2" suppressHydrationWarning>
-        <Calendar />
+        <CalendarIcon size={40} />
         {format(new Date(event.date), 'EEEE')}{' '}
         {format(new Date(event.date), 'd')}{' '}
         {format(new Date(event.date), 'LLLL')}{' '}
@@ -43,7 +37,7 @@ const EventHighlight = ({ event }: Props) => {
         {format(new Date(event.date), 'mm')}
       </StyledDate>
       <Text>{event.title}</Text>
-    </Container>
+    </Wrapper>
   );
 };
 

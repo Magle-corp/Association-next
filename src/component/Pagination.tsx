@@ -1,6 +1,6 @@
 // Use.
 import styled from 'styled-components';
-import { Wrapper, Button } from '@magle-corp/design-system';
+import { Button, Wrapper } from '../ui';
 
 interface Props {
   page: number;
@@ -9,24 +9,8 @@ interface Props {
 }
 
 const PaginationWrapper = styled(Wrapper)`
-  display: flex;
-  flex-direction: column;
   justify-content: center;
-  width: max-content;
   margin: 60px auto auto;
-  
-  > *:not(:first-child) {
-  margin-top: 15px
-  }
-}
-
-  @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
-    flex-direction: row;
-
-    > *:not(:first-child) {
-      margin-top: 0;
-      margin-left: 20px;
-    }
 `;
 
 const StyledButton = styled(Button)`
@@ -50,19 +34,18 @@ const StyledButton = styled(Button)`
  * Provide component "Pagination".
  *
  * @param page
- *   State "page".
+ *   State "page", number.
  * @param lastPage
- *   State "lastPage".
+ *   State "lastPage", number.
  * @param setPage
- *   Function for set "page" state.
+ *   Function for set "page" state, number.
  */
 const Pagination = ({ page, lastPage, setPage }: Props) => {
   return (
-    <PaginationWrapper direction="row" justifyContent="center">
+    <PaginationWrapper variant="horizontal">
       {page !== null && lastPage !== null && (
         <>
           <StyledButton
-            suppressHydrationWarning
             onClick={() => {
               page <= 0 ? setPage() : setPage(page - 1);
             }}
@@ -71,7 +54,6 @@ const Pagination = ({ page, lastPage, setPage }: Props) => {
             Précédent
           </StyledButton>
           <StyledButton
-            suppressHydrationWarning
             onClick={() => {
               page >= lastPage ? setPage() : setPage(page + 1);
             }}

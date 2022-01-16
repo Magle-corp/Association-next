@@ -1,7 +1,7 @@
 // Use.
 import { Image, Button } from './index';
 
-// Type for article components.
+// Types for Article components.
 
 interface Cartes {
   __component: string;

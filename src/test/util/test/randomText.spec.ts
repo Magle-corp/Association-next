@@ -1,6 +1,9 @@
 // Use.
 import { randomText } from '../randomText';
 
+/**
+ * Test for util test randomText.
+ */
 describe('Test util randomInt', () => {
   test('Test that the return is >= than 0', () => {
     const lorem = randomText(100);

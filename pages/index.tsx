@@ -1,29 +1,30 @@
 // Use.
-import styled from 'styled-components';
-import { Main } from '@magle-corp/design-system';
 import { Homepage, Identity } from '../src/type';
 import { Header, HeroBanner, Footer } from '../src/component';
-import { Layout } from '../src/ui';
+import { Layout, Main } from '../src/ui';
 
 interface Props {
   homepage: Homepage;
   identity: Identity;
 }
 
-const StyledLayout = styled(Layout)`
-  grid-template-columns: 1fr;
-  grid-template-rows: max-content max-content;
-`;
-
+/**
+ * Provide home page.
+ *
+ * @param homepage
+ *   Strapi custom content type "Page d'accueil".
+ * @param identity
+ *   Strapi custom content type "Identite".
+ */
 const Home = ({ homepage, identity }: Props) => {
   return (
     <>
       <Header identity={identity} />
-      <StyledLayout>
-        <Main>
+      <Layout variant="mono">
+        <Main variant="mono">
           <HeroBanner homepage={homepage} />
         </Main>
-      </StyledLayout>
+      </Layout>
       <Footer identity={identity} />
     </>
   );

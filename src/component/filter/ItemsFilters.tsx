@@ -1,11 +1,9 @@
 // Use.
-import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { Article, Event, Taxonomy } from '../../type';
 import { ItemsStacker, ItemsTaxoFilter } from '../../util';
 import { FilterTaxo } from '../index';
 import styled from 'styled-components';
-import { Wrapper } from '@magle-corp/design-system';
 
 interface Props {
   taxonomies: Taxonomy[];
@@ -15,15 +13,10 @@ interface Props {
   filters: Array<string | Array<string>>;
   setFilters: Function;
   filtersViewState: boolean;
-  setFiltersViewState: Function;
 }
 
-const Container = styled(Wrapper)<{ viewState: boolean }>`
+const Container = styled.div<{ viewState: boolean }>`
   display: ${({ viewState }) => (viewState ? 'block' : 'none')};
-
-  > *:not(:first-child) {
-    margin-top: 15px;
-  }
 
   @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
     display: block;
@@ -31,24 +24,22 @@ const Container = styled(Wrapper)<{ viewState: boolean }>`
 `;
 
 /**
- * Provide component "Filters".
+ * Provide component "ItemsFilter".
  *
  * @param taxonomies
  *   Array of Strapi custom content type "Taxonomy".
  * @param items
  *   Array of Strapi custom content type "Article" or "Event".
  * @param setStackedItems
- *   Function for set "stackedArticles" state.
+ *   Function for set "stackedArticles" state, array.
  * @param setPage
- *   Function for set "page" state.
+ *   Function for set "page" state, number.
  * @param filters
- *   State "filters".
+ *   State "filters", array.
  * @param setFilters
- *   Function for set "filters" state.
- * @param setFiltersViewState
- *   Function for set "viewState" state.
+ *   Function for set "filters" state, array.
  * @param filtersViewState
- *   State "viewState".
+ *   State "viewState", boolean.
  */
 const ItemsFilters = ({
   taxonomies,
@@ -57,33 +48,8 @@ const ItemsFilters = ({
   setPage,
   setFilters,
   filters,
-  setFiltersViewState,
   filtersViewState,
 }: Props) => {
-  const router = useRouter();
-  const routerQuery = router.query.taxonomy;
-
-  // Set stackedArticles according to the router request.
-  useEffect(() => {
-    if (routerQuery) {
-      setFiltersViewState(true);
-      setFilters([...filters, routerQuery]);
-      const filteredItems = ItemsTaxoFilter(items, filters);
-      setStackedItems(
-        ItemsStacker(filteredItems) as Array<Article[] | Event[]>
-      );
-    } else {
-      setStackedItems(ItemsStacker(items) as Array<Article[] | Event[]>);
-    }
-  }, [
-    items,
-    routerQuery,
-    filters,
-    setFilters,
-    setFiltersViewState,
-    setStackedItems,
-  ]);
-
   // Set stackedArticles according to the filters.
   useEffect(() => {
     if (filters.length > 0) {
