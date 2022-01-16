@@ -10,7 +10,7 @@ interface Props {
   disabled?: boolean;
 }
 
-const StyledButton = styled.aside<{ variant: string }>`
+const StyledButton = styled.button<{ variant: string }>`
   ${({ theme, variant }) => theme.typography[variant]}
 `;
 
