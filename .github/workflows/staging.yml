@@ -30,6 +30,7 @@ jobs:
 
   deploy_project:
     name: Build and deploy project
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
