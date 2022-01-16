@@ -8,6 +8,7 @@ export { ArticleTeaser } from './view/ArticleTeaser';
 export { EventHighlight } from './view/EventHighlight';
 export { EventTeaser } from './view/EventTeaser';
 // Components.
+export { Banner } from './Banner';
 export { Breadcrumb } from './Breadcrumb';
 export { EmptyResult } from './EmptyResult';
 export { Footer } from './Footer';
