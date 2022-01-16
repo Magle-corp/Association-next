@@ -1,9 +1,8 @@
 // Use.
 import { useState, useEffect } from 'react';
-import { Homepage, Identity } from './type';
 
 const useFetch = (uri: string) => {
-  const [data, setData] = useState<Homepage | Identity>();
+  const [data, setData] = useState();
 
   useEffect(() => {
     fetch(`${process.env.BASE_URL}${uri}`).then((response) => {
