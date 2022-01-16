@@ -58,7 +58,7 @@ const Breadcrumb = ({ className, variant }: Props) => {
         <ArrowIcon size={20} variant="right" />
       </StyledLink>
       {routes.map((route) => (
-        <StyledLink href={route.url} key={`${route.route}`}>
+        <StyledLink href={route.url} key={`${route.route}`} variant="internal">
           <Text as="span">{route.route}</Text>
           <ArrowIcon size={20} variant="right" />
         </StyledLink>

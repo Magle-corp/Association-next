@@ -149,7 +149,7 @@ const Slider = ({ slider }: Props) => {
                           ? slide.button.slug.slug
                           : '/404'
                       }`}
-                      variant="internal"
+                      variant="internal_icon"
                     >
                       <Text as="span" variant="p">
                         {slide.button.title}

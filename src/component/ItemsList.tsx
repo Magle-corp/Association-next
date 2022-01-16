@@ -66,7 +66,9 @@ const ItemsList = ({ className, items, variant, spacing = '0px' }: Props) => {
                 href={`/publications/articles/${
                   'slug' in article ? article.slug : '404'
                 }`}
-                variant={variant == 'article_default' ? 'internal' : 'default'}
+                variant={
+                  variant == 'article_default' ? 'internal_icon' : 'default'
+                }
               >
                 {variant == 'article_default' && (
                   <Text as="span">{article.title}</Text>

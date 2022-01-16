@@ -8,7 +8,13 @@ interface Props {
   href: string;
   className?: string;
   children: ReactNode;
-  variant?: 'default' | 'internal' | 'external' | 'social' | 'link_action';
+  variant?:
+    | 'default'
+    | 'internal'
+    | 'internal_icon'
+    | 'external'
+    | 'social'
+    | 'link_action';
 }
 
 const StyledLink = styled.a<{ variant: string }>`
@@ -77,7 +83,7 @@ const Link = ({ href, className, children, variant = 'default' }: Props) => (
   <NextLink href={href} passHref>
     <StyledLink className={className} variant={variant}>
       {children}
-      {variant == 'internal' && <InternalLinkIcon size={15} />}
+      {variant == 'internal_icon' && <InternalLinkIcon size={15} />}
       {variant == 'external' && <ExternalLinkIcon size={15} />}
     </StyledLink>
   </NextLink>
