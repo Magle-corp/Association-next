@@ -103,7 +103,7 @@ const StyledButton = styled(Button)<{ slide: string }>`
  *   Array of custom Strapi component "Slider".
  */
 const Slider = ({ slider }: Props) => {
-  const [currentSlide, setCurrentSlide] = useState(slider.slides[0]);
+  const [currentSlide, setCurrentSlide] = useState<SlideType>(slider.slides[0]);
   const [sliderAuto, setSliderAuto] = useState<any>();
 
   useEffect(() => {

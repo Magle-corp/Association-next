@@ -76,7 +76,7 @@ const CrossIcon = styled(Cross)`
  *   Strapi custom content type "Identite".
  */
 const Header = ({ identity }: Props) => {
-  const [navbarView, setNavbarView] = useState(Boolean);
+  const [navbarView, setNavbarView] = useState<boolean>(Boolean);
 
   return (
     <StyledHeader view={navbarView}>
