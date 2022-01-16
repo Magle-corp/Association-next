@@ -1,5 +1,4 @@
 // Use.
-import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { Article, Event, Taxonomy } from '../../type';
 import { ItemsStacker, ItemsTaxoFilter } from '../../util';
@@ -14,7 +13,6 @@ interface Props {
   filters: Array<string | Array<string>>;
   setFilters: Function;
   filtersViewState: boolean;
-  setFiltersViewState: Function;
 }
 
 const Container = styled.div<{ viewState: boolean }>`
@@ -40,8 +38,6 @@ const Container = styled.div<{ viewState: boolean }>`
  *   State "filters", array.
  * @param setFilters
  *   Function for set "filters" state, array.
- * @param setFiltersViewState
- *   Function for set "viewState" state, boolean.
  * @param filtersViewState
  *   State "viewState", boolean.
  */
@@ -52,33 +48,8 @@ const ItemsFilters = ({
   setPage,
   setFilters,
   filters,
-  setFiltersViewState,
   filtersViewState,
 }: Props) => {
-  const router = useRouter();
-  const routerQuery = router.query.taxonomy;
-
-  // Set stackedArticles according to the router request.
-  useEffect(() => {
-    if (routerQuery) {
-      setFiltersViewState(true);
-      setFilters([...filters, routerQuery]);
-      const filteredItems = ItemsTaxoFilter(items, filters);
-      setStackedItems(
-        ItemsStacker(filteredItems) as Array<Article[] | Event[]>
-      );
-    } else {
-      setStackedItems(ItemsStacker(items) as Array<Article[] | Event[]>);
-    }
-  }, [
-    items,
-    routerQuery,
-    filters,
-    setFilters,
-    setFiltersViewState,
-    setStackedItems,
-  ]);
-
   // Set stackedArticles according to the filters.
   useEffect(() => {
     if (filters.length > 0) {

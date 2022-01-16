@@ -23,7 +23,7 @@ interface Props {
   identity: Identity;
 }
 
-const FiltersContainer = styled(Wrapper)`
+const TitleFilters = styled(Wrapper)`
   @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
     flex-direction: column;
   }
@@ -98,7 +98,7 @@ const ContentTypeListPage = ({
           <Pagination page={page} lastPage={lastPage} setPage={setPage} />
         </Main>
         <Aside variant="duo_breadcrumb" spacing="50px 0 0 0">
-          <FiltersContainer
+          <TitleFilters
             variant="horizontal"
             spacing="0 0 0 20px"
             onClick={() => {
@@ -109,7 +109,7 @@ const ContentTypeListPage = ({
               Filtres
             </Text>
             <ArrowIcon filtersViewState={filtersViewState} />
-          </FiltersContainer>
+          </TitleFilters>
           <ItemsFilters
             taxonomies={taxonomies}
             items={contentItems}
@@ -118,7 +118,6 @@ const ContentTypeListPage = ({
             filters={filters}
             setFilters={setFilters}
             filtersViewState={filtersViewState}
-            setFiltersViewState={setFiltersViewState}
           />
         </Aside>
       </Layout>
