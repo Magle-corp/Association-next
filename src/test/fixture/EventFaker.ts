@@ -5,7 +5,7 @@ import { Event, Taxonomy } from '../../type';
 import { TaxonomyFaker } from './index';
 
 /**
- Returns a fake Event.
+ * Returns a fake Event.
  */
 const EventFaker = () => {
   const fakeTaxonomies: Array<Taxonomy> = [];

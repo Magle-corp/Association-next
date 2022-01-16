@@ -1,7 +1,7 @@
 // Use.
 import { Image, Button } from './index';
 
-// Type for page d'accueil content type.
+// Types for Page D'accueil content type.
 
 interface Homepage {
   id: string;

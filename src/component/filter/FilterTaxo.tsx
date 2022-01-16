@@ -15,14 +15,14 @@ const SelectedButton = styled(Button)`
 `;
 
 /**
- * Provide component "FiltersTaxo".
+ * Provide component "FilterTaxo".
  *
  * @param taxonomies
  *   Array of Strapi custom content type "Taxonomy".
  * @param filters
  *   State "filters", array.
  * @param setFilters
- *   Function for set "filters" state.
+ *   Function for set "filters" state, array.
  */
 const FilterTaxo = ({ taxonomies, filters, setFilters }: Props) => {
   return (

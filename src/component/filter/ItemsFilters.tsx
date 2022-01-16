@@ -33,15 +33,15 @@ const Container = styled.div<{ viewState: boolean }>`
  * @param items
  *   Array of Strapi custom content type "Article" or "Event".
  * @param setStackedItems
- *   Function for set "stackedArticles" state.
+ *   Function for set "stackedArticles" state, array.
  * @param setPage
  *   Function for set "page" state, number.
  * @param filters
  *   State "filters", array.
  * @param setFilters
- *   Function for set "filters" state.
+ *   Function for set "filters" state, array.
  * @param setFiltersViewState
- *   Function for set "viewState" state.
+ *   Function for set "viewState" state, boolean.
  * @param filtersViewState
  *   State "viewState", boolean.
  */

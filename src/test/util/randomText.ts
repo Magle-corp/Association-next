@@ -5,7 +5,7 @@ const Faker = require('faker');
  * Returns a random text.
  *
  * @param maxLength
- *   The maximum length expected value.
+ *   The maximum length expected value, number.
  */
 const randomText = (maxLength: number) => {
   const lorem: string = Faker.lorem.text();

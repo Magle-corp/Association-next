@@ -3,6 +3,9 @@ import { Article, Event } from '../type';
 import { ItemsStacker } from '../util/ItemsStacker';
 import { ArticleFaker, EventFaker } from './fixture';
 
+/**
+ * Test for util ItemsStacker.
+ */
 describe('Test util ItemsStacker', () => {
   test('Empty array ', () => {
     expect(ItemsStacker([])).toStrictEqual([]);

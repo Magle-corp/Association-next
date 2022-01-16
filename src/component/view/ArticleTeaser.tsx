@@ -57,7 +57,7 @@ const Description = styled(Text)`
 `;
 
 /**
- * Provide component "ArticleTeaser".
+ * Provide view "ArticleTeaser".
  *
  * @param article
  *   Strapi custom content type "Article".

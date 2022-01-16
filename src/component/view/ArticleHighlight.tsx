@@ -26,7 +26,7 @@ const ArticleLink = styled(Link)`
 `;
 
 /**
- * Provide component "ArticleHighlight".
+ * Provide view "ArticleHighlight".
  *
  * @param article
  *   Strapi custom content type "Article".

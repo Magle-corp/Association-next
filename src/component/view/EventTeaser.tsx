@@ -73,7 +73,7 @@ const ContentWrapper = styled.div`
 `;
 
 /**
- * Provide component "EventTeaser".
+ * Provide view "EventTeaser".
  *
  * @param event
  *   Strapi custom content type "Event".

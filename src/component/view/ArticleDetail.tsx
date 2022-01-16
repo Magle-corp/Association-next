@@ -71,7 +71,7 @@ const TaxonomiesList = styled(ItemsList)`
 `;
 
 /**
- * Provide component "ArticleDetail".
+ * Provide view "ArticleDetail".
  *
  * @param article
  *   Strapi custom content type "Article".

@@ -1,6 +1,9 @@
 // Use.
 import { BreadcrumbBuilder } from '../util/BreadcrumbBuilder';
 
+/**
+ * Test for util BreadcrumbBuilder.
+ */
 describe('Test util BreadcrumbBuilder', () => {
   test('Empty route', () => {
     expect(BreadcrumbBuilder('', {})).toStrictEqual([]);

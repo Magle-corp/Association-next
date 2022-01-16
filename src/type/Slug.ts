@@ -1,4 +1,4 @@
-// Type for a slug content type.
+// Type for Slug content type.
 interface Slug {
   id: number;
   title: string;

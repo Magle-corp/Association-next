@@ -18,13 +18,13 @@ const StyledButton = styled.aside<{ variant: string }>`
  * Provide UI component "Button".
  *
  * @param className
- *   String for override Styled component style.
+ *   Styled component override.
  * @param children
  *   React Node children.
  * @param variant
- *   String for define behaviour of the component.
+ *   String for define behaviour of the component, string.
  * @param onClick
- *   MouseEventHandler
+ *   MouseEventHandler.
  * @param disabled
  *   Boolean.
  * @param props

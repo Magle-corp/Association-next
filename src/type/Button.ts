@@ -1,7 +1,7 @@
 // Use.
 import { Slug } from './index';
 
-// Type for a Strapi Button.
+// Type for component Button.
 interface Button {
   title: string;
   link_seo: string;

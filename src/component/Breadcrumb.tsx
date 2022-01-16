@@ -43,9 +43,9 @@ const StyledLink = styled(Link)`
  * Provide component "Breadcrumb".
  *
  * @param className
- *   String for override Styled component style.
+ *   Styled component override.
  * @param variant
- *   String for define behaviour of the component.
+ *   String for define behaviour of the component, string.
  */
 const Breadcrumb = ({ className, variant }: Props) => {
   const router = useRouter();

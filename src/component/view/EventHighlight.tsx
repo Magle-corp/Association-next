@@ -19,7 +19,7 @@ const StyledDate = styled(Text)`
 `;
 
 /**
- * Provide component "EventHighlight".
+ * Provide view "EventHighlight".
  *
  * @param event
  *   Strapi custom content type "Event".

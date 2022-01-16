@@ -47,13 +47,13 @@ const StyledList = styled.ul<{ spacing: string; variant: string }>`
  * Provide component "ItemsList".
  *
  * @param className
- *   String for override Styled component style.
+ *   Styled component override.
  * @param items
  *   Array of Strapi custom content type "Article" or "Event".
  * @param variant
- *   String for define behaviour of the component.
+ *   String for define behaviour of the component, string.
  * @param spacing
- *   The margin between each child.
+ *   The margin between each child, string.
  */
 const ItemsList = ({ className, items, variant, spacing = '0px' }: Props) => {
   return (

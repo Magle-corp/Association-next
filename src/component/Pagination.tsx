@@ -38,7 +38,7 @@ const StyledButton = styled(Button)`
  * @param lastPage
  *   State "lastPage", number.
  * @param setPage
- *   Function for set "page" state.
+ *   Function for set "page" state, number.
  */
 const Pagination = ({ page, lastPage, setPage }: Props) => {
   return (

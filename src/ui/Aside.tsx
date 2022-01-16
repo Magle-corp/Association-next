@@ -51,13 +51,13 @@ const StyledAside = styled.aside<{ variant: string; spacing: string }>`
  * Provide UI component "Aside".
  *
  * @param className
- *   String for override Styled component style.
+ *   Styled component override.
  * @param children
  *   React Node children.
  * @param variant
- *   String for define behaviour of the component.
+ *   String for define behaviour of the component, string.
  * @param spacing
- *   The margin between each child.
+ *   The margin between each child, string.
  * @param props
  *   Props.
  */
