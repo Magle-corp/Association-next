@@ -2,8 +2,8 @@
 import Image from 'next/image';
 import styled from 'styled-components';
 import { Propos, Identity } from '../type';
-import { Link, ImageWrapper } from '../ui';
-import { Facebook, Instagram, Twitter } from '../theme/icon';
+import { SocialMedias } from '../component';
+import { ImageWrapper } from '../ui';
 
 interface Props {
   propos: Propos;
@@ -46,7 +46,7 @@ const Title = styled.h1`
   }
 `;
 
-const SubTitleWrapper = styled.div`
+const SocialMediasWrapper = styled.div`
   z-index: 10;
   grid-column: 1/2;
   grid-row: 2/3;
@@ -56,10 +56,6 @@ const SubTitleWrapper = styled.div`
   padding: 5px 25px 5px 5px;
   background-color: ${({ theme }) => theme.colors.secondary};
 
-  > *:not(:first-child) {
-    margin-left: 15px;
-  }
-
   @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
     grid-column: 2/5;
     grid-row: 2/4;
@@ -68,7 +64,7 @@ const SubTitleWrapper = styled.div`
 `;
 
 /**
- * Provide page "A propos".
+ * Provide component "Banner".
  *
  * @param propos
  *   Strapi custom content type "Propos".
@@ -88,23 +84,9 @@ const Banner = ({ propos, identity }: Props) => {
       </ImageWrapper>
       <TitleWrapper>
         <Title>A propos de l&apos;{identity.name}</Title>
-        <SubTitleWrapper>
-          {identity.facebook && (
-            <Link href={identity.facebook} variant="social">
-              <Facebook size={25} />
-            </Link>
-          )}
-          {identity.instagram && (
-            <Link href={identity.instagram} variant="social">
-              <Instagram size={25} />
-            </Link>
-          )}
-          {identity.twitter && (
-            <Link href={identity.twitter} variant="social">
-              <Twitter size={25} />
-            </Link>
-          )}
-        </SubTitleWrapper>
+        <SocialMediasWrapper>
+          <SocialMedias identity={identity} />
+        </SocialMediasWrapper>
       </TitleWrapper>
     </StyledBanner>
   );

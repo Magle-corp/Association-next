@@ -18,3 +18,4 @@ export { ItemsList } from './ItemsList';
 export { Navbar } from './Navbar';
 export { Pagination } from './Pagination';
 export { Slider } from './Slider';
+export { SocialMedias } from './SocialMedias';

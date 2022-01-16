@@ -2,8 +2,8 @@
 import Image from 'next/image';
 import styled from 'styled-components';
 import { Identity } from '../type';
-import { Link, Wrapper, Text, ImageWrapper } from '../ui';
-import { Facebook, Instagram, Twitter } from '../theme/icon';
+import { SocialMedias } from '../component';
+import { Wrapper, Text, ImageWrapper } from '../ui';
 
 interface Props {
   identity: Identity;
@@ -61,23 +61,7 @@ const Footer = ({ identity }: Props) => {
           />
         </StyledImageWrapper>
       </Wrapper>
-      <Wrapper variant="horizontal" spacing="0 0 0 15px">
-        {identity.facebook && (
-          <Link href={identity.facebook} variant="social">
-            <Facebook size={30} />
-          </Link>
-        )}
-        {identity.instagram && (
-          <Link href={identity.instagram} variant="social">
-            <Instagram size={30} />
-          </Link>
-        )}
-        {identity.twitter && (
-          <Link href={identity.twitter} variant="social">
-            <Twitter size={30} />
-          </Link>
-        )}
-      </Wrapper>
+      <SocialMedias identity={identity} />
       <Wrapper variant="vertical" spacing="15px 0 0 0">
         <Text>{identity.name} 2021</Text>
         <Text>{identity.email}</Text>
