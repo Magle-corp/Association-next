@@ -11,7 +11,7 @@ interface Props {
   identity: Identity;
 }
 
-const StyledHeader = styled.header<{ view: boolean }>`
+const StyledHeader = styled.header`
   position: fixed;
   z-index: 100;
   display: flex;
@@ -22,8 +22,7 @@ const StyledHeader = styled.header<{ view: boolean }>`
   width: 100%;
   min-height: 70px;
   padding: 10px 0;
-  background-color: ${({ theme, view }) =>
-    view ? theme.colors.secondary : theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.white};
 
   > *:not(:last-child) {
     margin: 0 20px;
@@ -79,7 +78,7 @@ const Header = ({ identity }: Props) => {
   const [navbarView, setNavbarView] = useState<boolean>(Boolean);
 
   return (
-    <StyledHeader view={navbarView}>
+    <StyledHeader>
       <Brand variant="horizontal">
         <StyledImageWrapper width="40px" height="40px">
           <Image

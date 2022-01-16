@@ -1,5 +1,5 @@
 // Use.
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Link, Text } from '../ui';
 
 interface Props {
@@ -10,23 +10,22 @@ const StyledNavbar = styled.nav<{ navbarView: boolean }>`
   display: none;
 
   ${({ theme, navbarView }) =>
-    navbarView &&
-    css`
-      position: absolute;
-      display: flex;
-      top: 100%;
-      width: 100vh;
-      height: 100vh;
-      padding-top: 20px;
-      padding-left: 20px;
-      background-color: ${theme.colors.secondary};
-    `};
+    navbarView
+      ? `
+    position: absolute;
+    display: flex;
+    top: 100%;
+    width: 100%;
+    height: 100vh;
+    background-color: ${theme.colors.white}`
+      : ``};
 
   @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
     position: relative;
     display: flex;
     top: 0;
     width: max-content;
+    height: max-content;
     padding: 0;
     background-color: ${({ theme }) => theme.colors.white};
   }
@@ -35,14 +34,30 @@ const StyledNavbar = styled.nav<{ navbarView: boolean }>`
 const Menu = styled.ul`
   display: flex;
   flex-direction: column;
+  width: 100%;
+  margin: 50px 30px;
   list-style: none;
+  text-align: center;
+
+  > li > a > span {
+    ${({ theme }) => theme.typography.h2};
+    padding-bottom: 3px;
+    border-bottom: ${({ theme }) => `4px solid ${theme.colors.primary}`};
+  }
+
+  > li > ul > li > a > span {
+    ${({ theme }) => theme.typography.h3};
+  }
 
   > *:not(:first-child) {
-    margin-top: 15px;
+    margin-top: 45px;
   }
 
   @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
     flex-direction: row;
+    width: max-content;
+    margin: 0;
+    text-align: left;
 
     > *:not(:first-child) {
       margin-left: 30px;
@@ -56,15 +71,25 @@ const Menu = styled.ul`
         }
       }
     }
+
+    > li > a > span {
+      ${({ theme }) => theme.typography.h4}
+      padding-bottom: 0;
+      border-bottom: unset;
+    }
+
+    > li > ul > li > a > span {
+      ${({ theme }) => theme.typography.h4}
+    }
   }
 `;
 
 const SubMenu = styled.ul`
-  margin: 15px 0 0 15px;
+  margin-top: 25px;
   list-style: none;
 
   > *:not(:first-child) {
-    margin-top: 10px;
+    margin-top: 20px;
   }
 
   @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
