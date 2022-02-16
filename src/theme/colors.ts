@@ -4,6 +4,7 @@ const colors: object = {
   black: '#222222',
   white: '#ffffff',
   grey: '#bfbfbf',
+  darkGrey: '#5F5F5F',
 };
 
 export default colors;

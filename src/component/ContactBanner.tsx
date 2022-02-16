@@ -11,7 +11,7 @@ const StyledBanner = styled.div`
   position: relative;
   grid-column: 1/2;
   grid-row: 1/2;
-  margin-bottom: 180px;
+  margin-bottom: 100px;
 `;
 
 const TitleWrapper = styled.div`

@@ -1,4 +1,5 @@
 // Use.
+import styled from 'styled-components';
 import { Identity } from '../src/type';
 import { Header, Footer, ContactBanner, ContactForm } from '../src/component';
 import { Layout, Main } from '../src/ui';
@@ -6,6 +7,12 @@ import { Layout, Main } from '../src/ui';
 interface Props {
   identity: Identity;
 }
+
+const StyledMain = styled(Main)`
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: max-content;
+`;
 
 /**
  * Provide page "Contact".
@@ -18,10 +25,10 @@ const Contact = ({ identity }: Props) => {
     <>
       <Header identity={identity} />
       <Layout variant="mono_banner">
-        <Main variant="mono_banner">
-          <ContactBanner identity={identity} />
+        <ContactBanner identity={identity} />
+        <StyledMain variant="mono_banner">
           <ContactForm />
-        </Main>
+        </StyledMain>
       </Layout>
       <Footer identity={identity} />
     </>
