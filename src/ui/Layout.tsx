@@ -21,7 +21,7 @@ const StyledLayout = styled.div<{ variant: string }>`
   margin: 0 auto;
   padding: 150px 20px;
 
-  @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.mobile}`}) {
     padding: 110px 20px;
   }
 

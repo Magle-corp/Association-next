@@ -145,7 +145,7 @@ const Navbar = ({ navbarView }: Props) => {
           </Link>
         </li>
         <li>
-          <Link href="#">
+          <Link href="/contact">
             <Text as="span" variant="h4">
               Contact
             </Text>

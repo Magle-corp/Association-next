@@ -1,7 +1,7 @@
 // Use.
 import { Propos, Identity } from '../src/type';
 import { BlockBuilder } from '../src/util';
-import { Header, Banner, Footer } from '../src/component';
+import { Header, AboutBanner, Footer } from '../src/component';
 import { Layout, Main } from '../src/ui';
 
 interface Props {
@@ -22,7 +22,7 @@ const About = ({ propos, identity }: Props) => {
     <>
       <Header identity={identity} />
       <Layout variant="mono_banner">
-        <Banner propos={propos} identity={identity} />
+        <AboutBanner propos={propos} identity={identity} />
         <Main variant="mono_banner">
           <BlockBuilder blocks={propos.dynamic_zone} />
         </Main>

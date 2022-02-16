@@ -1,15 +1,7 @@
-// Filter components.
-export { FilterTaxo } from './filter/FilterTaxo';
-export { ItemsFilters } from './filter/ItemsFilters';
-// Views components.
-export { ArticleDetail } from './view/ArticleDetail';
-export { ArticleHighlight } from './view/ArticleHighlight';
-export { ArticleTeaser } from './view/ArticleTeaser';
-export { EventHighlight } from './view/EventHighlight';
-export { EventTeaser } from './view/EventTeaser';
 // Components.
-export { Banner } from './Banner';
+export { AboutBanner } from './AboutBanner';
 export { Breadcrumb } from './Breadcrumb';
+export { ContactBanner } from './ContactBanner';
 export { EmptyResult } from './EmptyResult';
 export { Footer } from './Footer';
 export { Header } from './Header';
@@ -19,3 +11,14 @@ export { Navbar } from './Navbar';
 export { Pagination } from './Pagination';
 export { Slider } from './Slider';
 export { SocialMedias } from './SocialMedias';
+// Filter components.
+export { FilterTaxo } from './filter/FilterTaxo';
+export { ItemsFilters } from './filter/ItemsFilters';
+// Form components.
+export { ContactForm } from './ContactForm';
+// Views components.
+export { ArticleDetail } from './view/ArticleDetail';
+export { ArticleHighlight } from './view/ArticleHighlight';
+export { ArticleTeaser } from './view/ArticleTeaser';
+export { EventHighlight } from './view/EventHighlight';
+export { EventTeaser } from './view/EventTeaser';
