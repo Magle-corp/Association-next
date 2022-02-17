@@ -5,18 +5,26 @@ import { InputsValidationSchema } from '../util';
 import { Text, Wrapper } from '../ui';
 
 const StyledForm = styled.form`
-  grid-column: 2/3;
-  grid-row: 1/2;
   display: flex;
   flex-direction: column;
 
-  > * :not(:first-child) {
-    margin-top: 30px;
+  > * :not(:last-child) {
+    margin-bottom: 30px;
+  }
+
+  > * :first-child {
+    margin-bottom: 0;
   }
 `;
 
 const StyledWrapper = styled(Wrapper)`
-  justify-content: space-between;
+  > * :not(:last-child) {
+    margin-right: 50px;
+  }
+
+  > * {
+    margin-bottom: 30px;
+  }
 `;
 
 const StyledLabel = styled.label`
@@ -29,7 +37,8 @@ const StyledLabel = styled.label`
 `;
 
 const StyledInput = styled.input<{ isValid: boolean | null }>`
-  ${({ theme }) => theme.typography.p}
+  ${({ theme }) => theme.typography.p};
+  max-width: 452px;
   padding: 4px;
   border-radius: 3px;
 
@@ -49,13 +58,14 @@ const StyledInput = styled.input<{ isValid: boolean | null }>`
     isValid === null &&
     css`
       border: 2px solid ${({ theme }) => theme.colors.darkGrey};
-    `}
+    `};
 `;
 
 const StyledTextArea = styled.textarea<{ isValid: boolean | null }>`
   box-sizing: border-box;
   ${({ theme }) => theme.typography.p};
   width: 100%;
+  max-width: 620px;
   height: 150px;
   padding: 4px;
   border-radius: 3px;
@@ -83,7 +93,11 @@ const StyledTextArea = styled.textarea<{ isValid: boolean | null }>`
 
 const StyledSubmit = styled.input`
   ${({ theme }) => theme.typography.button_action};
-  margin-left: auto;
+  margin: 0 auto 0 0;
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
+    margin: 0 0 0 auto;
+  }
 `;
 
 /**

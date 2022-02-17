@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 import { Identity } from '../src/type';
 import { Header, Footer, ContactBanner, ContactForm } from '../src/component';
-import { Layout, Main } from '../src/ui';
+import { Layout, Main, Text, Wrapper } from '../src/ui';
 
 interface Props {
   identity: Identity;
@@ -10,8 +10,32 @@ interface Props {
 
 const StyledMain = styled(Main)`
   display: grid;
-  grid-template-columns: 50% 50%;
-  grid-template-rows: max-content;
+  grid-template-columns: 1fr;
+  grid-template-rows: max-content max-content;
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
+    grid-template-columns: 50% 50%;
+    grid-template-rows: max-content;
+  }
+`;
+
+const StyledRightWrapper = styled(Wrapper)`
+  grid-column: 1/2;
+  grid-row: 2/3;
+
+  > *:not(:first-child) {
+    margin-top: 40px;
+  }
+
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.desktop}`}) {
+    grid-column: 2/3;
+    grid-row: 1/2;
+  }
+`;
+
+const StyledTitle = styled(Text)`
+  padding: 7px 10px;
+  background-color: ${({ theme }) => theme.colors.secondary};
 `;
 
 /**
@@ -27,7 +51,10 @@ const Contact = ({ identity }: Props) => {
       <Layout variant="mono_banner">
         <ContactBanner identity={identity} />
         <StyledMain variant="mono_banner">
-          <ContactForm />
+          <StyledRightWrapper variant="vertical">
+            <StyledTitle variant="h2">Ecrivez nous</StyledTitle>
+            <ContactForm />
+          </StyledRightWrapper>
         </StyledMain>
       </Layout>
       <Footer identity={identity} />
