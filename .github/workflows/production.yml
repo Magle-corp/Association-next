@@ -52,7 +52,7 @@ jobs:
       - name: Build project
         run: NODE_ENV=production yarn build
       - name: Rsync project with server one
-        run: rsync -r . ${{ secrets.SERVER }}:${{ secrets.PROD_FOLDER }}
+        run: rsync -r --exclude="package.json" . ${{ secrets.SERVER }}:${{ secrets.PROD_FOLDER }}
       - name: Restart server
         run: ssh ${{ secrets.SERVER }} pm2 ${{ secrets.PROD_PROCESS_NAME }}
 

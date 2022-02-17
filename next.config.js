@@ -5,10 +5,10 @@ const withFonts = require('next-fonts');
 module.exports = withFonts({
   reactStrictMode: true,
   env: {
-    BASE_URL: 'http://association-strapi.magle-staging.ovh:1337',
+    BASE_URL: 'http://association-strapi-staging.magle.fr',
   },
   images: {
-    domains: ['localhost', 'association-strapi.magle-staging.ovh'],
+    domains: ['localhost', 'association-strapi-staging.magle.fr'],
   },
   eslint: {
     dirs: ['pages', 'src'],
