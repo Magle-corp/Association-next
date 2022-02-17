@@ -32,8 +32,6 @@ const StyledInput = styled.input<{ isValid: boolean | null }>`
   ${({ theme }) => theme.typography.p}
   padding: 4px;
   border-radius: 3px;
-  border: 2px solid ${({ theme }) => theme.colors.darkGrey};
-  outline: none;
 
   ${({ isValid }) =>
     isValid &&
@@ -46,6 +44,12 @@ const StyledInput = styled.input<{ isValid: boolean | null }>`
     css`
       border: 2px solid ${({ theme }) => theme.colors.error};
     `}
+
+  ${({ isValid }) =>
+    isValid === null &&
+    css`
+      border: 2px solid ${({ theme }) => theme.colors.darkGrey};
+    `}
 `;
 
 const StyledTextArea = styled.textarea<{ isValid: boolean | null }>`
@@ -56,7 +60,6 @@ const StyledTextArea = styled.textarea<{ isValid: boolean | null }>`
   padding: 4px;
   border-radius: 3px;
   border: 2px solid ${({ theme }) => theme.colors.darkGrey};
-  outline: none;
   resize: none;
 
   ${({ isValid }) =>
@@ -69,6 +72,12 @@ const StyledTextArea = styled.textarea<{ isValid: boolean | null }>`
     !isValid &&
     css`
       border: 2px solid ${({ theme }) => theme.colors.error};
+    `}
+
+  ${({ isValid }) =>
+    isValid === null &&
+    css`
+      border: 2px solid ${({ theme }) => theme.colors.darkGrey};
     `}
 `;
 
