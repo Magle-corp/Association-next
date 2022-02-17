@@ -66,13 +66,13 @@ const Contact = ({ identity }: Props) => {
       <Layout variant="mono_banner">
         <ContactBanner identity={identity} />
         <StyledMain variant="mono_banner">
+          <StyledLeftWrapper variant="vertical">
+            <ContactInformation identity={identity} />
+          </StyledLeftWrapper>
           <StyledRightWrapper variant="vertical">
             <StyledTitle variant="h3">Ecrivez nous</StyledTitle>
             <ContactForm />
           </StyledRightWrapper>
-          <StyledLeftWrapper variant="vertical">
-            <ContactInformation identity={identity} />
-          </StyledLeftWrapper>
         </StyledMain>
       </Layout>
       <Footer identity={identity} />
