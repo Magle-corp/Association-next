@@ -26,7 +26,7 @@ const TitleWrapper = styled.div`
     position: absolute;
     bottom: -45px;
     left: 20px;
-    grid-template-columns: max-content 170px max-content 40px;
+    grid-template-columns: max-content 170px 40px;
     grid-template-rows: max-content 17px max-content;
   }
 `;
@@ -64,14 +64,14 @@ const SocialMediasWrapper = styled.div`
 `;
 
 /**
- * Provide component "Banner".
+ * Provide component "AboutBanner".
  *
  * @param propos
  *   Strapi custom content type "Propos".
  * @param identity
  *   Strapi custom content type "Identite".
  */
-const Banner = ({ propos, identity }: Props) => {
+const AboutBanner = ({ propos, identity }: Props) => {
   return (
     <StyledBanner>
       <ImageWrapper width="100%" height="300px">
@@ -92,4 +92,4 @@ const Banner = ({ propos, identity }: Props) => {
   );
 };
 
-export { Banner };
+export { AboutBanner };
