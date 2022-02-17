@@ -54,7 +54,7 @@ jobs:
       - name: Rsync project with server one
         run: rsync -r --exclude="package.json" . ${{ secrets.SERVER }}:${{ secrets.STAGING_FOLDER }}
       - name: Restart server
-        run: ssh ${{ secrets.SERVER }} pm2 reload ${{ secrets.STAGING_PROCESS_NAME }}
+#        run: ssh ${{ secrets.SERVER }} pm2 reload ${{ secrets.STAGING_PROCESS_NAME }}
 
   publish_coverage:
     name: Publish code coverage

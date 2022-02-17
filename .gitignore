@@ -18,9 +18,6 @@ public/uploads/*
 !public/uploads/.gitkeep
 *.pem
 
-# env
-.env
-
 # OS X
 .DS_Store
 .AppleDouble

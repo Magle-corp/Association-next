@@ -3,15 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
-    "start": "next start -p 3001",
+    "dev": "ENVIRONMENT=local next dev",
+    "staging": "ENVIRONMENT=staging next start -p 3001",
+    "prod": "ENVIRONMENT=prod next start -p 3000",
     "lint": "next lint",
     "test": "jest",
     "prepare": "husky install"
   },
   "dependencies": {
     "date-fns": "^2.26.0",
+    "dotenv": "^16.0.0",
     "formik": "^2.2.9",
     "html-react-parser": "^1.4.0",
     "next": "11.1.2",
