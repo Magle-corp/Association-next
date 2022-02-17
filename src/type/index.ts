@@ -2,6 +2,7 @@ export type { Article } from './Article';
 export type { Cartes, TexteImage, Wysiwyg } from './ArticleComponents';
 export type { Button } from './Button';
 export type { Event } from './Event';
+export type { FormContact } from './FormContact';
 export type { Homepage, Slider, Slide } from './Homepage';
 export type { Identity } from './Identity';
 export type { Image } from './Image';
