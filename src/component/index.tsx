@@ -2,6 +2,7 @@
 export { AboutBanner } from './AboutBanner';
 export { Breadcrumb } from './Breadcrumb';
 export { ContactBanner } from './ContactBanner';
+export { ContactInformation } from './ContactInformation';
 export { EmptyResult } from './EmptyResult';
 export { Footer } from './Footer';
 export { Header } from './Header';

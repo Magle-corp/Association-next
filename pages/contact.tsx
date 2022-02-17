@@ -1,7 +1,13 @@
 // Use.
 import styled from 'styled-components';
 import { Identity } from '../src/type';
-import { Header, Footer, ContactBanner, ContactForm } from '../src/component';
+import {
+  Header,
+  Footer,
+  ContactBanner,
+  ContactForm,
+  ContactInformation,
+} from '../src/component';
 import { Layout, Main, Text, Wrapper } from '../src/ui';
 
 interface Props {
@@ -33,6 +39,15 @@ const StyledRightWrapper = styled(Wrapper)`
   }
 `;
 
+const StyledLeftWrapper = styled(Wrapper)`
+  grid-column: 1/2;
+  grid-row: 1/2;
+
+  > * {
+    margin-bottom: 40px;
+  }
+`;
+
 const StyledTitle = styled(Text)`
   padding: 7px 10px;
   background-color: ${({ theme }) => theme.colors.secondary};
@@ -52,9 +67,12 @@ const Contact = ({ identity }: Props) => {
         <ContactBanner identity={identity} />
         <StyledMain variant="mono_banner">
           <StyledRightWrapper variant="vertical">
-            <StyledTitle variant="h2">Ecrivez nous</StyledTitle>
+            <StyledTitle variant="h3">Ecrivez nous</StyledTitle>
             <ContactForm />
           </StyledRightWrapper>
+          <StyledLeftWrapper variant="vertical">
+            <ContactInformation identity={identity} />
+          </StyledLeftWrapper>
         </StyledMain>
       </Layout>
       <Footer identity={identity} />
