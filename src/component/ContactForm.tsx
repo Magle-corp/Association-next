@@ -2,6 +2,7 @@
 import styled, { css } from 'styled-components';
 import { useFormik } from 'formik';
 import { InputsValidationSchema } from '../util';
+import { FormContact } from '../type';
 import { Text, Wrapper } from '../ui';
 
 const StyledForm = styled.form`
@@ -113,9 +114,23 @@ const ContactForm = () => {
     },
     validationSchema: InputsValidationSchema,
     onSubmit: (values) => {
-      console.log(values);
+      const postResult = postMessage(values);
+      console.log(postResult);
+      // TODO reponse front
     },
   });
+
+  const postMessage = async (values: FormContact) => {
+    const response = await fetch(`${process.env.BASE_POST_URL}/messages`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(values),
+    });
+    return await response.json();
+  };
 
   return (
     <StyledForm onSubmit={formik.handleSubmit}>

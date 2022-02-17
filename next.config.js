@@ -9,6 +9,7 @@ module.exports = withFonts({
   reactStrictMode: true,
   env: {
     BASE_URL: process.env.BASE_URL,
+    BASE_POST_URL: process.env.BASE_POST_URL,
   },
   images: {
     domains: [process.env.BASE_IMAGE_URL],
