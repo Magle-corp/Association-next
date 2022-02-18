@@ -9,6 +9,8 @@ export { Dot } from './Dot';
 export { ExternalLink } from './ExternalLink';
 export { Facebook } from './Facebook';
 export { Home } from './Home';
+export { Incorrect } from './Incorrect';
 export { Instagram } from './Instagram';
 export { InternalLink } from './InternalLink';
 export { Twitter } from './Twitter';
+export { Valid } from './Valid';
