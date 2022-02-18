@@ -53,8 +53,8 @@ jobs:
         run: NODE_ENV=production ENVIRONMENT=prod yarn build
       - name: Rsync project with server one
         run: rsync -r . ${{ secrets.SERVER }}:${{ secrets.PROD_FOLDER }}
-      - name: Restart server
-        run: ssh ${{ secrets.SERVER }} pm2 ${{ secrets.PROD_PROCESS_NAME }}
+#      - name: Restart server
+#        run: ssh ${{ secrets.SERVER }} pm2 ${{ secrets.PROD_PROCESS_NAME }}
 
   publish_coverage:
     name: Publish code coverage
