@@ -17,6 +17,7 @@ export { FilterTaxo } from './filter/FilterTaxo';
 export { ItemsFilters } from './filter/ItemsFilters';
 // Form components.
 export { ContactForm } from './ContactForm';
+export { ContactSubmittedForm } from './ContactSubmittedForm';
 // Views components.
 export { ArticleDetail } from './view/ArticleDetail';
 export { ArticleHighlight } from './view/ArticleHighlight';

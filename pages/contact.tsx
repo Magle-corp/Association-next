@@ -1,11 +1,13 @@
 // Use.
 import styled from 'styled-components';
-import { Identity } from '../src/type';
+import { useAppContext } from '../src/context';
+import { Identity, Context } from '../src/type';
 import {
   Header,
   Footer,
   ContactBanner,
   ContactForm,
+  ContactSubmittedForm,
   ContactInformation,
 } from '../src/component';
 import { Layout, Main, Text, Wrapper } from '../src/ui';
@@ -60,6 +62,8 @@ const StyledTitle = styled(Text)`
  *   Strapi custom content type "Identite".
  */
 const Contact = ({ identity }: Props) => {
+  const { contactFormSubState } = useAppContext() as Context;
+
   return (
     <>
       <Header identity={identity} />
@@ -71,7 +75,11 @@ const Contact = ({ identity }: Props) => {
           </StyledLeftWrapper>
           <StyledRightWrapper variant="vertical">
             <StyledTitle variant="h3">Ecrivez nous</StyledTitle>
-            <ContactForm />
+            {contactFormSubState === 0 ? (
+              <ContactForm />
+            ) : (
+              <ContactSubmittedForm />
+            )}
           </StyledRightWrapper>
         </StyledMain>
       </Layout>

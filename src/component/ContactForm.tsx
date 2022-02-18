@@ -1,8 +1,9 @@
 // Use.
 import styled, { css } from 'styled-components';
 import { useFormik } from 'formik';
+import { useAppContext } from '../context';
 import { InputsValidationSchema } from '../util';
-import { FormContact } from '../type';
+import { Context, FormContact } from '../type';
 import { Text, Wrapper } from '../ui';
 
 const StyledForm = styled.form`
@@ -105,6 +106,8 @@ const StyledSubmit = styled.input`
  * Provide component "ContactForm".
  */
 const ContactForm = () => {
+  const { setContactFormSubState } = useAppContext() as Context;
+
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -113,15 +116,14 @@ const ContactForm = () => {
       message: '',
     },
     validationSchema: InputsValidationSchema,
-    onSubmit: (values) => {
-      const postResult = postMessage(values);
-      console.log(postResult);
-      // TODO reponse front
+    onSubmit: async (values) => {
+      const postResult = await postMessage(values);
+      setContactFormSubState(postResult.status);
     },
   });
 
   const postMessage = async (values: FormContact) => {
-    const response = await fetch(`${process.env.BASE_POST_URL}/messages`, {
+    return await fetch(`${process.env.BASE_POST_URL}/messages`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -129,7 +131,6 @@ const ContactForm = () => {
       },
       body: JSON.stringify(values),
     });
-    return await response.json();
   };
 
   return (
